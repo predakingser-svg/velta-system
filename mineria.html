@@ -11,222 +11,73 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Inter,sans-serif;background:#050508;color:#e8e4dc;overflow:hidden;height:100vh;width:100vw;position:relative}
 
-/* === FANGS SVG === */
-.fang{position:fixed;z-index:2;pointer-events:none;opacity:0.08}
-.fang-l{top:-10px;left:5%;width:120px;height:160px}
-.fang-r{top:-10px;right:5%;width:120px;height:160px;transform:scaleX(-1)}
-.fang-bl{bottom:60px;left:3%;width:80px;height:110px;opacity:0.05}
-.fang-br{bottom:60px;right:3%;width:80px;height:110px;transform:scaleX(-1);opacity:0.05}
+/* GLITCH OVERLAY */
+.g-overlay{position:fixed;inset:0;z-index:3;pointer-events:none}
+.g-overlay::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(74,222,128,0.06) 2px,rgba(74,222,128,0.06) 4px);animation:sc1 3s linear infinite}
+.g-overlay::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 3px,rgba(255,0,0,0.04) 3px,rgba(255,0,0,0.04) 6px);animation:sc2 4s linear infinite reverse}
+@keyframes sc1{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
+@keyframes sc2{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
 
-/* === GLITCH OVERLAY === */
-.glitch-overlay{position:fixed;inset:0;z-index:9999;pointer-events:none}
-.glitch-overlay::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(74,222,128,0.08) 2px,rgba(74,222,128,0.08) 4px);animation:scanL 2s linear infinite;opacity:0.5}
-.glitch-overlay::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 4px,rgba(255,0,0,0.04) 4px,rgba(255,0,0,0.04) 8px);animation:scanR 3s linear infinite reverse;opacity:0.3}
-@keyframes scanL{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
-@keyframes scanR{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.g-flash{position:fixed;inset:0;z-index:2;pointer-events:none;animation:fk 5s infinite}
+@keyframes fk{0%,85%,100%{opacity:0}87%{opacity:0.12;background:rgba(180,0,0,0.08)}89%{opacity:0}91%{opacity:0.06;background:rgba(0,255,0,0.04)}93%{opacity:0}}
 
-/* RANDOM GLITCH FLASHES */
-@keyframes flash{0%,90%,100%{opacity:0}92%{opacity:0.15}94%{opacity:0}96%{opacity:0.08}98%{opacity:0}}
-.glitch-flash{position:fixed;inset:0;z-index:9998;pointer-events:none;background:rgba(180,0,0,0.1);animation:flash 4s ease-in-out infinite}
-.glitch-flash2{position:fixed;inset:0;z-index:9998;pointer-events:none;background:rgba(0,255,0,0.05);animation:flash 6s ease-in-out infinite 1s}
+/* FANGS */
+.fang{position:fixed;z-index:1;pointer-events:none}
+.f1{top:-10px;left:5%;font-size:80px;color:rgba(180,0,0,0.06)}
+.f2{top:-10px;right:5%;font-size:80px;color:rgba(180,0,0,0.06);transform:scaleX(-1)}
+.f3{bottom:80px;left:2%;font-size:50px;color:rgba(180,0,0,0.04)}
+.f4{bottom:80px;right:2%;font-size:50px;color:rgba(180,0,0,0.04);transform:scaleX(-1)}
 
-/* === TITLE GLITCH === */
-@keyframes glitch1{0%,100%{transform:translate(0)}2%{transform:translate(-3px,2px)}4%{transform:translate(3px,-2px)}6%{transform:translate(-1px,1px)}8%{transform:translate(0)}10%{transform:translate(2px,-1px)}12%{transform:translate(0)}}
-@keyframes glitch2{0%,100%{transform:translate(0)}3%{transform:translate(4px,-1px);opacity:0.6}5%{transform:translate(-4px,2px);opacity:0.4}7%{transform:translate(0)}9%{transform:translate(2px,-3px)}11%{transform:translate(0)}14%{transform:translate(-2px,1px);opacity:0.7}16%{transform:translate(0)}}
-@keyframes flick{0%,90%,100%{opacity:1}92%{opacity:0}94%{opacity:1}97%{opacity:0.3}99%{opacity:1}}
+/* MAIN PAGE */
+.main{position:fixed;inset:0 0 70px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1;background:radial-gradient(ellipse at center,rgba(180,0,0,0.03) 0%,transparent 70%)}
+.main h1{font-family:'Black Ops One',cursive;font-size:5rem;letter-spacing:8px;text-transform:uppercase;text-align:center;line-height:1.05;background:linear-gradient(180deg,#e8e4dc 20%,#b40000 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;position:relative;animation:gT 2s ease-in-out infinite}
+.main h1::before{content:'YOKAIS DIVISION KOPION';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(0,255,0,0.3) 20%,rgba(180,0,0,0.3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gT2 3s ease-in-out infinite;opacity:0.4;clip-path:inset(20% 0 60% 0)}
+.main h1::after{content:'YOKAIS DIVISION KOPION';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(255,0,0,0.3) 20%,rgba(0,0,255,0.3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gT1 2.5s ease-in-out infinite reverse;opacity:0.3;clip-path:inset(60% 0 20% 0)}
+@keyframes gT{0%,100%{transform:translate(0)}2%{transform:translate(-2px,1px)}4%{transform:translate(2px,-1px)}6%{transform:translate(0)}8%{transform:translate(-1px,2px)}10%{transform:translate(0)}}
+@keyframes gT1{0%,100%{transform:translate(0)}3%{transform:translate(3px,-1px)}5%{transform:translate(-3px,2px)}7%{transform:translate(0)}9%{transform:translate(2px,-2px)}11%{transform:translate(0)}}
+@keyframes gT2{0%,100%{transform:translate(0)}4%{transform:translate(-3px,1px);opacity:0.6}6%{transform:translate(3px,-2px);opacity:0.4}8%{transform:translate(0)}}
 
-.main-page{position:fixed;inset:0 0 60px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1;background:radial-gradient(ellipse at center,rgba(180,0,0,0.03),transparent 70%)}
-.main-page h1{font-family:'Black Ops One',cursive;font-size:5rem;letter-spacing:6px;text-transform:uppercase;text-align:center;line-height:1;background:linear-gradient(180deg,#e8e4dc 20%,#b40000 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:glitch1 2s ease-in-out infinite;position:relative;filter:drop-shadow(0 0 30px rgba(180,0,0,0.1))}
-.main-page h1::before{content:'YOKAIS DIVISION KOPION';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(0,255,0,0.3) 20%,rgba(180,0,0,0.3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:glitch2 3s ease-in-out infinite;opacity:0.5;clip-path:inset(20% 0 60% 0)}
-.main-page h1::after{content:'YOKAIS DIVISION KOPION';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(255,0,0,0.3) 20%,rgba(0,0,255,0.3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:glitch1 2.5s ease-in-out infinite reverse;opacity:0.4;clip-path:inset(60% 0 20% 0)}
-.main-page .sub{font-size:0.6rem;color:rgba(180,0,0,0.2);letter-spacing:10px;text-transform:uppercase;margin-top:24px;animation:flick 2s infinite}
+.main .sub{font-size:0.55rem;color:rgba(180,0,0,0.08);letter-spacing:12px;text-transform:uppercase;margin-top:20px;animation:fk 2s infinite}
 
-/* === MENU === */
-.menu{position:fixed;bottom:0;left:0;right:0;display:flex;z-index:10;height:60px}
-.menu button{flex:1;border:none;font-family:'Black Ops One',cursive;font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;border-top:1px solid;border-left:none;border-right:none;border-bottom:none}
-.menu button:nth-child(1){background:#050508;color:rgba(74,222,128,0.5);border-top-color:rgba(74,222,128,0.1)}
-.menu button:nth-child(1):hover,.menu button:nth-child(1).on{color:#4ade80;border-top-color:#4ade80;text-shadow:0 0 20px rgba(74,222,128,0.1)}
-.menu button:nth-child(2){background:#050508;color:rgba(212,168,76,0.5);border-top-color:rgba(212,168,76,0.1)}
-.menu button:nth-child(2):hover,.menu button:nth-child(2).on{color:#d4a84c;border-top-color:#d4a84c;text-shadow:0 0 20px rgba(212,168,76,0.1)}
-.menu button:nth-child(3){background:#050508;color:rgba(232,228,220,0.3);border-top-color:rgba(232,228,220,0.05)}
-.menu button:nth-child(3):hover,.menu button:nth-child(3).on{color:#fff;border-top-color:#fff;text-shadow:0 0 20px rgba(255,255,255,0.1)}
-
-/* === PANELS === */
-.panel{position:fixed;top:0;left:0;right:0;bottom:60px;z-index:5;overflow-y:auto;display:none;padding:20px}
-.panel.on{display:block}
-.panel::-webkit-scrollbar{width:3px}
-.panel::-webkit-scrollbar-track{background:transparent}
-.panel::-webkit-scrollbar-thumb{background:rgba(180,0,0,0.1);border-radius:2px}
-
-.panel.mining{background:#050508}
-.panel.mining .h2{font-family:'Black Ops One',cursive;font-size:1rem;letter-spacing:2px;text-transform:uppercase;color:#4ade80;margin-bottom:10px}
-.panel.mining .cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:5px;margin-bottom:16px}
-.panel.mining .card{background:rgba(74,222,128,0.01);border:1px solid rgba(74,222,128,0.03);border-radius:6px;padding:10px 12px;transition:all 0.3s}
-.panel.mining .card:hover{background:rgba(74,222,128,0.02);border-color:rgba(74,222,128,0.06)}
-.panel.mining .card h4{font-size:0.68rem;font-weight:600;margin-bottom:3px}
-.panel.mining .card .v{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:3px 0}
-.panel.mining .card .v div{text-align:center;padding:2px;background:rgba(0,0,0,0.2);border-radius:2px}
-.panel.mining .card .v .nv{font-size:0.52rem;font-weight:600;color:rgba(74,222,128,0.6)}
-.panel.mining .card .v .nv.h{color:#b40000}
-.panel.mining .card .v .lb{font-size:0.38rem;color:rgba(74,222,128,0.05);text-transform:uppercase}
-.panel.mining .card .loc{font-size:0.48rem;color:rgba(74,222,128,0.06);margin-top:3px;line-height:1.3}
-
-.panel.mining .submenu{display:flex;gap:2px;margin-bottom:10px}
-.panel.mining .submenu button{font-size:0.48rem;padding:4px 10px;background:transparent;border:1px solid rgba(74,222,128,0.03);border-radius:3px;color:rgba(74,222,128,0.06);cursor:pointer;font-family:Inter,sans-serif;letter-spacing:1px;text-transform:uppercase;transition:all 0.2s}
-.panel.mining .submenu button:hover{color:rgba(74,222,128,0.12)}
-.panel.mining .submenu button.on{color:#4ade80;border-color:rgba(74,222,128,0.08)}
-
-.panel.mission{background:#050508}
-.panel.mission .h2{font-family:'Black Ops One',cursive;font-size:1rem;letter-spacing:2px;text-transform:uppercase;color:#d4a84c;margin-bottom:10px}
-.panel.mission p{font-size:0.65rem;color:rgba(212,168,76,0.04);letter-spacing:2px;text-transform:uppercase;font-family:'Black Ops One',cursive;text-align:center;padding:60px 20px}
-
-.panel.blueprint{background:#050508}
-.panel.blueprint .h2{font-family:'Black Ops One',cursive;font-size:1rem;letter-spacing:2px;text-transform:uppercase;color:#e8e4dc;margin-bottom:10px}
-.panel.blueprint p{font-size:0.65rem;color:rgba(232,228,220,0.02);letter-spacing:2px;text-transform:uppercase;font-family:'Black Ops One',cursive;text-align:center;padding:60px 20px}
+/* MENU */
+.menu{position:fixed;bottom:0;left:0;right:0;display:flex;z-index:10;height:70px;border-top:1px solid rgba(180,0,0,0.03)}
+.menu a{flex:1;display:flex;align-items:center;justify-content:center;text-decoration:none;font-family:'Black Ops One',cursive;font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;transition:all 0.3s;position:relative}
+.menu a:nth-child(1){background:#050508;color:rgba(74,222,128,0.5)}
+.menu a:nth-child(1):hover{color:#4ade80;text-shadow:0 0 30px rgba(74,222,128,0.2)}
+.menu a:nth-child(2){background:#050508;color:rgba(212,168,76,0.5)}
+.menu a:nth-child(2):hover{color:#d4a84c;text-shadow:0 0 30px rgba(212,168,76,0.2)}
+.menu a:nth-child(3){background:#050508;color:rgba(232,228,220,0.3)}
+.menu a:nth-child(3):hover{color:#fff;text-shadow:0 0 30px rgba(255,255,255,0.15)}
+.menu a::before{content:'';position:absolute;top:-1px;left:20%;right:20%;height:1px;background:currentColor;opacity:0;transition:opacity 0.3s}
+.menu a:hover::before{opacity:0.3}
 
 @media(max-width:600px){
-  .main-page h1{font-size:2.5rem;letter-spacing:3px}
-  .menu button{font-size:0.55rem;letter-spacing:2px}
-  .panel.mining .cg{grid-template-columns:1fr}
+  .main h1{font-size:2.5rem;letter-spacing:4px}
+  .menu a{font-size:0.5rem;letter-spacing:2px}
   .fang{display:none}
 }
 </style>
 </head>
 <body>
 
-<!-- FANGS -->
-<svg class="fang fang-l" viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M60 10 L50 80 L30 155 Q25 160 20 155 L15 80 L30 10 Q35 5 40 10 Z" fill="#b40000" stroke="#b40000" stroke-width="1"/>
-  <path d="M80 20 L75 70 L65 140 Q62 145 58 140 L55 70 L60 20 Q63 15 67 20 Z" fill="#b40000" stroke="#b40000" stroke-width="1" opacity="0.6"/>
-</svg>
-<svg class="fang fang-r" viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M60 10 L50 80 L30 155 Q25 160 20 155 L15 80 L30 10 Q35 5 40 10 Z" fill="#b40000" stroke="#b40000" stroke-width="1"/>
-  <path d="M80 20 L75 70 L65 140 Q62 145 58 140 L55 70 L60 20 Q63 15 67 20 Z" fill="#b40000" stroke="#b40000" stroke-width="1" opacity="0.6"/>
-</svg>
-<svg class="fang fang-bl" viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M40 5 L32 55 L20 105 Q17 110 13 105 L10 55 L20 5 Q23 2 27 5 Z" fill="#b40000" stroke="#b40000" stroke-width="1"/>
-</svg>
-<svg class="fang fang-br" viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M40 5 L32 55 L20 105 Q17 110 13 105 L10 55 L20 5 Q23 2 27 5 Z" fill="#b40000" stroke="#b40000" stroke-width="1"/>
-</svg>
+<div class="g-overlay"></div>
+<div class="g-flash"></div>
 
-<!-- GLITCH EFFECTS -->
-<div class="glitch-overlay"></div>
-<div class="glitch-flash"></div>
-<div class="glitch-flash2"></div>
+<div class="fang f1">\u2b20</div>
+<div class="fang f2">\u2b20</div>
+<div class="fang f3">\u2b20</div>
+<div class="fang f4">\u2b20</div>
 
-<!-- MAIN PAGE -->
-<div class="main-page" id="mainPage">
+<div class="main">
   <h1>YOKAIS<br>DIVISION<br>KOPION</h1>
   <div class="sub">Star Citizen Database</div>
 </div>
 
-<!-- MENU -->
 <div class="menu">
-  <button class="on" onclick="openPanel('mining')">MINERA</button>
-  <button onclick="openPanel('mission')">MISIONES</button>
-  <button onclick="openPanel('blueprint')">BLUEPRINTS</button>
+  <a href="mining.html">MINERA</a>
+  <a href="misiones.html">MISIONES</a>
+  <a href="blueprints.html">BLUEPRINTS</a>
 </div>
 
-<!-- MINING PANEL -->
-<div class="panel mining on" id="panel-mining">
-  <div class="h2">MINERALES</div>
-  <div class="submenu">
-    <button class="on" onclick="showSub('minerales',this)">minerales</button>
-    <button onclick="showSub('ubicaciones',this)">ubicaciones</button>
-    <button onclick="showSub('refinerias',this)">refinerias</button>
-  </div>
-  <div id="minerales-view"><div class="cg" id="mineralGrid"></div></div>
-  <div id="ubicaciones-view" style="display:none"><div class="cg" id="locGrid"></div></div>
-  <div id="refinerias-view" style="display:none">
-    <div style="font-size:0.5rem;color:rgba(74,222,128,0.04);margin-bottom:8px">Bonificaciones porcentuales. +8% = 8% mas rendimiento.</div>
-    <div class="cg" id="refGrid"></div>
-  </div>
-</div>
-
-<!-- MISSION PANEL -->
-<div class="panel mission" id="panel-mission">
-  <div class="h2">MISIONES</div>
-  <p>Data loading from SCMDB</p>
-</div>
-
-<!-- BLUEPRINT PANEL -->
-<div class="panel blueprint" id="panel-blueprint">
-  <div class="h2">BLUEPRINTS</div>
-  <p>1,597 blueprints from SCMDB</p>
-</div>
-
-<script>
-var DATA = {"elements": {"Agricium": {"d": 7.14, "i": 350.0, "r": 0.5, "o": 0.5, "e": 4.0}, "Aluminium": {"d": 2.7, "i": 0.0, "r": -0.4, "o": 0.6, "e": -36.0}, "Aslarite": {"d": 2.47, "i": 700.0, "r": 0.5, "o": 0.4, "e": 240.0}, "Beryl": {"d": 2.74, "i": 350.0, "r": 0.65, "o": 0.3, "e": 20.0}, "Bexalite": {"d": 6.97, "i": 600.0, "r": 0.6, "o": 0.4, "e": 100.0}, "Borase": {"d": 4.2, "i": 40.0, "r": 0.3, "o": 0.3, "e": 120.0}, "Copper": {"d": 9.03, "i": 50.0, "r": -0.7, "o": 0.6, "e": -20.0}, "Corundum": {"d": 4.03, "i": 50.0, "r": 0.1, "o": 0.5, "e": -36.0}, "Gold": {"d": 21.07, "i": 550.0, "r": 0.5, "o": 0.5, "e": 100.0}, "Hephaestanite": {"d": 3.2, "i": 400.0, "r": -0.3, "o": 0.7, "e": 120.0}, "Ice": {"d": 1.0, "i": 0.0, "r": -0.5, "o": 0.6, "e": -20.0}, "Iron": {"d": 7.87, "i": 50.0, "r": -0.4, "o": 0.6, "e": 20.0}, "Laranite": {"d": 11.49, "i": 400.0, "r": 0.5, "o": 0.4, "e": 200.0}, "Lindinium": {"d": 10.69, "i": 1000.0, "r": 0.95, "o": 0.5, "e": 260.0}, "Aphorite": {"d": 0.0, "i": 0.0, "r": 0.0, "o": 0.7, "e": 0.0}, "Carinite": {"d": 0.0, "i": 300.0, "r": 0.5, "o": 0.4, "e": 0.5}, "Carinitepure": {"d": 0.0, "i": 300.0, "r": 0.5, "o": 0.4, "e": 0.5}, "Dolivine": {"d": 0.0, "i": 0.0, "r": 0.1, "o": 0.6, "e": 0.0}, "Hadanite": {"d": 0.0, "i": 200.0, "r": 0.0, "o": 0.6, "e": 1.0}, "Jaclium": {"d": 0.0, "i": 100.0, "r": 0.5, "o": 0.5, "e": 1.0}, "Janalite": {"d": 0.0, "i": 300.0, "r": 0.3, "o": 0.3, "e": 1.0}, "Sadaryx": {"d": 0.0, "i": 200.0, "r": 0.0, "o": 0.6, "e": 1.0}, "Saldynium": {"d": 0.0, "i": 100.0, "r": 0.0, "o": 0.5, "e": 1.0}, "Beradom": {"d": 0.0, "i": 0.0, "r": 0.0, "o": 0.7, "e": 0.0}, "Feynmaline": {"d": 0.0, "i": 200.0, "r": 0.0, "o": 0.6, "e": 1.0}, "Glacosite": {"d": 0.0, "i": 0.0, "r": 0.1, "o": 0.6, "e": 0.0}, "Ouratite": {"d": 1.12, "i": 600.0, "r": 0.6, "o": 0.4, "e": 240.0}, "Quantainium": {"d": 20.46, "i": 1000.0, "r": 0.95, "o": 0.5, "e": 260.0}, "Quartz": {"d": 2.53, "i": 50.0, "r": -0.7, "o": 0.6, "e": -20.0}, "Riccite": {"d": 1.61, "i": 850.0, "r": 0.95, "o": 0.7, "e": 260.0}, "Savrilium": {"d": 17.59, "i": 1000.0, "r": 0.95, "o": 0.5, "e": 260.0}, "Stileron": {"d": 4.75, "i": 870.0, "r": 0.6, "o": 0.7, "e": 260.0}, "Silicon": {"d": 2.49, "i": 50.0, "r": -0.2, "o": 0.3, "e": 80.0}, "Taranite": {"d": 10.2, "i": 700.0, "r": 0.5, "o": 0.4, "e": 240.0}, "Tin": {"d": 5.54, "i": 0.0, "r": -0.2, "o": 0.4, "e": -36.0}, "Titanium": {"d": 4.48, "i": 0.0, "r": 0.1, "o": 0.6, "e": 20.0}, "Torite": {"d": 2.8, "i": 550.0, "r": 0.25, "o": 0.5, "e": 100.0}, "Tungsten": {"d": 19.35, "i": 0.0, "r": -0.4, "o": 0.3, "e": 80.0}}, "locations": {"Breaker Stations Interior": {"s": "Nyx", "t": "event", "m": ["Aphorite", "Sadaryx"]}, "Breaker Stations Large Geode": {"s": "Nyx", "t": "event", "m": ["Savrilium"]}, "Glaciem Ring": {"s": "Nyx", "t": "belt", "m": ["Raw Ice", "Iron", "Lindinium", "Bexalite", "Savrilium", "Torite"]}, "Keeger Belt": {"s": "Nyx", "t": "belt", "m": ["Raw Ice", "Aluminum", "Lindinium", "Bexalite", "Savrilium", "Torite"]}, "Akiro Cluster": {"s": "Pyro", "t": "belt", "m": ["Raw Ice", "Raw Silicon", "Copper", "Iron", "Riccite", "Stileron", "Torite"]}, "Pyro Belt (Cool 1)": {"s": "Pyro", "t": "belt", "m": ["Raw Ice", "Raw Silicon", "Titanium", "Borase"]}, "Pyro Belt (Cool 2)": {"s": "Pyro", "t": "belt", "m": ["Raw Ice", "Raw Silicon", "Aslarite", "Taranite"]}, "Pyro Belt (Warm 1)": {"s": "Pyro", "t": "belt", "m": ["Iron", "Copper", "Agricium", "Bexalite"]}, "Pyro Belt (Warm 2)": {"s": "Pyro", "t": "belt", "m": ["Iron", "Copper", "Tungsten", "Gold"]}, "Pyro Deep Space Asteroids": {"s": "Pyro", "t": "belt", "m": ["Aluminum", "Corundum", "Quartz", "Tin", "Riccite", "Stileron", "Torite"]}, "Pyro I": {"s": "Pyro", "t": "planet", "m": ["Aphorite", "Dolivine", "Hadanite", "Beradom", "Iron", "Copper", "Tin", "Stileron"]}, "Pyro II (Monox)": {"s": "Pyro", "t": "planet", "m": ["Aphorite", "Dolivine", "Hadanite", "Glacosite", "Hephaestanite (R)", "Iron", "Tin", "Stileron"]}, "Pyro III (Bloom)": {"s": "Pyro", "t": "planet", "m": ["Aphorite", "Dolivine", "Janalite", "Beradom", "Riccite", "Borase", "Quartz", "Stileron", "Iron"]}, "Pyro IV": {"s": "Pyro", "t": "planet", "m": ["Aphorite", "Dolivine", "Hadanite", "Feynmaline", "Laranite", "Borase", "Copper", "Stileron", "Iron"]}, "Pyro V-a (Ignis)": {"s": "Pyro", "t": "moon", "m": ["Aphorite", "Dolivine", "Hadanite", "Feynmaline", "Tin", "Raw Silicon", "Riccite", "Gold"]}, "Pyro V-b (Vatra)": {"s": "Pyro", "t": "moon", "m": ["Aphorite", "Dolivine", "Hadanite", "Beradom", "Glacosite", "Iron", "Raw Silicon", "Riccite", "Gold"]}, "Pyro V-c (Adir)": {"s": "Pyro", "t": "moon", "m": ["Aphorite", "Dolivine", "Hadanite", "Glacosite", "Iron", "Tungsten", "Riccite", "Borase"]}, "Pyro V-d (Fairo)": {"s": "Pyro", "t": "moon", "m": ["Aphorite", "Dolivine", "Hadanite", "Beradom", "Bexalite", "Tungsten", "Raw Silicon", "Gold", "Iron"]}, "Pyro V-e (Fuego)": {"s": "Pyro", "t": "moon", "m": ["Aphorite", "Dolivine", "Janalite", "Feynmaline", "Borase", "Bexalite", "Aslarite", "Hephaestanite (R)", "Iron"]}, "Pyro V-f (Vuur)": {"s": "Pyro", "t": "moon", "m": ["Aphorite", "Dolivine", "Hadanite", "Glacosite", "Agricium", "Bexalite", "Aslarite", "Hephaestanite (R)", "Iron"]}, "Pyro VI (Terminus)": {"s": "Pyro", "t": "planet", "m": ["Aphorite", "Dolivine", "Janalite", "Feynmaline", "Raw Ice", "Agricium", "Copper", "Titanium", "Riccite", "Stileron", "Gold"]}, "Aaron Halo": {"s": "Stanton", "t": "belt", "m": ["Raw Ice", "Raw Silicon", "Aluminum", "Quantainium", "Iron", "Copper", "Aslarite", "Titanium", "Beryl"]}, "Aberdeen": {"s": "Stanton", "t": "moon", "m": ["Aluminum", "Titanium", "Ouratite", "Quantainium", "Corundum", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Hadanite"]}, "Arial": {"s": "Stanton", "t": "moon", "m": ["Aluminum", "Tin", "Hephaestanite (R)", "Corundum", "Ouratite", "Quantainium", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Hadanite"]}, "Asteroid Cluster (Low Yield)": {"s": "Stanton", "t": "cluster", "m": ["Raw Ice", "Raw Silicon", "Aluminum", "Iron", "Copper", "Quantainium"]}, "Asteroid Cluster (Medium Yield)": {"s": "Stanton", "t": "cluster", "m": ["Raw Ice", "Raw Silicon", "Aluminum", "Iron", "Copper", "Quantainium"]}, "Calliope": {"s": "Stanton", "t": "moon", "m": ["Iron", "Raw Ice", "Hephaestanite (R)", "Quantainium", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Janalite"]}, "Cellin": {"s": "Stanton", "t": "moon", "m": ["Quartz", "Agricium", "Taranite", "Quantainium", "Raw Silicon", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Hadanite"]}, "Clio": {"s": "Stanton", "t": "moon", "m": ["Raw Ice", "Copper", "Taranite", "Quantainium", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Janalite"]}, "Daymar": {"s": "Stanton", "t": "moon", "m": ["Quartz", "Agricium", "Raw Silicon", "Quantainium", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Hadanite"]}, "Euterpe": {"s": "Stanton", "t": "moon", "m": ["Raw Ice", "Copper", "Taranite", "Quantainium", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Janalite"]}, "Hathor Caves": {"s": "Stanton", "t": "cave", "m": ["Aphorite", "Dolivine", "Hadanite", "Janalite", "Jaclium", "Saldynium", "Carinite", "Carinite (Pure)"]}, "Hurston": {"s": "Stanton", "t": "planet", "m": ["Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Hadanite", "Aluminum", "Tin", "Ouratite", "Quantainium"]}, "Ita": {"s": "Stanton", "t": "moon", "m": ["Aluminum", "Tin", "Aslarite", "Quantainium", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Hadanite"]}, "Lagrange (Occupied)": {"s": "Stanton", "t": "lagrange", "m": ["Iron", "Raw Ice", "Copper", "Agricium", "Beryl"]}, "Lagrange A": {"s": "Stanton", "t": "lagrange", "m": ["Aluminum", "Corundum", "Hephaestanite (R)", "Laranite", "Borase"]}, "Lagrange B": {"s": "Stanton", "t": "lagrange", "m": ["Iron", "Raw Ice", "Copper", "Aslarite", "Gold"]}, "Lagrange C": {"s": "Stanton", "t": "lagrange", "m": ["Aluminum", "Corundum", "Hephaestanite (R)", "Torite"]}, "Lagrange D": {"s": "Stanton", "t": "lagrange", "m": ["Iron", "Raw Ice", "Copper", "Agricium", "Beryl"]}, "Lagrange E": {"s": "Stanton", "t": "lagrange", "m": ["Iron", "Raw Ice", "Copper", "Titanium", "Bexalite"]}, "Lagrange F": {"s": "Stanton", "t": "lagrange", "m": ["Corundum", "Aluminum", "Hephaestanite (R)", "Tungsten", "Taranite"]}, "Lagrange G": {"s": "Stanton", "t": "lagrange", "m": ["Iron", "Raw Ice", "Copper", "Agricium", "Beryl"]}, "Lyria": {"s": "Stanton", "t": "moon", "m": ["Iron", "Copper", "Laranite", "Quantainium", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Janalite"]}, "Magda": {"s": "Stanton", "t": "moon", "m": ["Aluminum", "Titanium", "Aslarite", "Quantainium", "Iron", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Hadanite"]}, "Wala": {"s": "Stanton", "t": "moon", "m": ["Iron", "Beryl", "Laranite", "Quantainium", "Copper", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Janalite"]}, "Yela": {"s": "Stanton", "t": "moon", "m": ["Quartz", "Agricium", "Taranite", "Raw Silicon", "Quantainium", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Hadanite"]}, "Yela Asteroid Belt": {"s": "Stanton", "t": "belt", "m": ["Iron", "Raw Ice", "Copper", "Titanium", "Ouratite"]}, "microTech": {"s": "Stanton", "t": "planet", "m": ["Iron", "Raw Ice", "Hephaestanite (R)", "Quantainium", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Janalite"]}}, "refineries": [{"n": "ARC-L1 Wide Forest Station", "s": "Stanton", "b": {"Iron (Ore)": 1, "Corundum (Raw)": -4, "Quantainium (Raw)": 3, "Titanium (Ore)": 5, "Laranite (Raw)": -2, "Quartz (Raw)": 11, "Taranite (Raw)": -6, "Hephaestanite": -4, "Aluminum (Ore)": -5, "Beryl (Raw)": 7}}, {"n": "ARC-L2 Lively Pathway Station", "s": "Stanton", "b": {"Bexalite (Raw)": 2, "Corundum (Raw)": -3, "Quantainium (Raw)": 3, "Gold (Ore)": 7, "Titanium (Ore)": 3, "Borase (Ore)": 2, "Tungsten (Ore)": -6, "Hephaestanite": -8, "Copper (Ore)": 6}}, {"n": "ARC-L4 Faint Glen Station", "s": "Stanton", "b": {"Corundum (Raw)": -9, "Gold (Ore)": -4, "Titanium (Ore)": -2, "Quartz (Raw)": -2, "Tungsten (Ore)": -5, "Taranite (Raw)": 5, "Hephaestanite": -5, "Copper (Ore)": -4, "Aluminum (Ore)": -3, "Beryl (Raw)": -4, "Agricium (Ore)": -4}}, {"n": "CRU-L1 Ambitious Dream Station", "s": "Stanton", "b": {"Iron (Ore)": 2, "Bexalite (Raw)": -6, "Corundum (Raw)": 7, "Gold (Ore)": -6, "Titanium (Ore)": -1, "Laranite (Raw)": -8, "Tungsten (Ore)": 2, "Hephaestanite": -2, "Beryl (Raw)": 7}}, {"n": "HUR-L1 Green Glade Station", "s": "Stanton", "b": {"Iron (Ore)": -5, "Bexalite (Raw)": -2, "Corundum (Raw)": -5, "Quantainium (Raw)": 2, "Gold (Ore)": -3, "Borase (Ore)": 1, "Laranite (Raw)": 2, "Tungsten (Ore)": 4, "Copper (Ore)": -5, "Aluminum (Ore)": -4, "Agricium (Ore)": -8}}, {"n": "HUR-L2 Faithful Dream Station", "s": "Stanton", "b": {"Corundum (Raw)": 1, "Quantainium (Raw)": 2, "Gold (Ore)": 1, "Laranite (Raw)": -1, "Taranite (Raw)": -3, "Copper (Ore)": -3, "Beryl (Raw)": 1, "Agricium (Ore)": -2}}, {"n": "MIC-L1 Shallow Frontier Station", "s": "Stanton", "b": {"Corundum (Raw)": 2, "Gold (Ore)": 1, "Laranite (Raw)": 2, "Quartz (Raw)": -3, "Copper (Ore)": 4, "Aluminum (Ore)": 7, "Beryl (Raw)": -6, "Agricium (Ore)": 8}}, {"n": "MIC-L2 Long Forest Station", "s": "Stanton", "b": {"Bexalite (Raw)": 9, "Corundum (Raw)": 6, "Quantainium (Raw)": 1, "Gold (Ore)": 9, "Titanium (Ore)": 6, "Borase (Ore)": -3, "Laranite (Raw)": -1, "Quartz (Raw)": -5, "Tungsten (Ore)": 9, "Copper (Ore)": 2, "Beryl (Raw)": -8}}, {"n": "MIC-L5 Modern Icarus Station", "s": "Stanton", "b": {"Iron (Ore)": 8, "Bexalite (Raw)": 12, "Titanium (Ore)": 13, "Borase (Ore)": 9, "Hephaestanite": 8, "Copper (Ore)": 9, "Beryl (Raw)": 7}}, {"n": "Stanton Gateway (Nyx)", "s": "Nyx", "b": {"Iron (Ore)": -5, "Bexalite (Raw)": -2, "Corundum (Raw)": -5, "Quantainium (Raw)": 2, "Gold (Ore)": -3, "Borase (Ore)": 1, "Laranite (Raw)": 2, "Tungsten (Ore)": 4, "Copper (Ore)": -5, "Aluminum (Ore)": -4, "Agricium (Ore)": -8}}, {"n": "Stanton Gateway (Pyro)", "s": "Pyro", "b": {"Iron (Ore)": -5, "Bexalite (Raw)": -2, "Corundum (Raw)": -5, "Quantainium (Raw)": 2, "Gold (Ore)": -3, "Borase (Ore)": 1, "Laranite (Raw)": 2, "Tungsten (Ore)": 4, "Copper (Ore)": -5, "Aluminum (Ore)": -4, "Agricium (Ore)": -8}}, {"n": "Levski", "s": "Nyx", "b": {"Iron (Ore)": 8, "Construction Rubble": 9, "Bexalite (Raw)": 8, "Torite (Ore)": 1, "Corundum (Raw)": 8, "Quantainium (Raw)": 5, "Tin (Ore)": 9, "Gold (Ore)": 5, "Titanium (Ore)": 8, "Borase (Ore)": 8, "Laranite (Raw)": 7, "Quartz (Raw)": 8, "Lindinium (Ore)": 4, "Tungsten (Ore)": 8, "Taranite (Raw)": 8, "Hephaestanite": 8, "Raw Silicon": 8, "Copper (Ore)": 8, "Savrilium (Ore)": 1, "Raw Ice": 10, "Aluminum (Ore)": 8, "Beryl (Raw)": 8, "Construction Salvage": 8, "Agricium (Ore)": 8}}, {"n": "Nyx Gateway (Stanton)", "s": "Stanton", "b": {"Iron (Ore)": 1, "Corundum (Raw)": -4, "Quantainium (Raw)": 3, "Titanium (Ore)": 5, "Laranite (Raw)": -2, "Quartz (Raw)": 11, "Taranite (Raw)": -6, "Hephaestanite": -4, "Aluminum (Ore)": -5, "Beryl (Raw)": 7}}, {"n": "Nyx Gateway (Pyro)", "s": "Pyro", "b": {"Iron (Ore)": -5, "Bexalite (Raw)": -2, "Corundum (Raw)": -5, "Quantainium (Raw)": 2, "Gold (Ore)": -3, "Borase (Ore)": 1, "Laranite (Raw)": 2, "Tungsten (Ore)": 4, "Copper (Ore)": -5, "Aluminum (Ore)": -4, "Agricium (Ore)": -8}}, {"n": "Ruin Station", "s": "Pyro", "b": {"Iron (Ore)": -5, "Bexalite (Raw)": -2, "Corundum (Raw)": -5, "Quantainium (Raw)": 2, "Gold (Ore)": -3, "Borase (Ore)": 1, "Laranite (Raw)": 2, "Tungsten (Ore)": 4, "Copper (Ore)": -5, "Aluminum (Ore)": -4, "Agricium (Ore)": -8}}, {"n": "Orbituary", "s": "Pyro", "b": {"Iron (Ore)": -5, "Bexalite (Raw)": -2, "Corundum (Raw)": -5, "Quantainium (Raw)": 2, "Gold (Ore)": -3, "Borase (Ore)": 1, "Laranite (Raw)": 2, "Tungsten (Ore)": 4, "Copper (Ore)": -5, "Aluminum (Ore)": -4, "Agricium (Ore)": -8}}, {"n": "Checkmate", "s": "Pyro", "b": {"Iron (Ore)": -5, "Bexalite (Raw)": -2, "Corundum (Raw)": -5, "Quantainium (Raw)": 2, "Gold (Ore)": -3, "Borase (Ore)": 1, "Laranite (Raw)": 2, "Tungsten (Ore)": 4, "Copper (Ore)": -5, "Aluminum (Ore)": -4, "Agricium (Ore)": -8}}, {"n": "Pyro Gateway (Nyx)", "s": "Nyx", "b": {"Iron (Ore)": -5, "Bexalite (Raw)": -2, "Corundum (Raw)": -5, "Quantainium (Raw)": 2, "Gold (Ore)": -3, "Borase (Ore)": 1, "Laranite (Raw)": 2, "Tungsten (Ore)": 4, "Copper (Ore)": -5, "Aluminum (Ore)": -4, "Agricium (Ore)": -8}}, {"n": "Pyro Gateway (Stanton)", "s": "Stanton", "b": {"Iron (Ore)": 2, "Bexalite (Raw)": -6, "Corundum (Raw)": 7, "Gold (Ore)": -6, "Titanium (Ore)": -1, "Laranite (Raw)": -8, "Tungsten (Ore)": 2, "Hephaestanite": -2, "Beryl (Raw)": 7}}, {"n": "Terra Gateway (Stanton)", "s": "Stanton", "b": {"Corundum (Raw)": 2, "Gold (Ore)": 1, "Laranite (Raw)": 2, "Quartz (Raw)": -3, "Copper (Ore)": 4, "Aluminum (Ore)": 7, "Beryl (Raw)": -6, "Agricium (Ore)": 8}}]};
-
-function fmt(n){if(!n&&n!==0)return'\u2014';if(n>=1000000)return(n/1000000).toFixed(1)+'M';if(n>=1000)return(n/1000).toFixed(1)+'K';return n.toString()}
-function gm(n){var f=['Hadanite','Dolivine','Aphorite','Janalite','Jaclium','Saldynium','Carinite','Carinitepure'];var r=['Glacosite','Beradom','Feynmaline'];if(f.indexOf(n)!==-1)return'FPS';if(r.indexOf(n)!==-1)return'ROC';return'SHIP'}
-
-function gl(n){
-  var r=[];
-  for(var k in DATA.locations){
-    var loc=DATA.locations[k];
-    for(var i=0;i<loc.m.length;i++){if(loc.m[i].toLowerCase().indexOf(n.toLowerCase())!==-1){r.push(k);break}}
-  }
-  return r.length?'<span style="color:rgba(74,222,128,0.06)">'+r.slice(0,3).join(', ')+(r.length>3?', +'+(r.length-3)+' mas':''):'<span style="color:rgba(74,222,128,0.04)">Sin ubicacion fija';
-}
-
-function rm(){
-  var g=document.getElementById('mineralGrid');
-  g.innerHTML='';
-  for(var k in DATA.elements){
-    var v=DATA.elements[k];var m=gm(k);
-    var d=document.createElement('div');d.className='card';
-    d.innerHTML='<h4>'+k+' <span style="font-size:0.42rem;color:rgba(74,222,128,0.15);letter-spacing:1px">'+m+'</span></h4>'+
-      '<div class="v"><div><div class="nv">'+fmt(v.i)+'</div><div class="lb">Inest</div></div>'+
-      '<div><div class="nv">'+fmt(v.d)+'</div><div class="lb">Dens</div></div>'+
-      '<div><div class="nv">'+fmt(v.e)+'</div><div class="lb">Exp</div></div></div>'+
-      '<div class="loc">'+gl(k)+'</div>';
-    g.appendChild(d);
-  }
-}
-
-function rl(){
-  var g=document.getElementById('locGrid');
-  g.innerHTML='';
-  for(var k in DATA.locations){
-    var loc=DATA.locations[k];
-    var d=document.createElement('div');d.className='card';
-    d.innerHTML='<h4>'+k+'</h4><div class="v" style="grid-template-columns: 1fr 1fr;margin-bottom:4px"><div><div class="nv" style="font-size:0.48rem">'+loc.s+'</div><div class="lb">Sistema</div></div><div><div class="nv" style="font-size:0.48rem">'+loc.t+'</div><div class="lb">Tipo</div></div></div>'+
-      '<div style="display:flex;flex-wrap:wrap;gap:2px">'+loc.m.map(function(x){return'<span style="font-size:0.42rem;padding:1px 4px;border-radius:2px;background:rgba(0,0,0,0.2);color:rgba(74,222,128,0.05)">'+x+'</span>'}).join('')+'</div>';
-    g.appendChild(d);
-  }
-}
-
-function rr(){
-  var g=document.getElementById('refGrid');
-  g.innerHTML='';
-  for(var i=0;i<DATA.refineries.length;i++){
-    var rf=DATA.refineries[i];
-    var d=document.createElement('div');d.className='card';
-    var b=Object.keys(rf.b).sort(function(a,b){return rf.b[b]-rf.b[a]}).slice(0,8);
-    d.innerHTML='<h4>'+rf.n+'</h4><div style="font-size:0.45rem;color:rgba(74,222,128,0.08);margin-bottom:2px">'+rf.s+'</div>'+
-      '<div style="font-size:0.48rem;color:rgba(74,222,128,0.06);line-height:1.3">'+b.map(function(k){var v=rf.b[k];return'<span style="color:'+(v>0?'rgba(74,222,128,0.2)':'rgba(180,0,0,0.2)')+'">'+(v>0?'+':'')+v+'%</span> '+k.replace(' (Ore)','').replace(' (Raw)','')}).join(' ')+'</div>';
-    g.appendChild(d);
-  }
-}
-
-function openPanel(id){
-  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on')});
-  document.querySelectorAll('.menu button').forEach(function(b){b.classList.remove('on')});
-  document.getElementById('panel-'+id).classList.add('on');
-  event.target.classList.add('on');
-}
-
-function showSub(id,btn){
-  document.querySelectorAll('#panel-mining .submenu button').forEach(function(b){b.classList.remove('on')});
-  btn.classList.add('on');
-  document.getElementById('minerales-view').style.display=id==='minerales'?'block':'none';
-  document.getElementById('ubicaciones-view').style.display=id==='ubicaciones'?'block':'none';
-  document.getElementById('refinerias-view').style.display=id==='refinerias'?'block':'none';
-}
-
-rm();rl();rr();
-</script>
 </body>
 </html>
