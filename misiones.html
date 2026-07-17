@@ -9,16 +9,42 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Black+Ops+One&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter,sans-serif;background:#050508;color:#e8e4dc;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.hdr{position:fixed;top:0;left:0;right:0;z-index:10;padding:16px 20px;background:#050508;border-bottom:1px solid rgba(212,168,76,0.03);display:flex;align-items:center;gap:16px}
+body{font-family:Inter,sans-serif;background:#050508;color:#e8e4dc;-webkit-font-smoothing:antialiased;min-height:100vh}
+.hdr{position:sticky;top:0;z-index:10;padding:16px 20px;background:#050508;border-bottom:1px solid rgba(212,168,76,0.03);display:flex;align-items:center;gap:12px}
 .hdr a{font-family:'Black Ops One',cursive;font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:rgba(212,168,76,0.2);text-decoration:none;transition:color 0.2s}
 .hdr a:hover{color:#d4a84c}
 .hdr h1{font-family:'Black Ops One',cursive;font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:#d4a84c}
-p{font-size:0.65rem;color:rgba(212,168,76,0.04);letter-spacing:2px;text-transform:uppercase;font-family:'Black Ops One',cursive}
+.wrap{padding:20px;max-width:900px;margin:0 auto}
+.h2{font-family:'Black Ops One',cursive;font-size:0.9rem;letter-spacing:2px;text-transform:uppercase;color:#d4a84c;margin-bottom:12px}
+.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px}
+.mc{background:rgba(212,168,76,0.01);border:1px solid rgba(212,168,76,0.03);border-radius:6px;padding:14px 16px;transition:all 0.3s}
+.mc:hover{background:rgba(212,168,76,0.02);border-color:rgba(212,168,76,0.06)}
+.mc .emp{font-size:0.5rem;color:rgba(212,168,76,0.15);letter-spacing:2px;text-transform:uppercase;margin-bottom:2px}
+.mc h4{font-size:0.7rem;font-weight:600;margin-bottom:4px}
+.mc .info{font-size:0.55rem;color:rgba(212,168,76,0.06);line-height:1.4}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(212,168,76,0.06);border-radius:2px}
+@media(max-width:600px){.mg{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="hdr"><a href="mineria.html">◀ YOKAIS</a><h1>MISIONES</h1></div>
-<p>Datos disponibles en SCMDB</p>
+<div class="hdr"><a href="mineria.html">\u25c0 YOKAIS</a><h1>MISIONES</h1></div>
+<div class="wrap">
+  <div class="h2">FACCIONES</div>
+  <div class="mg">
+    <div class="mc"><div class="emp">Corporativo</div><h4>Aciedo Communications</h4><div class="info">Misiones de comunicaciones y datos</div></div>
+    <div class="mc"><div class="emp">Corporativo</div><h4>ArcCorp</h4><div class="info">Misiones de mineria y extraccion</div></div>
+    <div class="mc"><div class="emp">Mercenario</div><h4>Recco Battaglia</h4><div class="info">Misiones de combate y seguridad</div></div>
+    <div class="mc"><div class="emp">Seguridad</div><h4>Civilian Defense Force</h4><div class="info">Misiones de defensa civil</div></div>
+    <div class="mc"><div class="emp">Independiente</div><h4>Clovus Darneely</h4><div class="info">Misiones de contrabando y mercado negro</div></div>
+    <div class="mc"><div class="emp">Gobierno</div><h4>UEE Navy</h4><div class="info">Misiones militares y de patrulla</div></div>
+    <div class="mc"><div class="emp">Corporativo</div><h4>Hurston Dynamics</h4><div class="info">Misiones de extraccion y manufactura</div></div>
+    <div class="mc"><div class="emp">Corporativo</div><h4>microTech</h4><div class="info">Misiones de investigacion y tecnologia</div></div>
+    <div class="mc"><div class="emp">Criminal</div><h4>Nine Tails</h4><div class="info">Misiones ilegales y mercado negro</div></div>
+    <div class="mc"><div class="emp">Seguridad</div><h4>Advocacy</h4><div class="info">Misiones de investigacion y captura</div></div>
+  </div>
+  <p style="font-size:0.5rem;color:rgba(212,168,76,0.03);text-align:center;margin-top:20px">Datos de misiones detalladas disponibles en SCMDB - 1,487 contratos registrados</p>
+</div>
 </body>
 </html>
