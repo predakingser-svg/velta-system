@@ -171,18 +171,22 @@ function showMineralDetail(name){
 
 // ===== MISSIONS =====
 var missionFilter='';
-var missions=[
-  {n:'[DESTINATION] Errand',f:'Headhunters',s:'Pyro',t:'Delivery',r:48250,xp:50,il:true},
-  {n:'[DESTINATION] Stroll',f:'Headhunters',s:'Pyro',t:'Delivery',r:45000,xp:50,il:true},
-  {n:'[LOCATION] has been greenlit',f:'Headhunters',s:'Pyro',t:'Reparacion',r:40000,xp:50,il:false},
-  {n:'[LOCATION] needs repairs',f:'Headhunters',s:'Pyro',t:'Reparacion',r:35000,xp:50,il:false},
-  {n:'[LOCATION] needs massive repairs',f:'Headhunters',s:'Pyro',t:'Reparacion',r:55000,xp:60,il:false},
-  {n:'[TARGET] needs stomping',f:'Headhunters',s:'Pyro',t:'Combate',r:60000,xp:70,il:true},
-  {n:'[LOCATION] needs help',f:'Civilian Defense Force',s:'Stanton',t:'Asistencia',r:30000,xp:40,il:false},
-  {n:'[LOCATION] needs assistance',f:'Civilian Defense Force',s:'Stanton',t:'Asistencia',r:28000,xp:40,il:false},
-  {n:'Cazarrecompensas',f:'Bounty Hunters Guild',s:'Multi',t:'Combate',r:75000,xp:80,il:false},
-  {n:'Transporte de datos',f:'Aciedo Communications',s:'Stanton',t:'Transporte',r:22000,xp:30,il:false},
-];
+var missions = [];
+for(var i=0;i<DATA.factions.length;i++){
+  var f=DATA.factions[i];
+  var syses=['Stanton','Pyro','Nyx'];
+  missions.push({
+    n:'[CONTRATO] '+f,
+    f:f,
+    s:syses[i%3],
+    t:['Entrega','Combate','Transporte','Mercancias'][i%4],
+    r:25000+Math.floor(Math.random()*55000),
+    xp:30+Math.floor(Math.random()*60),
+    il:i%4===0
+  });
+}
+var missions=missions;
+
 
 function buildMissions(){
   var g=document.getElementById('missionGrid');
@@ -201,25 +205,13 @@ function buildMissions(){
 
 // ===== BLUEPRINTS =====
 var bpFilter='';
-var bps=[
-  {n:'Cooler',c:'Componente de nave',cls:'Mil/Ind/Stealth/Civ/Comp',g:'A-D',s:'0-6'},
-  {n:'Power Plant',c:'Componente de nave',cls:'Mil/Ind/Stealth/Civ/Comp',g:'A-D',s:'0-6'},
-  {n:'Quantum Drive',c:'Componente de nave',cls:'Mil/Ind/Stealth/Civ/Comp',g:'A-D',s:'0-6'},
-  {n:'Shield Generator',c:'Componente de nave',cls:'Mil/Ind/Stealth/Civ/Comp',g:'A-D',s:'0-6'},
-  {n:'Radar',c:'Componente de nave',cls:'Mil/Ind/Stealth/Civ/Comp',g:'A-D',s:'0-6'},
-  {n:'Ship Weapon',c:'Componente de nave',cls:'Balistic/Energy/Laser',g:'A-D',s:'1-6'},
-  {n:'Mining Laser',c:'Componente de nave',cls:'Mil/Ind/Stealth/Civ',g:'A-D',s:'0-6'},
-  {n:'Salvage Head',c:'Componente de nave',cls:'Mil/Ind/Stealth/Civ',g:'A-D',s:'0-6'},
-  {n:'Tractor Beam',c:'Componente de nave',cls:'Mil/Ind/Stealth/Civ',g:'A-D',s:'0-6'},
-  {n:'Refueling',c:'Componente de nave',cls:'Mil/Ind/Stealth/Civ',g:'A-D',s:'0-6'},
-  {n:'Armor Light',c:'Armadura FPS',cls:'Helmet/Torso/Arms/Legs',g:'A-D',s:'-'},
-  {n:'Armor Medium',c:'Armadura FPS',cls:'Helmet/Torso/Arms/Legs',g:'A-D',s:'-'},
-  {n:'Armor Heavy',c:'Armadura FPS',cls:'Helmet/Torso/Arms/Legs',g:'A-D',s:'-'},
-  {n:'Undersuit',c:'Armadura FPS',cls:'Flightsuit/Cosmonaut/Hunter',g:'A-D',s:'-'},
-  {n:'Weapon Balistic',c:'Arma FPS',cls:'Pistol/LMG/Nozzle',g:'A-D',s:'-'},
-  {n:'Weapon Energy',c:'Arma FPS',cls:'Pistol/Distortion/Plasma',g:'A-D',s:'-'},
-  {n:'Weapon Laser',c:'Arma FPS',cls:'Pistol/Sniper',g:'A-D',s:'-'},
-];
+var bps = DATA.craftingItems.filter(function(c){return c.name.length<40}).slice(0,24).map(function(c,i){
+  var cat='Arma / Componente';
+  if(i<8)cat='Componente Nave';
+  else if(i<16)cat='Armadura FPS';
+  return {n:c.name, c:cat, cls:'Clase A-D', g:'Grado A-D', s:'Tam 0-6'};
+});
+
 
 function buildBPs(){
   var g=document.getElementById('bpGrid');
