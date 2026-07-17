@@ -169,21 +169,11 @@ function showMineralDetail(name){
   document.getElementById('detailPanel').className='det on';
 }
 
-var missions = [
-  {n:'[DESTINATION] Errand',f:'Headhunters',s:'Pyro',t:'Entrega',r:48250,xp:50,il:true},
-  {n:'[DESTINATION] Stroll',f:'Headhunters',s:'Pyro',t:'Entrega',r:45000,xp:50,il:true},
-  {n:'[TARGET] needs stomping',f:'Headhunters',s:'Pyro',t:'Combate',r:60000,xp:70,il:true},
-  {n:'[LOCATION] needs repairs',f:'CDF',s:'Stanton',t:'Reparacion',r:35000,xp:50,il:false},
-  {n:'[LOCATION] massive repairs',f:'CDF',s:'Stanton',t:'Reparacion',r:55000,xp:60,il:false},
-  {n:'Cazarrecompensas',f:'Bounty Hunters Guild',s:'Multi',t:'Combate',r:75000,xp:80,il:false},
-  {n:'Transporte datos',f:'Aciedo Comms',s:'Stanton',t:'Transporte',r:22000,xp:30,il:false},
-  {n:'Mercancias',f:'ArcCorp',s:'Stanton',t:'Transporte',r:30000,xp:35,il:false},
-];
-
 function buildMissions(){
+  var ms=[{n:'[DESTINATION] Errand',f:'Headhunters',s:'Pyro',t:'Entrega',r:48250,xp:50,il:true},{n:'[DESTINATION] Stroll',f:'Headhunters',s:'Pyro',t:'Entrega',r:45000,xp:50,il:true},{n:'[TARGET] stomping',f:'Headhunters',s:'Pyro',t:'Combate',r:60000,xp:70,il:true},{n:'Repairs CDF',f:'CDF',s:'Stanton',t:'Reparacion',r:35000,xp:50,il:false},{n:'Bounty Hunt',f:'Bounty Guild',s:'Multi',t:'Combate',r:75000,xp:80,il:false}];
   var g=document.getElementById('missionGrid');
   g.innerHTML='';
-  missions.forEach(function(m){
+  ms.forEach(function(m){
     if(missionFilter && m.n.toLowerCase().indexOf(missionFilter.toLowerCase())===-1)return;
     var d=document.createElement('div');d.className='card';
     d.innerHTML='<h4 style="color:#d4a84c">'+m.n+'</h4><div class="m">'+m.f+' \u2022 '+m.s+' \u2022 '+(m.il?'ILEGAL':'LEGAL')+'</div>'+
