@@ -9,42 +9,64 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Black+Ops+One&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter,sans-serif;background:#050508;color:#e8e4dc;-webkit-font-smoothing:antialiased;min-height:100vh}
+body{font-family:Inter,sans-serif;background:#050508;color:#e8e4dc;-webkit-font-smoothing:antialiased}
 .hdr{position:sticky;top:0;z-index:10;padding:16px 20px;background:#050508;border-bottom:1px solid rgba(212,168,76,0.03);display:flex;align-items:center;gap:12px}
-.hdr a{font-family:'Black Ops One',cursive;font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:rgba(212,168,76,0.2);text-decoration:none;transition:color 0.2s}
+.hdr a{font-family:'Black Ops One',cursive;font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:rgba(212,168,76,0.2);text-decoration:none}
 .hdr a:hover{color:#d4a84c}
 .hdr h1{font-family:'Black Ops One',cursive;font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:#d4a84c}
-.wrap{padding:20px;max-width:900px;margin:0 auto}
-.h2{font-family:'Black Ops One',cursive;font-size:0.9rem;letter-spacing:2px;text-transform:uppercase;color:#d4a84c;margin-bottom:12px}
-.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px}
+.wrap{padding:20px;max-width:1100px;margin:0 auto}
+.h2{font-family:'Black Ops One',cursive;font-size:0.9rem;letter-spacing:2px;text-transform:uppercase;color:#d4a84c;margin-bottom:10px}
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:6px}
 .mc{background:rgba(212,168,76,0.01);border:1px solid rgba(212,168,76,0.03);border-radius:6px;padding:14px 16px;transition:all 0.3s}
 .mc:hover{background:rgba(212,168,76,0.02);border-color:rgba(212,168,76,0.06)}
-.mc .emp{font-size:0.5rem;color:rgba(212,168,76,0.15);letter-spacing:2px;text-transform:uppercase;margin-bottom:2px}
-.mc h4{font-size:0.7rem;font-weight:600;margin-bottom:4px}
-.mc .info{font-size:0.55rem;color:rgba(212,168,76,0.06);line-height:1.4}
+.mc .t{font-size:0.65rem;font-weight:600;margin-bottom:6px;color:#e8e4dc}
+.mc .f{font-size:0.5rem;color:rgba(212,168,76,0.15);letter-spacing:2px;text-transform:uppercase;margin-bottom:2px}
+.mc .d{display:flex;gap:6px;flex-wrap:wrap}
+.mc .d span{font-size:0.48rem;padding:2px 8px;border-radius:2px;background:rgba(0,0,0,0.2);color:rgba(212,168,76,0.06)}
+.mc .d .r{color:rgba(74,222,128,0.15)}
+.mc .d .il{color:rgba(180,0,0,0.15)}
 ::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:rgba(212,168,76,0.06);border-radius:2px}
-@media(max-width:600px){.mg{grid-template-columns:1fr}}
+
+.fg{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:4px;margin-bottom:20px}
+.fc{background:rgba(212,168,76,0.01);border:1px solid rgba(212,168,76,0.02);border-radius:4px;padding:8px 12px}
+.fc h4{font-size:0.55rem;font-weight:500;color:rgba(212,168,76,0.1);text-transform:uppercase;letter-spacing:1px}
+.fc .cnt{font-size:0.45rem;color:rgba(212,168,76,0.03)}
+@media(max-width:600px){.cg,.fg{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="hdr"><a href="mineria.html">\u25c0 YOKAIS</a><h1>MISIONES</h1></div>
+<div class="hdr"><a href="mineria.html">◀ YOKAIS</a><h1>MISIONES</h1></div>
 <div class="wrap">
   <div class="h2">FACCIONES</div>
-  <div class="mg">
-    <div class="mc"><div class="emp">Corporativo</div><h4>Aciedo Communications</h4><div class="info">Misiones de comunicaciones y datos</div></div>
-    <div class="mc"><div class="emp">Corporativo</div><h4>ArcCorp</h4><div class="info">Misiones de mineria y extraccion</div></div>
-    <div class="mc"><div class="emp">Mercenario</div><h4>Recco Battaglia</h4><div class="info">Misiones de combate y seguridad</div></div>
-    <div class="mc"><div class="emp">Seguridad</div><h4>Civilian Defense Force</h4><div class="info">Misiones de defensa civil</div></div>
-    <div class="mc"><div class="emp">Independiente</div><h4>Clovus Darneely</h4><div class="info">Misiones de contrabando y mercado negro</div></div>
-    <div class="mc"><div class="emp">Gobierno</div><h4>UEE Navy</h4><div class="info">Misiones militares y de patrulla</div></div>
-    <div class="mc"><div class="emp">Corporativo</div><h4>Hurston Dynamics</h4><div class="info">Misiones de extraccion y manufactura</div></div>
-    <div class="mc"><div class="emp">Corporativo</div><h4>microTech</h4><div class="info">Misiones de investigacion y tecnologia</div></div>
-    <div class="mc"><div class="emp">Criminal</div><h4>Nine Tails</h4><div class="info">Misiones ilegales y mercado negro</div></div>
-    <div class="mc"><div class="emp">Seguridad</div><h4>Advocacy</h4><div class="info">Misiones de investigacion y captura</div></div>
+  <div class="fg">
+    <div class="fc"><h4>Civ Defense Force</h4><div class="cnt">Seguridad civil</div></div>
+    <div class="fc"><h4>Bounty Hunters Guild</h4><div class="cnt">Cazarrecompensas</div></div>
+    <div class="fc"><h4>Headhunters</h4><div class="cnt">Mercenarios Pyro</div></div>
+    <div class="fc"><h4>Hurston Dynamics</h4><div class="cnt">Corporativo</div></div>
+    <div class="fc"><h4>ArcCorp</h4><div class="cnt">Corporativo</div></div>
+    <div class="fc"><h4>microTech</h4><div class="cnt">Corporativo</div></div>
+    <div class="fc"><h4>Aciedo Comms</h4><div class="cnt">Comunicaciones</div></div>
+    <div class="fc"><h4>Nine Tails</h4><div class="cnt">Criminal</div></div>
+    <div class="fc"><h4>Advocacy</h4><div class="cnt">Seguridad UEE</div></div>
+    <div class="fc"><h4>Clovus Darneely</h4><div class="cnt">Mercado negro</div></div>
+    <div class="fc"><h4>Recco Battaglia</h4><div class="cnt">Mercenario</div></div>
+    <div class="fc"><h4>CFP</h4><div class="cnt">Prosperidad civil</div></div>
   </div>
-  <p style="font-size:0.5rem;color:rgba(212,168,76,0.03);text-align:center;margin-top:20px">Datos de misiones detalladas disponibles en SCMDB - 1,487 contratos registrados</p>
+  
+  <div class="h2">MISIONES ACTIVAS</div>
+  <div class="cg">
+    <div class="mc"><div class="f">Headhunters \u00b7 Pyro \u00b7 ILEGAL</div><div class="t">[DESTINATION] Errand</div><div class="d"><span>Delivery</span><span class="r">48,250 aUEC</span><span class="il">ILEGAL</span><span>50 XP</span></div></div>
+    <div class="mc"><div class="f">Headhunters \u00b7 Pyro \u00b7 ILEGAL</div><div class="t">[DESTINATION] Stroll</div><div class="d"><span>Delivery</span><span class="r">~45,000 aUEC</span><span class="il">ILEGAL</span><span>50 XP</span></div></div>
+    <div class="mc"><div class="f">Headhunters \u00b7 Pyro</div><div class="t">[LOCATION] has been greenlit</div><div class="d"><span>Reparacion</span><span>~40,000 aUEC</span><span>50 XP</span></div></div>
+    <div class="mc"><div class="f">Headhunters \u00b7 Pyro</div><div class="t">[LOCATION] needs repairs</div><div class="d"><span>Reparacion</span><span>~35,000 aUEC</span><span>50 XP</span></div></div>
+    <div class="mc"><div class="f">Headhunters \u00b7 Pyro</div><div class="t">[LOCATION] needs massive repairs</div><div class="d"><span>Reparacion</span><span>~55,000 aUEC</span><span>60 XP</span></div></div>
+    <div class="mc"><div class="f">Headhunters \u00b7 Pyro \u00b7 ILEGAL</div><div class="t">[TARGET] needs stomping</div><div class="d"><span>Combate</span><span class="r">~60,000 aUEC</span><span class="il">ILEGAL</span><span>70 XP</span></div></div>
+    <div class="mc"><div class="f">Civ Defense Force \u00b7 Stanton</div><div class="t">[LOCATION] needs help</div><div class="d"><span>Asistencia</span><span>~30,000 aUEC</span><span>40 XP</span></div></div>
+    <div class="mc"><div class="f">Bounty Hunters Guild \u00b7 Multi</div><div class="t">Cazarrecompensas</div><div class="d"><span>Combate</span><span class="r">~75,000 aUEC</span><span>80 XP</span></div></div>
+  </div>
+  <p style="font-size:0.5rem;color:rgba(212,168,76,0.02);text-align:center;margin-top:16px">1,487 contratos \u00b7 80 facciones \u00b7 Fuente: SCMDB Alpha 4.9.0 LIVE</p>
 </div>
 </body>
 </html>

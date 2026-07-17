@@ -9,50 +9,59 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Black+Ops+One&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter,sans-serif;background:#050508;color:#e8e4dc;-webkit-font-smoothing:antialiased;min-height:100vh}
+body{font-family:Inter,sans-serif;background:#050508;color:#e8e4dc;-webkit-font-smoothing:antialiased}
 .hdr{position:sticky;top:0;z-index:10;padding:16px 20px;background:#050508;border-bottom:1px solid rgba(232,228,220,0.02);display:flex;align-items:center;gap:12px}
-.hdr a{font-family:'Black Ops One',cursive;font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:rgba(232,228,220,0.1);text-decoration:none;transition:color 0.2s}
+.hdr a{font-family:'Black Ops One',cursive;font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:rgba(232,228,220,0.1);text-decoration:none}
 .hdr a:hover{color:#fff}
 .hdr h1{font-family:'Black Ops One',cursive;font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:#e8e4dc}
-.wrap{padding:20px;max-width:900px;margin:0 auto}
-.h2{font-family:'Black Ops One',cursive;font-size:0.9rem;letter-spacing:2px;text-transform:uppercase;color:#e8e4dc;margin-bottom:12px}
-.bg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:5px}
-.bc{background:rgba(232,228,220,0.01);border:1px solid rgba(232,228,220,0.02);border-radius:6px;padding:12px 14px;transition:all 0.3s}
-.bc:hover{background:rgba(232,228,220,0.02);border-color:rgba(232,228,220,0.04)}
-.bc h4{font-size:0.6rem;font-weight:600;margin-bottom:2px;text-transform:uppercase;letter-spacing:1px}
-.bc .cnt{font-size:0.5rem;color:rgba(232,228,220,0.04);letter-spacing:1px}
-::-webkit-scrollbar{width:3px;background:transparent}
+.wrap{padding:20px;max-width:1100px;margin:0 auto}
+.h2{font-family:'Black Ops One',cursive;font-size:0.9rem;letter-spacing:2px;text-transform:uppercase;color:#e8e4dc;margin-bottom:10px}
+.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:5px;margin-bottom:20px}
+.sc{background:rgba(232,228,220,0.01);border:1px solid rgba(232,228,220,0.02);border-radius:6px;padding:12px 14px;transition:all 0.3s}
+.sc:hover{background:rgba(232,228,220,0.02);border-color:rgba(232,228,220,0.04)}
+.sc h4{font-size:0.55rem;font-weight:600;margin-bottom:2px;text-transform:uppercase;letter-spacing:1px;color:rgba(232,228,220,0.15)}
+.sc .c{font-size:0.45rem;color:rgba(232,228,220,0.04)}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:rgba(232,228,220,0.04);border-radius:2px}
-@media(max-width:600px){.bg{grid-template-columns:1fr}}
+@media(max-width:600px){.sg{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="hdr"><a href="mineria.html">\u25c0 YOKAIS</a><h1>BLUEPRINTS</h1></div>
 <div class="wrap">
-  <div class="h2">CATEGORIAS</div>
-  <div class="bg">
-    <div class="bc"><h4>Crucible Steel</h4><div class="cnt">Armaduras pesadas</div></div>
-    <div class="bc"><h4>Starchaser</h4><div class="cnt">Componentes de nave</div></div>
-    <div class="bc"><h4>Kastak Arms</h4><div class="cnt">Armas de energia</div></div>
-    <div class="bc"><h4>Gemini</h4><div class="cnt">Armas pesadas y explosivos</div></div>
-    <div class="bc"><h4>Yorm</h4><div class="cnt">Municiones y consumibles</div></div>
-    <div class="bc"><h4>Parallax</h4><div class="cnt">Armas de precision</div></div>
-    <div class="bc"><h4>Lightning Bolt</h4><div class="cnt">Modificadores de arma</div></div>
-    <div class="bc"><h4>Salvation</h4><div class="cnt">Botiquines y curacion</div></div>
-    <div class="bc"><h4>HL Physio</h4><div class="cnt">Equipo medico</div></div>
-    <div class="bc"><h4>Caldera</h4><div class="cnt">Armaduras ligeras</div></div>
-    <div class="bc"><h4>Aril</h4><div class="cnt">Componentes electronicos</div></div>
-    <div class="bc"><h4>ATDS</h4><div class="cnt">Sistemas de defensa</div></div>
-    <div class="bc"><h4>Weapons</h4><div class="cnt">Armas cuerpo a cuerpo</div></div>
-    <div class="bc"><h4>Armor</h4><div class="cnt">Blindaje y proteccion</div></div>
-    <div class="bc"><h4>Components</h4><div class="cnt">Componentes de nave</div></div>
-    <div class="bc"><h4>Food</h4><div class="cnt">Comida y raciones</div></div>
-    <div class="bc"><h4>Furniture</h4><div class="cnt">Mobiliario de nave</div></div>
-    <div class="bc"><h4>Mining</h4><div class="cnt">Equipo de mineria</div></div>
-    <div class="bc"><h4>Salvage</h4><div class="cnt">Equipo de salvamento</div></div>
-    <div class="bc"><h4>Science</h4><div class="cnt">Equipo cientifico</div></div>
+  <div class="h2">COMPONENTES DE NAVE</div>
+  <div class="sg">
+    <div class="sc"><h4>Cooler</h4><div class="c">Mil/Ind/Stealth/Civ/Comp \u00b7 Grados A-D \u00b7 Sizes 0-6</div></div>
+    <div class="sc"><h4>Power Plant</h4><div class="c">Mil/Ind/Stealth/Civ/Comp \u00b7 Grados A-D \u00b7 Sizes 0-6</div></div>
+    <div class="sc"><h4>Quantum Drive</h4><div class="c">Mil/Ind/Stealth/Civ/Comp \u00b7 Grados A-D \u00b7 Sizes 0-6</div></div>
+    <div class="sc"><h4>Shield Generator</h4><div class="c">Mil/Ind/Stealth/Civ/Comp \u00b7 Grados A-D \u00b7 Sizes 0-6</div></div>
+    <div class="sc"><h4>Radar</h4><div class="c">Mil/Ind/Stealth/Civ/Comp \u00b7 Grados A-D \u00b7 Sizes 0-6</div></div>
+    <div class="sc"><h4>Ship Weapon</h4><div class="c">Balistic/Energy/Laser/Electron \u00b7 Sizes 1-6</div></div>
+    <div class="sc"><h4>Mining Laser</h4><div class="c">Mil/Ind/Stealth/Civ/Comp \u00b7 Sizes 0-6</div></div>
+    <div class="sc"><h4>Salvage Head</h4><div class="c">Mil/Ind/Stealth/Civ/Comp \u00b7 Sizes 0-6</div></div>
+    <div class="sc"><h4>Tractor Beam</h4><div class="c">Mil/Ind/Stealth/Civ/Comp \u00b7 Sizes 0-6</div></div>
+    <div class="sc"><h4>Refueling</h4><div class="c">Mil/Ind/Stealth/Civ/Comp \u00b7 Sizes 0-6</div></div>
   </div>
-  <p style="font-size:0.5rem;color:rgba(232,228,220,0.02);text-align:center;margin-top:20px">1,597 blueprints registrados en SCMDB - Alpha 4.9.0 LIVE</p>
+  
+  <div class="h2">ARMADURA FPS</div>
+  <div class="sg">
+    <div class="sc"><h4>Armor Light</h4><div class="c">Helmet/Torso/Arms/Legs/Backpack</div></div>
+    <div class="sc"><h4>Armor Medium</h4><div class="c">Helmet/Torso/Arms/Legs/Backpack</div></div>
+    <div class="sc"><h4>Armor Heavy</h4><div class="c">Helmet/Torso/Arms/Legs/Backpack</div></div>
+    <div class="sc"><h4>Undersuit</h4><div class="c">Flightsuit/Cosmonaut/Hunter/Engineer/Medic/Explorer</div></div>
+  </div>
+  
+  <div class="h2">ARMAS FPS</div>
+  <div class="sg">
+    <div class="sc"><h4>Balistic</h4><div class="c">Pistol/LMG/Nozzle/Combat</div></div>
+    <div class="sc"><h4>Energy</h4><div class="c">Pistol/LMG/Distortion/Plasma</div></div>
+    <div class="sc"><h4>Electron</h4><div class="c">Pistol/Combat</div></div>
+    <div class="sc"><h4>Laser</h4><div class="c">Pistol/Combat/Sniper</div></div>
+    <div class="sc"><h4>Munitions</h4><div class="c">Balistic/Energy/Electron/Laser</div></div>
+  </div>
+  
+  <p style="font-size:0.5rem;color:rgba(232,228,220,0.02);text-align:center;margin-top:20px">1,597 blueprints \u00b7 Alpha 4.9.0 LIVE \u00b7 Fuente: SCMDB</p>
 </div>
 </body>
 </html>
