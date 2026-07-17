@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Velta System — Landing pages que venden</title>
+<meta name="description" content="Landing pages profesionales para tu negocio. Diseño moderno, desarrollo rápido, resultados reales. Cotiza hoy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root,[data-theme="dark"]{
+  --bg:#0A0E27;--bg2:#121640;--text:#E8E4DC;--text2:rgba(232,228,220,0.12);--text3:rgba(232,228,220,0.04);
+  --border:rgba(201,168,76,0.06);--surface:rgba(255,255,255,0.02);--gold:#C9A84C;
+  --gold-grad:linear-gradient(135deg,#C9A84C,#E2C870);--gold-text:linear-gradient(135deg,#E8E4DC 30%,#C9A84C);
+  --hero-bg:linear-gradient(170deg,#0A0E27,#121640 50%,#0A0E27);--blob1:rgba(201,168,76,0.06);--blob2:rgba(201,168,76,0.02);
+  --card-bg:rgba(255,255,255,0.02);--card-bo:rgba(201,168,76,0.05);--nav-bg:rgba(10,14,39,0.88);
+  --stat-num:linear-gradient(180deg,#E8E4DC,#A8A49E);--stat-lbl:rgba(232,228,220,0.08);
+  --btn-shadow:0 8px 30px rgba(201,168,76,0.1);--nav-ln:rgba(232,228,220,0.25);
+}
+[data-theme="light"]{
+  --bg:#F5F0E8;--bg2:#FAF5EE;--text:#1a1816;--text2:rgba(0,0,0,0.45);--text3:rgba(0,0,0,0.2);
+  --border:rgba(184,148,46,0.06);--surface:rgba(184,148,46,0.02);--gold:#B8942E;
+  --gold-grad:linear-gradient(135deg,#B8942E,#D4A84C);--gold-text:linear-gradient(135deg,#1A1816 30%,#B8942E);
+  --hero-bg:linear-gradient(170deg,#f5efe6,#faf5ee 50%,#f5efe6);--blob1:rgba(184,148,46,0.1);--blob2:rgba(212,168,76,0.05);
+  --card-bg:rgba(255,248,240,0.7);--card-bo:rgba(184,148,46,0.04);--nav-bg:rgba(245,240,232,0.9);
+  --stat-num:linear-gradient(180deg,#1a1816,#6b6763);--stat-lbl:rgba(0,0,0,0.35);
+  --btn-shadow:0 8px 30px rgba(184,148,46,0.1);--nav-ln:rgba(0,0,0,0.2);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background 0.3s,color 0.3s}
+.blob{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0}
+.blob-1{width:350px;height:350px;background:radial-gradient(circle,var(--blob1),transparent 70%);top:-80px;right:-80px}
+.blob-2{width:250px;height:250px;background:radial-gradient(circle,var(--blob2),transparent 70%);bottom:30%;left:-60px}
+
+/* THEME TOGGLE */
+#tgl{position:fixed;bottom:24px;right:24px;z-index:200;width:44px;height:44px;border-radius:50%;background:var(--card-bg);border:1px solid var(--border);color:var(--text);font-size:1.1rem;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(16px);box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+#tgl:hover{border-color:var(--gold);transform:scale(1.05)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+nav .logo{font-size:0.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--gold-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav .lk a{color:var(--nav-ln);text-decoration:none;font-size:0.6rem;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s;margin-left:16px}
+nav .lk a:hover{color:var(--text)}
+nav .lk .cta{background:rgba(212,168,76,0.08);border:1px solid rgba(212,168,76,0.08);color:var(--gold);padding:7px 16px;border-radius:100px;margin-left:16px;font-size:0.58rem}
+nav .lk .cta:hover{background:rgba(212,168,76,0.12)}
+
+/* HERO */
+.hero{min-height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:110px 20px 60px;position:relative;overflow:hidden;background:var(--hero-bg)}
+.hero *{position:relative;z-index:1}
+.hero .bdg{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--text2);border:1px solid var(--border);padding:5px 14px;border-radius:100px;margin-bottom:20px}
+.hero h1{font-size:2.8rem;font-weight:900;letter-spacing:-1px;line-height:1.05;margin-bottom:14px;max-width:600px}
+.hero h1 span{background:var(--gold-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:0.95rem;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 28px}
+.hero .btn{display:inline-block;padding:15px 34px;background:var(--gold-grad);color:var(--bg);border-radius:100px;font-size:0.8rem;font-weight:700;text-decoration:none;transition:all 0.3s;box-shadow:var(--btn-shadow)}
+.hero .btn:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(212,168,76,0.15)}
+.hero .btn-s{border:1px solid var(--border);color:var(--text2);border-radius:100px;padding:15px 24px;font-size:0.75rem;text-decoration:none;transition:all 0.3s;margin-left:10px}
+.hero .btn-s:hover{border-color:var(--gold);color:var(--gold)}
+
+/* STATS — 3 cards that work on mobile */
+.stats{display:flex;gap:10px;margin-top:44px;width:100%;max-width:400px}
+.stats div{flex:1;background:var(--card-bg);border:1px solid var(--card-bo);border-radius:14px;padding:14px 8px;text-align:center}
+.stats .n{font-size:1.3rem;font-weight:800;background:var(--stat-num);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.stats .l{font-size:0.5rem;color:var(--stat-lbl);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px}
+
+/* SECTIONS */
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+.sec{padding:70px 0}
+.sc{text-align:center}
+h2{font-size:1.5rem;font-weight:700;letter-spacing:-0.5px;margin-bottom:8px;line-height:1.15}
+.tg{font-size:0.48rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--text2);margin-bottom:10px}
+
+/* MINI SERVICES */
+.mg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px}
+.mc{background:var(--card-bg);border:1px solid var(--card-bo);border-radius:18px;padding:24px 20px;text-align:center;transition:all 0.3s;text-decoration:none;color:inherit}
+.mc:hover{border-color:rgba(212,168,76,0.06);transform:translateY(-2px);background:var(--card-bg)}
+.mc .ico{font-size:1.4rem;margin-bottom:8px}
+.mc h3{font-size:0.78rem;font-weight:600;margin-bottom:3px}
+.mc p{font-size:0.64rem;color:var(--text2);line-height:1.5}
+
+/* PROOF */
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.pc{background:var(--card-bg);border:1px solid var(--card-bo);border-radius:16px;padding:20px 18px;text-align:center;text-decoration:none;color:inherit;transition:all 0.3s}
+.pc:hover{border-color:rgba(212,168,76,0.06);transform:translateY(-2px)}
+.pc .ind{font-size:0.48rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2);margin-bottom:4px}
+.pc h4{font-size:0.78rem;font-weight:600;margin-bottom:3px}
+.pc p{font-size:0.62rem;color:var(--text2);line-height:1.4}
+
+/* CTA BANNER */
+.cta-b{border:1px solid rgba(212,168,76,0.06);border-radius:22px;padding:40px 28px;text-align:center;background:var(--card-bg)}
+.cta-b h3{font-size:1.2rem;font-weight:700;margin-bottom:6px}
+.cta-b p{color:var(--text2);font-size:0.8rem;margin-bottom:20px;max-width:360px;margin-left:auto;margin-right:auto}
+.cta-b .btn{display:inline-block;padding:13px 30px;background:var(--gold-grad);color:var(--bg);border-radius:100px;font-size:0.75rem;font-weight:700;text-decoration:none;transition:all 0.3s}
+.cta-b .btn:hover{transform:translateY(-2px);box-shadow:var(--btn-shadow)}
+.cta-b .w{display:inline-block;margin-left:10px;padding:13px 26px;border:1px solid rgba(74,222,128,0.1);color:#4ade80;border-radius:100px;font-size:0.75rem;font-weight:500;text-decoration:none;transition:all 0.3s}
+.cta-b .w:hover{background:rgba(74,222,128,0.02);border-color:rgba(74,222,128,0.15)}
+
+/* FOOTER */
+footer{padding:36px 20px;text-align:center;border-top:1px solid var(--border)}
+footer .fl{font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--gold-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+footer p{font-size:0.5rem;color:var(--text3);margin-bottom:2px}
+footer .flk{margin-top:10px}
+footer .flk a{color:var(--text3);text-decoration:none;font-size:0.5rem;margin:0 8px;transition:color 0.2s;text-transform:uppercase;letter-spacing:1px}
+footer .flk a:hover{color:var(--text2)}
+
+/* SCROLL REVEAL */
+[data-r]{opacity:0;transform:translateY(24px);transition:opacity 0.6s cubic-bezier(0.16,1,0.3,1),transform 0.6s cubic-bezier(0.16,1,0.3,1)}
+[data-r].rv{opacity:1;transform:translateY(0)}
+
+/* SHIMMER BUTTON */
+@keyframes sh{0%{background-position:-200% center}100%{background-position:200% center}}
+.hero .btn{background-size:200% auto;animation:sh 6s ease-in-out infinite}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  h2{font-size:1.2rem}
+  .hero h1{font-size:1.8rem}
+  .hero .btn-s{display:none}
+  .stats{max-width:100%}
+  .stats .n{font-size:1.1rem}
+  .mg,.pg{grid-template-columns:1fr}
+  .mc{padding:20px 16px}
+  .cta-b .w{margin-left:0;margin-top:8px;display:inline-block}
+  .sec{padding:50px 0}
+  nav .lk .dk{display:none}
+  nav .lk .cta{display:inline-block}
+  #tgl{bottom:16px;right:16px;width:38px;height:38px;font-size:1rem}
+}
+</style>
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+
+<button id="tgl" onclick="tt()">🌙</button>
+
+<nav>
+  <div class="logo">Velta System</div>
+  <div class="lk">
+    <a href="servicios.html" class="dk">Servicios</a>
+    <a href="galeria.html" class="dk">Galería</a>
+    <a href="precios.html" class="dk">Precios</a>
+    <a href="contacto.html" class="cta">Cotizar</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="bdg">⚡ Villahermosa · México</div>
+  <h1>Tu negocio merece una <span>página que venda</span></h1>
+  <p>Creamos landing pages profesionales diseñadas para convertir visitantes en clientes. Publicadas en 48 horas.</p>
+  <div>
+    <a href="contacto.html" class="btn">Solicitar cotización →</a>
+    <a href="galeria.html" class="btn-s">Ver proyectos</a>
+  </div>
+  <div class="stats">
+    <div><div class="n">48h</div><div class="l">Entrega</div></div>
+    <div><div class="n">9+</div><div class="l">Proyectos</div></div>
+    <div><div class="n">5</div><div class="l">Sectores</div></div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sc" data-r>
+      <div class="tg">● Servicios</div>
+      <h2>Lo que hacemos</h2>
+      <p style="color:var(--text2);font-size:0.8rem;margin-bottom:6px;max-width:380px;margin-left:auto;margin-right:auto">Diseño web profesional para negocios que buscan resultados.</p>
+    </div>
+    <div class="mg">
+      <a href="servicios.html" class="mc">
+        <div class="ico">🖥️</div>
+        <h3>Landing Pages</h3>
+        <p>Diseñadas para convertir. Desde $3,000 MXN.</p>
+      </a>
+      <a href="servicios.html" class="mc">
+        <div class="ico">🎨</div>
+        <h3>Identidad Corporativa</h3>
+        <p>Logo, colores, tipografía. Desde $1,500 MXN.</p>
+      </a>
+      <a href="servicios.html" class="mc">
+        <div class="ico">📱</div>
+        <h3>Sitios Web</h3>
+        <p>Blog, catálogo, panel. Desde $6,000 MXN.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTOS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sc" data-r>
+      <div class="tg">● Proyectos recientes</div>
+      <h2>Negocios con página nueva</h2>
+      <p style="color:var(--text2);font-size:0.8rem;margin-bottom:20px;max-width:380px;margin-left:auto;margin-right:auto">Cada proyecto se diseña a la medida del negocio.</p>
+    </div>
+    <div class="pg">
+      <a href="ejemplos/imprenta.html" class="pc">
+        <div class="ind">Industrial</div>
+        <h4>Imprenta</h4>
+        <p>Catálogo B2B y cotización.</p>
+      </a>
+      <a href="ejemplos/dental.html" class="pc">
+        <div class="ind">Salud</div>
+        <h4>Consultorio Dental</h4>
+        <p>Agendamiento en línea.</p>
+      </a>
+      <a href="ejemplos/inmobiliaria.html" class="pc">
+        <div class="ind">Inmuebles</div>
+        <h4>Agencia Inmobiliaria</h4>
+        <p>Buscador de propiedades.</p>
+      </a>
+      <a href="ejemplos/ferreteria.html" class="pc">
+        <div class="ind">Comercio</div>
+        <h4>Ferretería</h4>
+        <p>Tienda con WhatsApp.</p>
+      </a>
+      <a href="ejemplos/legal.html" class="pc">
+        <div class="ind">Legal</div>
+        <h4>Despacho Jurídico</h4>
+        <p>Consultas en línea.</p>
+      </a>
+      <a href="ejemplos/academia.html" class="pc">
+        <div class="ind">Servicios</div>
+        <h4>Academia</h4>
+        <p>Inscripciones web.</p>
+      </a>
+    </div>
+    <div class="sc" style="margin-top:16px">
+      <a href="galeria.html" style="color:var(--gold);font-size:0.68rem;text-decoration:none;letter-spacing:1px;text-transform:uppercase">Ver todos →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec" data-r>
+  <div class="wrap">
+    <div class="cta-b">
+      <h3>¿Listo para tu página web?</h3>
+      <p>Te enviamos una propuesta sin compromiso en menos de 2 horas.</p>
+      <a href="contacto.html" class="btn">Solicitar cotización</a>
+      <a href="https://wa.me/5219933450645" class="w" target="_blank">📱 WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fl">Velta System</div>
+  <p>Landing pages profesionales · Villahermosa, Tabasco</p>
+  <div class="flk">
+    <a href="servicios.html">Servicios</a>
+    <a href="galeria.html">Galería</a>
+    <a href="precios.html">Precios</a>
+    <a href="contacto.html">Contacto</a>
+  </div>
+</footer>
+
+<script>
+function tt(){
+  var h=document.documentElement;
+  var b=document.getElementById('tgl');
+  var n=h.getAttribute('data-theme')==='dark'?'light':'dark';
+  h.setAttribute('data-theme',n);
+  b.textContent=n==='dark'?'🌙':'☀️';
+  localStorage.setItem('vt',n);
+}
+(function(){
+  var s=localStorage.getItem('vt');
+  if(s){document.documentElement.setAttribute('data-theme',s);document.getElementById('tgl').textContent=s==='dark'?'🌙':'☀️'}
+})();
+
+// Scroll reveal
+const ro=new IntersectionObserver(function(e){e.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('rv');ro.unobserve(entry.target)}})},{threshold:0.1});
+document.querySelectorAll('[data-r]').forEach(function(el){ro.observe(el)});
+</script>
+</body>
+</html>

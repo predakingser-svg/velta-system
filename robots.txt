@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://velta-system.netlify.app/sitemap.xml

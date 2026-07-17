@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Precios — Velta System</title>
+<meta name="description" content="Precios: Landing Pages $3,000, Pro $5,000, Sitios Web $8,000+. Precios claros, sin letras chiquitas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root,[data-theme="dark"]{
+  --bg:#0A0E27;--text:#E8E4DC;--text2:rgba(232,228,220,0.12);--text3:rgba(232,228,220,0.03);
+  --border:rgba(201,168,76,0.06);--gold:#C9A84C;--gold-grad:linear-gradient(135deg,#C9A84C,#E2C870);--gold-text:linear-gradient(135deg,#E8E4DC 30%,#C9A84C);
+  --card:rgba(255,255,255,0.02);--nav-bg:rgba(10,14,39,0.88);--nav-ln:rgba(232,228,220,0.25);
+  --stat-num:linear-gradient(180deg,#E8E4DC,#A8A49E);
+}
+[data-theme="light"]{
+  --bg:#F5F0E8;--text:#1a1816;--text2:rgba(0,0,0,0.45);--text3:rgba(0,0,0,0.2);
+  --border:rgba(184,148,46,0.06);--gold:#B8942E;--gold-grad:linear-gradient(135deg,#B8942E,#D4A84C);--gold-text:linear-gradient(135deg,#1A1816 30%,#B8942E);
+  --card:rgba(255,248,240,0.7);--nav-bg:rgba(245,240,232,0.9);--nav-ln:rgba(0,0,0,0.2);
+  --stat-num:linear-gradient(180deg,#1a1816,#6b6763);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background 0.3s,color 0.3s}
+#tgl{position:fixed;bottom:24px;right:24px;z-index:200;width:40px;height:40px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--text);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(16px)}
+#tgl:hover{border-color:var(--gold);transform:scale(1.05)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+nav .logo{font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--gold-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;color:inherit}
+nav .lk a{color:var(--nav-ln);text-decoration:none;font-size:0.6rem;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s;margin-left:14px}
+nav .lk a:hover{color:var(--text)}
+nav .lk .cta{background:rgba(212,168,76,0.08);border:1px solid rgba(212,168,76,0.08);color:var(--gold);padding:7px 16px;border-radius:100px;margin-left:14px;font-size:0.55rem}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+.sec{padding:70px 0}
+.sc{text-align:center}
+h1{font-size:2.2rem;font-weight:800;letter-spacing:-1px;margin-bottom:10px}
+h1 span{background:var(--gold-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.tg{font-size:0.48rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--text2);margin-bottom:10px}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px 24px;text-align:center;transition:all 0.3s;position:relative}
+.pc:hover{transform:translateY(-3px);border-color:rgba(212,168,76,0.06)}
+.pc.star{background:var(--card);border-color:rgba(212,168,76,0.06)}
+.pc.star::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:50%;height:1px;background:linear-gradient(90deg,transparent,rgba(212,168,76,0.12),transparent)}
+.pc .pt{font-size:0.5rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text2);margin-bottom:6px}
+.pc h3{font-size:0.9rem;font-weight:700;margin-bottom:10px}
+.pc .m{font-size:2rem;font-weight:800;margin-bottom:2px;letter-spacing:-1px}
+.pc .m span{font-size:0.65rem;font-weight:400;color:var(--text2)}
+.pc .nt{font-size:0.55rem;color:var(--text2);margin-bottom:16px}
+.pc ul{list-style:none;text-align:left;margin-bottom:18px}
+.pc ul li{font-size:0.65rem;color:var(--text2);padding:4px 0;border-bottom:1px solid var(--border)}
+.pc ul li:last-child{border:none}
+.pc ul li::before{content:'✓';color:var(--gold);margin-right:8px}
+.pc .btn{display:inline-block;padding:11px 26px;border-radius:100px;font-size:0.65rem;font-weight:600;text-decoration:none;transition:all 0.3s}
+.pc .btn-p{background:var(--gold-grad);color:var(--bg)}
+.pc .btn-p:hover{transform:translateY(-1px)}
+.pc .btn-o{border:1px solid var(--border);color:var(--text2)}
+.pc .btn-o:hover{border-color:var(--gold);color:var(--gold)}
+.ex{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:20px}
+.ec{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 18px;text-align:center}
+.ec h4{font-size:0.75rem;font-weight:600;margin-bottom:2px}
+.ec p{font-size:0.6rem;color:var(--text2);margin-bottom:4px}
+.ec .pr{font-size:0.65rem;color:var(--gold);font-family:monospace}
+.btn{display:inline-block;padding:13px 30px;background:var(--gold-grad);color:var(--bg);border-radius:100px;font-size:0.72rem;font-weight:700;text-decoration:none;transition:all 0.3s}
+.btn:hover{transform:translateY(-2px)}
+footer{padding:36px 20px;text-align:center;border-top:1px solid var(--border)}
+footer .fl{font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--gold-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+footer p{font-size:0.5rem;color:var(--text3);margin-bottom:2px}
+footer .flk a{color:var(--text3);text-decoration:none;font-size:0.5rem;margin:0 8px;transition:color 0.2s;text-transform:uppercase;letter-spacing:1px}
+footer .flk a:hover{color:var(--text2)}
+@media(max-width:700px){
+  h1{font-size:1.5rem}
+  .pg,.ex{grid-template-columns:1fr}
+  nav .lk .dk{display:none}
+  .sec{padding:50px 0}
+  #tgl{bottom:16px;right:16px;width:36px;height:36px;font-size:0.9rem}
+}
+</style>
+</head>
+<body>
+<button id="tgl">🌙</button>
+<nav>
+  <a href="index.html" class="logo">Velta System</a>
+  <div class="lk">
+    <a href="servicios.html" class="dk">Servicios</a>
+    <a href="galeria.html" class="dk">Proyectos</a>
+    <a href="precios.html" style="color:var(--text)" class="dk">Precios</a>
+    <a href="contacto.html" class="cta">Cotizar</a>
+  </div>
+</nav>
+
+<section class="sec" style="padding-top:110px">
+  <div class="wrap sc">
+    <div class="tg">● Inversión</div>
+    <h1>Precios <span>claros</span></h1>
+    <p style="color:var(--text2);font-size:0.8rem;max-width:400px;margin:0 auto">Sin letras chiquitas. El precio que ves es el que pagas.</p>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="pg">
+      <div class="pc">
+        <div class="pt">Básico</div>
+        <h3>Landing Page</h3>
+        <div class="m">$3,000 <span>MXN</span></div>
+        <div class="nt">Pago único · 48h</div>
+        <ul>
+          <li>Diseño personalizado</li>
+          <li>1 sección principal</li>
+          <li>Responsive móvil</li>
+          <li>Formulario de contacto</li>
+          <li>WhatsApp integrado</li>
+          <li>Hosting 1 mes gratis</li>
+        </ul>
+        <a href="contacto.html" class="btn-o btn">Solicitar</a>
+      </div>
+      <div class="pc star">
+        <div class="pt">★ Más popular</div>
+        <h3>Landing Page Pro</h3>
+        <div class="m">$5,000 <span>MXN</span></div>
+        <div class="nt">Pago único · 72h</div>
+        <ul>
+          <li>Todo lo del Básico</li>
+          <li>4–6 secciones</li>
+          <li>Galería de imágenes</li>
+          <li>SEO básico</li>
+          <li>Google Analytics</li>
+          <li>Hosting 3 meses gratis</li>
+          <li>Dominio .com (1er año)</li>
+        </ul>
+        <a href="contacto.html" class="btn-p btn">Solicitar</a>
+      </div>
+      <div class="pc">
+        <div class="pt">Completo</div>
+        <h3>Sitio Web</h3>
+        <div class="m">$8,000+ <span>MXN</span></div>
+        <div class="nt">Cotización según alcance</div>
+        <ul>
+          <li>Múltiples páginas</li>
+          <li>Panel admin básico</li>
+          <li>Blog / Catálogo</li>
+          <li>SEO completo</li>
+          <li>Hosting 6 meses gratis</li>
+          <li>Dominio .com incluido</li>
+          <li>Capacitación básica</li>
+        </ul>
+        <a href="contacto.html" class="btn-o btn">Cotizar</a>
+      </div>
+    </div>
+    <div class="ex">
+      <div class="ec"><h4>Mantenimiento</h4><p>Actualizaciones, hosting y dominio</p><div class="pr">$500/mes</div></div>
+      <div class="ec"><h4>SEO + Analytics</h4><p>Optimización y reportes mensuales</p><div class="pr">$800/mes</div></div>
+    </div>
+    <div class="sc" style="margin-top:28px">
+      <p style="font-size:0.55rem;color:var(--text2);margin-bottom:10px">¿No encuentras lo que buscas?</p>
+      <a href="contacto.html" class="btn">Cotizar proyecto →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fl">Velta System</div>
+  <p>Villahermosa, Tabasco</p>
+  <div class="flk"><a href="index.html">Inicio</a><a href="servicios.html">Servicios</a><a href="galeria.html">Proyectos</a><a href="precios.html">Precios</a><a href="contacto.html">Contacto</a></div>
+</footer>
+<script>
+(function(){var b=document.getElementById('tgl'),h=document.documentElement,s=localStorage.getItem('vt');if(s){h.setAttribute('data-theme',s);b.textContent=s==='dark'?'🌙':'☀️'}})()
+function tt(){var h=document.documentElement,b=document.getElementById('tgl'),n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);b.textContent=n==='dark'?'🌙':'☀️';localStorage.setItem('vt',n)}
+document.getElementById('tgl').onclick=tt;
+</script>
+</body>
+</html>

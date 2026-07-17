@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Galería — Velta System</title>
+<meta name="description" content="Galería de proyectos: industriales, salud, comercio, servicios legales y más.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root,[data-theme="dark"]{
+  --bg:#0A0E27;--text:#E8E4DC;--text2:rgba(232,228,220,0.35);--text3:rgba(232,228,220,0.08);
+  --border:rgba(201,168,76,0.06);--gold:#C9A84C;--gold-grad:linear-gradient(135deg,#C9A84C,#E2C870);--gold-text:linear-gradient(135deg,#E8E4DC 30%,#C9A84C);
+  --card:rgba(255,255,255,0.02);--nav-bg:rgba(10,14,39,0.88);--nav-ln:rgba(232,228,220,0.25);
+  --blob1:rgba(201,168,76,0.06);--blob2:rgba(201,168,76,0.02);
+  --section-div:linear-gradient(90deg,transparent,rgba(201,168,76,0.04),transparent);
+}
+[data-theme="light"]{
+  --bg:#F5F0E8;--text:#1a1816;--text2:rgba(0,0,0,0.45);--text3:rgba(0,0,0,0.2);
+  --border:rgba(184,148,46,0.06);--gold:#B8942E;--gold-grad:linear-gradient(135deg,#B8942E,#D4A84C);--gold-text:linear-gradient(135deg,#1A1816 30%,#B8942E);
+  --card:rgba(255,248,240,0.7);--nav-bg:rgba(245,240,232,0.9);--nav-ln:rgba(0,0,0,0.2);
+  --blob1:rgba(184,148,46,0.08);--blob2:rgba(201,168,76,0.04);
+  --section-div:linear-gradient(90deg,transparent,rgba(184,148,46,0.04),transparent);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background 0.3s,color 0.3s}
+#tgl{position:fixed;bottom:24px;right:24px;z-index:200;width:40px;height:40px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--text);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(16px);transition:all 0.3s;box-shadow:0 4px 20px rgba(0,0,0,0.06)}
+#tgl:hover{border-color:var(--gold);transform:scale(1.08) rotate(10deg)}
+.blob{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0;transition:background 0.5s}
+.blob-1{width:350px;height:350px;background:radial-gradient(circle,var(--blob1),transparent 70%);top:-80px;right:-80px}
+.blob-2{width:250px;height:250px;background:radial-gradient(circle,var(--blob2),transparent 70%);bottom:20%;left:-60px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:var(--nav-bg);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:background 0.3s,border-color 0.3s}
+nav .logo{font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--gold-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+nav .lk{display:flex;align-items:center;gap:4px}
+nav .lk a{color:var(--nav-ln);text-decoration:none;font-size:0.6rem;letter-spacing:1px;text-transform:uppercase;transition:all 0.3s;padding:6px 12px;border-radius:6px}
+nav .lk a:hover{color:var(--text);background:rgba(255,255,255,0.02)}
+nav .lk .cta{background:rgba(212,168,76,0.08);border:1px solid rgba(212,168,76,0.08);color:var(--gold)}
+nav .lk .cta:hover{background:rgba(212,168,76,0.12);border-color:rgba(212,168,76,0.15)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.sec{padding:70px 0;position:relative}
+.sc{text-align:center}
+[data-reveal]{opacity:0;transform:translateY(30px);transition:opacity 0.7s cubic-bezier(0.16,1,0.3,1),transform 0.7s cubic-bezier(0.16,1,0.3,1)}
+[data-reveal].rv{opacity:1;transform:translateY(0)}
+h1{font-size:2.8rem;font-weight:800;letter-spacing:-1px;margin-bottom:12px;line-height:1.05}
+h1 span{background:var(--gold-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.tg{font-size:0.48rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--text2);margin-bottom:10px}
+
+/* category filter */
+.cf{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;margin:28px 0 8px}
+.cf button{padding:7px 16px;background:transparent;border:1px solid var(--border);border-radius:100px;color:var(--text2);font-size:0.6rem;font-weight:500;cursor:pointer;font-family:Inter,sans-serif;letter-spacing:0.5px;transition:all 0.3s}
+.cf button:hover{color:var(--text);border-color:rgba(212,168,76,0.1)}
+.cf button.on{background:rgba(212,168,76,0.06);border-color:rgba(212,168,76,0.12);color:var(--gold)}
+
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px 24px;text-decoration:none;color:inherit;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);display:block;position:relative;overflow:hidden}
+.pc::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 50% 0%,rgba(212,168,76,0.02),transparent 50%);opacity:0;transition:opacity 0.5s}
+.pc:hover::before{opacity:1}
+.pc:hover{transform:translateY(-4px) scale(1.01);border-color:rgba(212,168,76,0.08)}
+.pc .cat{font-size:0.48rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2);margin-bottom:6px;position:relative;z-index:1}
+.pc h3{font-size:0.9rem;font-weight:700;margin-bottom:6px;position:relative;z-index:1}
+.pc p{font-size:0.66rem;color:var(--text2);line-height:1.5;margin-bottom:10px;position:relative;z-index:1}
+.pc .a{font-size:0.6rem;color:var(--gold);position:relative;z-index:1;display:inline-flex;align-items:center;gap:4px;transition:gap 0.3s}
+.pc:hover .a{gap:8px}
+.pc .num{position:absolute;top:20px;right:20px;font-size:2.5rem;font-weight:900;color:rgba(212,168,76,0.02);line-height:1;z-index:0}
+
+footer{padding:36px 20px;text-align:center;border-top:1px solid var(--border);transition:border-color 0.3s}
+footer .fl{font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--gold-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+footer p{font-size:0.5rem;color:var(--text3);margin-bottom:2px}
+footer .flk{margin-top:10px}
+footer .flk a{color:var(--text3);text-decoration:none;font-size:0.5rem;margin:0 10px;transition:color 0.2s;text-transform:uppercase;letter-spacing:1px}
+footer .flk a:hover{color:var(--text2)}
+
+@media(max-width:700px){
+  h1{font-size:1.6rem}
+  .pg{grid-template-columns:1fr}
+  nav .lk .dk{display:none}
+  .sec{padding:50px 0}
+  #tgl{bottom:16px;right:16px;width:36px;height:36px;font-size:0.9rem}
+}
+</style>
+</head>
+<body>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<button id="tgl">🌙</button>
+<nav>
+  <a href="index.html" class="logo">Velta System</a>
+  <div class="lk">
+    <a href="servicios.html" class="dk">Servicios</a>
+    <a href="galeria.html" style="color:var(--text)" class="dk">Galería</a>
+    <a href="precios.html" class="dk">Precios</a>
+    <a href="contacto.html" class="cta">Cotizar</a>
+  </div>
+</nav>
+
+<section class="sec" style="padding-top:110px">
+  <div class="wrap sc" data-reveal>
+    <div class="tg">● Galería</div>
+    <h1>Proyectos <span>completos</span></h1>
+    <p style="color:var(--text2);font-size:0.85rem;max-width:420px;margin:0 auto">Cada proyecto está diseñado desde cero para el tipo de negocio. Explora por sector.</p>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="cf">
+      <button class="on" onclick="fl(this,'t')">Todos</button>
+      <button onclick="fl(this,'i')">Industrial</button>
+      <button onclick="fl(this,'s')">Salud</button>
+      <button onclick="fl(this,'c')">Comercio</button>
+      <button onclick="fl(this,'l')">Servicios</button>
+    </div>
+    <div class="pg" id="gg">
+      <a href="ejemplos/imprenta.html" class="pc" data-c="i" data-reveal><div class="num">01</div><div class="cat">Industrial</div><h3>Imprenta</h3><p>Catálogo B2B, cotización y galería de trabajos para imprenta industrial especializada en rotulación.</p><span class="a">Ver proyecto →</span></a>
+      <a href="ejemplos/dental.html" class="pc" data-c="s" data-reveal><div class="num">02</div><div class="cat">Salud</div><h3>Dental</h3><p>Perfiles del equipo, servicios y agendamiento de citas en línea para consultorio dental.</p><span class="a">Ver proyecto →</span></a>
+      <a href="ejemplos/inmobiliaria.html" class="pc" data-c="l" data-reveal><div class="num">03</div><div class="cat">Inmuebles</div><h3>Inmobiliaria</h3><p>Buscador de propiedades, fichas técnicas y galería fotográfica para agencia inmobiliaria.</p><span class="a">Ver proyecto →</span></a>
+      <a href="ejemplos/estetica.html" class="pc" data-c="s" data-reveal><div class="num">04</div><div class="cat">Salud</div><h3>Estética</h3><p>Galería de resultados, testimonios y agendamiento para clínica de estética dental.</p><span class="a">Ver proyecto →</span></a>
+      <a href="ejemplos/ferreteria.html" class="pc" data-c="c" data-reveal><div class="num">05</div><div class="cat">Comercio</div><h3>Ferretería</h3><p>Tienda en línea con catálogo, categorías y WhatsApp directo para comercio local.</p><span class="a">Ver proyecto →</span></a>
+      <a href="ejemplos/academia.html" class="pc" data-c="l" data-reveal><div class="num">06</div><div class="cat">Servicios</div><h3>Academia</h3><p>Horarios, inscripciones en línea, galería multimedia y perfiles de instructores.</p><span class="a">Ver proyecto →</span></a>
+      <a href="ejemplos/legal.html" class="pc" data-c="l" data-reveal><div class="num">07</div><div class="cat">Legal</div><h3>Bufete</h3><p>Áreas de práctica, equipo profesional y formulario de consulta inicial para despacho jurídico.</p><span class="a">Ver proyecto →</span></a>
+      <a href="ejemplos/maquinaria.html" class="pc" data-c="i" data-reveal><div class="num">08</div><div class="cat">Industrial</div><h3>Equipos</h3><p>Fichas técnicas, tabla comparativa y cotización B2B para renta de maquinaria.</p><span class="a">Ver proyecto →</span></a>
+      <a href="ejemplos/veterinaria.html" class="pc" data-c="s" data-reveal><div class="num">09</div><div class="cat">Salud</div><h3>Veterinaria</h3><p>Servicios, agendamiento y contacto de urgencias 24/7 para clínica veterinaria.</p><span class="a">Ver proyecto →</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fl">Velta System</div>
+  <p>Villahermosa, Tabasco</p>
+  <div class="flk"><a href="index.html">Inicio</a><a href="servicios.html">Servicios</a><a href="galeria.html">Galería</a><a href="precios.html">Precios</a><a href="contacto.html">Contacto</a></div>
+</footer>
+
+<script>
+// Theme toggle
+(function(){var b=document.getElementById('tgl'),h=document.documentElement,s=localStorage.getItem('vt');if(s){h.setAttribute('data-theme',s);b.textContent=s==='dark'?'🌙':'☀️'}})()
+function tt(){var h=document.documentElement,b=document.getElementById('tgl'),n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);b.textContent=n==='dark'?'🌙':'☀️';localStorage.setItem('vt',n)}
+document.getElementById('tgl').onclick=tt;
+
+// Filter
+function fl(btn,cat){
+  document.querySelectorAll('.cf button').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.pc').forEach(c=>{
+    c.style.display=(cat==='t'||c.dataset.c===cat)?'':'none';
+  });
+}
+
+// Scroll reveal
+const ro=new IntersectionObserver(function(e){e.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('rv');ro.unobserve(entry.target)}})},{threshold:0.1});
+document.querySelectorAll('[data-reveal]').forEach(el=>ro.observe(el));
+</script>
+</body>
+</html>
