@@ -169,40 +169,66 @@ function showMineralDetail(name){
   d.parentElement.className='det det-mining on';
 }
 
-// ===== MISSIONS (placeholder with factions) =====
+// ===== MISSIONS =====
+var missionFilter='';
+var missions=[
+  {n:'[DESTINATION] Errand',f:'Headhunters',s:'Pyro',t:'Delivery',r:48250,xp:50,il:true},
+  {n:'[DESTINATION] Stroll',f:'Headhunters',s:'Pyro',t:'Delivery',r:45000,xp:50,il:true},
+  {n:'[LOCATION] has been greenlit',f:'Headhunters',s:'Pyro',t:'Reparacion',r:40000,xp:50,il:false},
+  {n:'[LOCATION] needs repairs',f:'Headhunters',s:'Pyro',t:'Reparacion',r:35000,xp:50,il:false},
+  {n:'[LOCATION] needs massive repairs',f:'Headhunters',s:'Pyro',t:'Reparacion',r:55000,xp:60,il:false},
+  {n:'[TARGET] needs stomping',f:'Headhunters',s:'Pyro',t:'Combate',r:60000,xp:70,il:true},
+  {n:'[LOCATION] needs help',f:'Civilian Defense Force',s:'Stanton',t:'Asistencia',r:30000,xp:40,il:false},
+  {n:'[LOCATION] needs assistance',f:'Civilian Defense Force',s:'Stanton',t:'Asistencia',r:28000,xp:40,il:false},
+  {n:'Cazarrecompensas',f:'Bounty Hunters Guild',s:'Multi',t:'Combate',r:75000,xp:80,il:false},
+  {n:'Transporte de datos',f:'Aciedo Communications',s:'Stanton',t:'Transporte',r:22000,xp:30,il:false},
+];
+
 function buildMissions(){
   var g=document.getElementById('missionGrid');
   g.innerHTML='';
-  var factions=['Headhunters','Civ Defense Force','Bounty Hunters Guild','ArcCorp','Hurston Dynamics','microTech','Nine Tails','Advocacy','Clovus Darneely','Recco Battaglia','CFP','Aciedo Comms'];
-  var systems=['Stanton','Pyro','Nyx'];
-  factions.forEach(function(f){
+  missions.forEach(function(m){
+    if(missionFilter && m.n.toLowerCase().indexOf(missionFilter.toLowerCase())===-1)return;
     var d=document.createElement('div');d.className='card';
-    d.innerHTML='<h4 style="color:#d4a84c">'+f+'</h4><div class="m">'+systems.join(' \u2022 ')+'</div>';
+    d.innerHTML='<h4 style="color:#d4a84c">'+m.n+'</h4><div class="m">'+m.f+' \u2022 '+m.s+' \u2022 '+(m.il?'ILEGAL':'LEGAL')+'</div>'+
+      '<div class="g"><div><div class="nv" style="color:rgba(74,222,128,0.3)">'+fmt(m.r)+'</div><div class="lb">aUEC</div></div>'+
+      '<div><div class="nv">'+m.xp+'</div><div class="lb">XP</div></div>'+
+      '<div><div class="nv">'+m.t+'</div><div class="lb">Tipo</div></div></div>';
+    d.onclick=(function(mm){return function(){alert('Mision: '+mm.n+'\nFaccion: '+mm.f+'\nSistema: '+mm.s+'\nRecompensa: '+fmt(mm.r)+' aUEC\nXP Base: '+mm.xp+'\nTipo: '+mm.t+(mm.il?'\nILEGAL':'')+'');}})(m);
     g.appendChild(d);
   });
 }
 
-// ===== BLUEPRINTS (placeholder with categories) =====
+// ===== BLUEPRINTS =====
+var bpFilter='';
+var bps=[
+  {n:'Cooler',c:'Componente de nave',cls:'Mil/Ind/Stealth/Civ/Comp',g:'A-D',s:'0-6'},
+  {n:'Power Plant',c:'Componente de nave',cls:'Mil/Ind/Stealth/Civ/Comp',g:'A-D',s:'0-6'},
+  {n:'Quantum Drive',c:'Componente de nave',cls:'Mil/Ind/Stealth/Civ/Comp',g:'A-D',s:'0-6'},
+  {n:'Shield Generator',c:'Componente de nave',cls:'Mil/Ind/Stealth/Civ/Comp',g:'A-D',s:'0-6'},
+  {n:'Radar',c:'Componente de nave',cls:'Mil/Ind/Stealth/Civ/Comp',g:'A-D',s:'0-6'},
+  {n:'Ship Weapon',c:'Componente de nave',cls:'Balistic/Energy/Laser',g:'A-D',s:'1-6'},
+  {n:'Mining Laser',c:'Componente de nave',cls:'Mil/Ind/Stealth/Civ',g:'A-D',s:'0-6'},
+  {n:'Salvage Head',c:'Componente de nave',cls:'Mil/Ind/Stealth/Civ',g:'A-D',s:'0-6'},
+  {n:'Tractor Beam',c:'Componente de nave',cls:'Mil/Ind/Stealth/Civ',g:'A-D',s:'0-6'},
+  {n:'Refueling',c:'Componente de nave',cls:'Mil/Ind/Stealth/Civ',g:'A-D',s:'0-6'},
+  {n:'Armor Light',c:'Armadura FPS',cls:'Helmet/Torso/Arms/Legs',g:'A-D',s:'-'},
+  {n:'Armor Medium',c:'Armadura FPS',cls:'Helmet/Torso/Arms/Legs',g:'A-D',s:'-'},
+  {n:'Armor Heavy',c:'Armadura FPS',cls:'Helmet/Torso/Arms/Legs',g:'A-D',s:'-'},
+  {n:'Undersuit',c:'Armadura FPS',cls:'Flightsuit/Cosmonaut/Hunter',g:'A-D',s:'-'},
+  {n:'Weapon Balistic',c:'Arma FPS',cls:'Pistol/LMG/Nozzle',g:'A-D',s:'-'},
+  {n:'Weapon Energy',c:'Arma FPS',cls:'Pistol/Distortion/Plasma',g:'A-D',s:'-'},
+  {n:'Weapon Laser',c:'Arma FPS',cls:'Pistol/Sniper',g:'A-D',s:'-'},
+];
+
 function buildBPs(){
   var g=document.getElementById('bpGrid');
   g.innerHTML='';
-  var cats=[
-    {n:'Cooler',d:'Mil \u2022 Ind \u2022 Stealth \u2022 Civ \u2022 Comp'},
-    {n:'Power Plant',d:'Mil \u2022 Ind \u2022 Stealth \u2022 Civ \u2022 Comp'},
-    {n:'Quantum Drive',d:'Mil \u2022 Ind \u2022 Stealth \u2022 Civ \u2022 Comp'},
-    {n:'Shield',d:'Mil \u2022 Ind \u2022 Stealth \u2022 Civ \u2022 Comp'},
-    {n:'Ship Weapon',d:'Balistic \u2022 Energy \u2022 Laser'},
-    {n:'Mining Laser',d:'Mil \u2022 Ind \u2022 Stealth \u2022 Civ'},
-    {n:'Armor Light',d:'Helmet \u2022 Torso \u2022 Arms \u2022 Legs'},
-    {n:'Armor Medium',d:'Helmet \u2022 Torso \u2022 Arms \u2022 Legs'},
-    {n:'Armor Heavy',d:'Helmet \u2022 Torso \u2022 Arms \u2022 Legs'},
-    {n:'Armas Balistic',d:'Pistol \u2022 LMG \u2022 Nozzle'},
-    {n:'Armas Energy',d:'Pistol \u2022 Distortion \u2022 Plasma'},
-    {n:'Munitions',d:'Balistic \u2022 Energy \u2022 Laser'}
-  ];
-  cats.forEach(function(c){
+  bps.forEach(function(b){
+    if(bpFilter && b.n.toLowerCase().indexOf(bpFilter.toLowerCase())===-1)return;
     var d=document.createElement('div');d.className='card';
-    d.innerHTML='<h4 style="color:#e8e4dc">'+c.n+'</h4><div class="m">'+c.d+'</div>';
+    d.innerHTML='<h4 style="color:#e8e4dc">'+b.n+'</h4><div class="m">'+b.c+'</div><div class="g"><div><div class="nv">'+b.cls.split('/').slice(0,2).join('/')+'</div><div class="lb">Clases</div></div><div><div class="nv">'+b.g+'</div><div class="lb">Grado</div></div><div><div class="nv">S'+b.s+'</div><div class="lb">Tam</div></div></div>';
+    d.onclick=(function(bb){return function(){var txt='Blueprint: '+bb.n+'\nCategoria: '+bb.c+'\nClases: '+bb.cls+'\nGrados: '+bb.g+'\nTamaños: '+bb.s;alert(txt);}})(b);
     g.appendChild(d);
   });
 }
