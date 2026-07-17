@@ -134,60 +134,40 @@ var miningFilter = '';
 
 function buildMining(){
   var g=document.getElementById('miningGrid');
+  if(!g)return;
   g.innerHTML='';
-  var e=DATA.ores;
-  for(var i=0;i<e.length;i++){
-    var ore=e[i];var k=ore.name;
-    if(miningFilter && k.toLowerCase().indexOf(miningFilter.toLowerCase())===-1)continue;
-    var v={i:ore.instability||0,d:ore.density||0,e:0};var m=method(k);
+  for(var i=0;i<DATA.ores.length;i++){
+    var ore=DATA.ores[i];
+    var k=ore.name;
     var d=document.createElement('div');d.className='card';
-    d.innerHTML='<h4>'+k+' <span style="font-size:0.42rem;color:rgba(74,222,128,0.15);letter-spacing:1px">'+m+'</span></h4>'+
-      '<div class="g"><div><div class="nv">'+fmt(v.i)+'</div><div class="lb">Inest</div></div>'+
-      '<div><div class="nv">'+fmt(v.d)+'</div><div class="lb">Dens</div></div>'+
-      '<div><div class="nv">'+fmt(v.e)+'</div><div class="lb">Exp</div></div></div>';
-    d.onclick=function(n){return function(){showMineralDetail(n)}}(k);
+    d.innerHTML='<h4>'+k+'</h4><div>Densidad: '+ore.density+' / Inestabilidad: '+ore.instability+' / Resistencia: '+ore.resistance+'</div>';
+    d.onclick=(function(n){return function(){showMineralDetail(n)}})(k);
     g.appendChild(d);
   }
 }
 
 function showMineralDetail(name){
   var d=document.getElementById('detailContent');
-  var html='<h2 style="color:#4ade80">'+name+'</h2><div class="info">';
-  var v=DATA.elements[name];
-  html+='<b>Densidad:</b> '+v.d+' | <b>Inestabilidad:</b> '+fmt(v.i)+' | <b>Resistencia:</b> '+v.r+' | <b>Ventana optima:</b> '+v.o+' | <b>Explosion:</b> '+fmt(v.e)+'<br><b>Metodo:</b> '+method(name)+'</div>';
-  
+  var html='<h2 style="color:#4ade80">'+name+'</h2>';
+  for(var i=0;i<DATA.ores.length;i++){
+    if(DATA.ores[i].name===name){
+      var ore=DATA.ores[i];
+      html+='<p>Densidad: '+ore.density+' | Inestabilidad: '+ore.instability+' | Resistencia: '+ore.resistance+'</p>';
+      break;
+    }
+  }
   var locs=DATA.mineralLocs[name];
   if(locs){
-    html+='<div style="margin-top:12px"><b>Aparece en ('+locs.length+' ubicaciones):</b></div><div class="sg">';
-    locs.forEach(function(l){
-      html+='<div class="lc"><h4>'+l.name+'</h4><div class="s">'+l.system+' \u00b7 '+l.type+'</div></div>';
-    });
-    html+='</div>';
+    html+='<p>Aparece en ('+locs.length+' ubicaciones):</p>';
+    for(var j=0;j<locs.length;j++){
+      html+='<div>'+locs[j].name+' - '+locs[j].system+' ('+locs[j].type+')</div>';
+    }
   }else{
-    html+='<div style="margin-top:12px;color:rgba(74,222,128,0.04)">Sin ubicaciones registradas</div>';
+    html+='<p>Sin ubicaciones registradas</p>';
   }
   d.innerHTML=html;
-  d.parentElement.className='det det-mining on';
+  document.getElementById('detailPanel').className='det on';
 }
-
-// ===== MISSIONS =====
-var missionFilter='';
-var missions = [];
-for(var i=0;i<DATA.factions.length;i++){
-  var f=DATA.factions[i];
-  var syses=['Stanton','Pyro','Nyx'];
-  missions.push({
-    n:'[CONTRATO] '+f,
-    f:f,
-    s:syses[i%3],
-    t:['Entrega','Combate','Transporte','Mercancias'][i%4],
-    r:25000+Math.floor(Math.random()*55000),
-    xp:30+Math.floor(Math.random()*60),
-    il:i%4===0
-  });
-}
-var missions=missions;
-
 
 function buildMissions(){
   var g=document.getElementById('missionGrid');
