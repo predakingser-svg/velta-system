@@ -135,16 +135,19 @@ var miningFilter = '';
 function buildMining(){
   var g=document.getElementById('miningGrid');
   g.innerHTML='';
-  var e=DATA.elements;
-  for(var k in e){
+  var e=DATA.ores;
+  for(var i=0;i<e.length;i++){
+    var ore=e[i];var k=ore.name;
     if(miningFilter && k.toLowerCase().indexOf(miningFilter.toLowerCase())===-1)continue;
-    var v=e[k];var m=method(k);
+    var v={i:ore.instability||0,d:ore.density||0,e:0};var m=method(k);
     var d=document.createElement('div');d.className='card';
     d.innerHTML='<h4>'+k+' <span style="font-size:0.42rem;color:rgba(74,222,128,0.15);letter-spacing:1px">'+m+'</span></h4>'+
       '<div class="g"><div><div class="nv">'+fmt(v.i)+'</div><div class="lb">Inest</div></div>'+
       '<div><div class="nv">'+fmt(v.d)+'</div><div class="lb">Dens</div></div>'+
       '<div><div class="nv">'+fmt(v.e)+'</div><div class="lb">Exp</div></div></div>';
     d.onclick=function(n){return function(){showMineralDetail(n)}}(k);
+    g.appendChild(d);
+  }
     g.appendChild(d);
   }
 }
