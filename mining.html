@@ -187,7 +187,7 @@ function buildMissions(){
 
 // ===== BLUEPRINTS =====
 var bpFilter='';
-var bps = DATA.craftingItems.filter(function(c){return c.name.length<40}).slice(0,24).map(function(c,i){
+var bps = DATA.craftingItems.filter(function(c){return c.n.length<40}).slice(0,24).map(function(c,i){
   var cat='Arma / Componente';
   if(i<8)cat='Componente Nave';
   else if(i<16)cat='Armadura FPS';
