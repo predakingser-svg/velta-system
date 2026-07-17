@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Guía de Minería — Star Citizen 4.9</title>
+<meta name="description" content="Guía completa de minería en Star Citizen 4.9. Todos los minerales con stats reales, ubicaciones por sistema, refinerías y métodos de extracción.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080b12;--bg2:#0e1424;--text:#ece8e1;--text2:rgba(236,232,225,0.35);--text3:rgba(236,232,225,0.06);--border:rgba(255,255,255,0.02);--gold:#d4a84c;--gold-grad:linear-gradient(135deg,#d4a84c,#e8c44a);--gold-text:linear-gradient(135deg,#ece8e1 30%,#d4a84c);--card:rgba(255,255,255,0.01);--card-hover:rgba(255,255,255,0.02);--nav-bg:rgba(8,11,18,0.88);--nav-ln:rgba(236,232,225,0.25);--blob1:rgba(212,168,76,0.06);--blob2:rgba(255,255,255,0.01);--red:#ff6b6b;--green:#4ade80;--cyan:#00d4ff;--purple:#a855f7;--orange:#fb923c}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.blob{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0}
+.blob-1{width:400px;height:400px;background:radial-gradient(circle,var(--blob1),transparent 70%);top:-100px;right:-80px}
+.blob-2{width:300px;height:300px;background:radial-gradient(circle,var(--blob2),transparent 70%);bottom:20%;left:-60px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:var(--nav-bg);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+nav .logo{font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--gold-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav .lk{display:flex;gap:16px}
+nav .lk a{color:var(--nav-ln);text-decoration:none;font-size:0.6rem;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s}
+nav .lk a:hover{color:var(--text)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.hero{min-height:50vh;display:flex;flex-direction:column;justify-content:center;padding:100px 20px 50px;text-align:center;position:relative;background:linear-gradient(170deg,#080b12,#0e1424 50%,#080b12)}
+.hero *{position:relative;z-index:1}
+.hero h1{font-size:2.6rem;font-weight:800;letter-spacing:-1px;margin-bottom:10px}
+.hero h1 span{background:var(--gold-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero .sub{color:var(--text2);font-size:0.85rem;margin-bottom:20px;max-width:500px;margin-left:auto;margin-right:auto}
+.hero .stats{display:flex;gap:32px;justify-content:center;margin-top:24px}
+.hero .stats div{text-align:center}
+.hero .stats .n{font-size:1.3rem;font-weight:800;line-height:1}
+.hero .stats .l{font-size:0.55rem;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+nav-tabs{display:flex;gap:2px;overflow-x:auto;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:3px;margin-bottom:24px}
+nav-tabs button{flex:1;white-space:nowrap;padding:10px 16px;background:transparent;border:none;color:var(--text2);font-size:0.65rem;font-weight:500;text-transform:uppercase;letter-spacing:0.8px;cursor:pointer;border-radius:5px;transition:all 0.2s;font-family:Inter,sans-serif}
+nav-tabs button:hover{color:var(--text);background:rgba(255,255,255,0.01)}
+nav-tabs button.on{background:var(--card);color:var(--gold);box-shadow:0 1px 3px rgba(0,0,0,0.3)}
+.tab{display:none}.tab.on{display:block}
+.search{position:relative;margin-bottom:16px}
+.search input{width:100%;padding:11px 14px 11px 36px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:0.8rem;outline:none;font-family:Inter,sans-serif;transition:border-color 0.2s}
+.search input:focus{border-color:rgba(212,168,76,0.1)}
+.search i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:0.8rem}
+
+/* MINERAL GRID */
+.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;margin-bottom:24px}
+.mc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;transition:all 0.25s;cursor:pointer}
+.mc:hover{border-color:rgba(212,168,76,0.08);background:var(--card-hover);transform:translateY(-2px)}
+.mc .top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.mc .top h3{font-size:0.82rem;font-weight:600}
+.mc .top .tag{font-size:0.55rem;padding:2px 8px;border-radius:3px;background:rgba(212,168,76,0.04);color:var(--gold);border:1px solid rgba(212,168,76,0.06)}
+.mc .top .tag.hand{background:rgba(74,222,128,0.04);color:var(--green);border-color:rgba(74,222,128,0.06)}
+.mc .top .tag.roc{border-color:rgba(168,85,247,0.06);color:var(--purple);background:rgba(168,85,247,0.04)}
+.mc .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:6px}
+.mc .stats .s{text-align:center;padding:4px;background:rgba(255,255,255,0.01);border-radius:4px}
+.mc .stats .s .v{font-size:0.65rem;font-weight:600;color:var(--text)}
+.mc .stats .s .l{font-size:0.5rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px}
+.mc .stats .s .v.high{color:var(--red)}
+.mc .stats .s .v.ok{color:var(--gold)}
+.mc .stats .s .v.low{color:var(--cyan)}
+.mc .loc{font-size:0.62rem;color:var(--text2);line-height:1.4;margin-top:4px}
+.mc .loc .sys{font-size:0.5rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px}
+
+/* LOCATIONS GRID */
+.lg{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px;margin-bottom:24px}
+.lc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;transition:all 0.25s}
+.lc:hover{border-color:rgba(212,168,76,0.06)}
+.lc h4{font-size:0.82rem;font-weight:600;margin-bottom:2px}
+.lc .meta{font-size:0.55rem;color:var(--text2);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px}
+.lc .mins{display:flex;flex-wrap:wrap;gap:3px}
+.lc .mins span{font-size:0.55rem;padding:2px 7px;border-radius:3px;background:rgba(255,255,255,0.01);border:1px solid var(--border);color:var(--text2)}
+.lc .mins span.r{color:var(--gold);border-color:rgba(212,168,76,0.06)}
+.lc .mins span.c{color:var(--cyan);border-color:rgba(0,212,255,0.06)}
+.lc .mins span.p{color:var(--purple);border-color:rgba(168,85,247,0.06)}
+
+/* REFINERIES */
+.rg{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.rc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.rc h4{font-size:0.78rem;font-weight:600;margin-bottom:2px}
+.rc .sys{font-size:0.5rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+.rc .bonus{font-size:0.6rem;color:var(--text2);line-height:1.6}
+.rc .bonus strong{color:var(--green);font-weight:600}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:0.72rem}
+.tbl th{font-size:0.55rem;text-transform:uppercase;letter-spacing:1px;color:var(--text3);text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);background:var(--bg2)}
+.tbl td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text2)}
+.tbl tr:hover td{background:var(--card)}
+.tbl td.n{color:var(--text);font-weight:600}
+.tbl td.d{color:var(--text)}
+
+/* INFO */
+.info-box{background:rgba(212,168,76,0.02);border:1px solid rgba(212,168,76,0.04);border-radius:12px;padding:20px 24px;margin-bottom:20px}
+.info-box p{font-size:0.72rem;color:var(--text2);line-height:1.6}
+
+footer{padding:36px 20px;text-align:center;border-top:1px solid var(--border)}
+footer p{font-size:0.5rem;color:var(--text3)}
+@media(max-width:700px){
+  .hero h1{font-size:1.6rem}
+  .mg{grid-template-columns:1fr}
+  .lg,.rg{grid-template-columns:1fr}
+  .hero .stats{gap:16px}
+  nav .lk{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+
+<nav>
+  <div class="logo">⚡ Guía de Minería SC</div>
+  <div class="lk">
+    <a href="#minerales">Minerales</a>
+    <a href="#ubicaciones">Ubicaciones</a>
+    <a href="#refinerias">Refinerías</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Guía de <span>Minería</span></h1>
+  <div class="sub">Datos extraídos directamente de los archivos del juego — Star Citizen Alpha 4.9.0 LIVE</div>
+  <div class="stats">
+    <div><div class="n" style="color:var(--gold)">38</div><div class="l">Minerales</div></div>
+    <div><div class="n" style="color:var(--green)">48</div><div class="l">Ubicaciones</div></div>
+    <div><div class="n" style="color:var(--cyan)">20</div><div class="l">Refinerías</div></div>
+    <div><div class="n" style="color:var(--gold)">3</div><div class="l">Sistemas</div></div>
+  </div>
+</section>
+
+<div class="wrap">
+
+<nav-tabs id="tabs">
+  <button class="on" data-t="minerales">Minerales</button>
+  <button data-t="ubicaciones">Ubicaciones</button>
+  <button data-t="refinerias">Refinerías</button>
+  <button data-t="tabla">Tabla completa</button>
+</nav-tabs>
+
+<!-- TAB 1: MINERALES -->
+<div class="tab on" id="tab-minerales">
+  <div class="search">
+    <input type="text" id="sMineral" placeholder="Buscar mineral..." oninput="filterMinerales()">
+  </div>
+  <div class="mg" id="mineralGrid"></div>
+</div>
+
+<!-- TAB 2: UBICACIONES -->
+<div class="tab" id="tab-ubicaciones">
+  <div class="search">
+    <input type="text" id="sUbicacion" placeholder="Buscar ubicación o mineral..." oninput="filterUbicaciones()">
+  </div>
+  <div class="lg" id="locGrid"></div>
+</div>
+
+<!-- TAB 3: REFINERÍAS -->
+<div class="tab" id="tab-refinerias">
+  <div class="info-box">
+    <p>Las refinerías ofrecen bonificaciones (positivas) o penalizaciones (negativas) al refinar cada mineral. El número indica el % de rendimiento adicional. Una bonificación de +8 significa que obtienes 8% más de ese mineral al refinar en esa estación.</p>
+  </div>
+  <div class="rg" id="refGrid"></div>
+</div>
+
+<!-- TAB 4: TABLA -->
+<div class="tab" id="tab-tabla">
+  <div style="overflow-x:auto">
+    <table class="tbl" id="fullTable">
+      <thead><tr><th>Mineral</th><th>Densidad</th><th>Inestabilidad</th><th>Resistencia</th><th>Ventana óptima</th><th>Explosión</th><th>Método</th></tr></thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+
+<footer>
+  <p>Datos extraídos de SCMDB y archivos del juego — Star Citizen Alpha 4.9.0 LIVE</p>
+</footer>
+
+<script>
+// ===== DATA =====
+const elements = {
+  "Agricium": {
+    "density": 7.14,
+    "instability": 350.0,
+    "resistance": 0.5,
+    "optimal": 0.5,
+    "optimal_thinness": 2.0,
+    "explosion": 4.0
+  },
+  "Aluminium": {
+    "density": 2.7,
+    "instability": 0.0,
+    "resistance": -0.4,
+    "optimal": 0.6,
+    "optimal_thinness": -0.5,
+    "explosion": -36.0
+  },
+  "Aslarite": {
+    "density": 2.47,
+    "instability": 700.0,
+    "resistance": 0.5,
+    "optimal": 0.4,
+    "optimal_thinness": 0.6,
+    "explosion": 240.0
+  },
+  "Beryl": {
+    "density": 2.74,
+    "instability": 350.0,
+    "resistance": 0.65,
+    "optimal": 0.3,
+    "optimal_thinness": 1.5,
+    "explosion": 20.0
+  },
+  "Bexalite": {
+    "density": 6.97,
+    "instability": 600.0,
+    "resistance": 0.6,
+    "optimal": 0.4,
+    "optimal_thinness": 0.4,
+    "explosion": 100.0
+  },
+  "Borase": {
+    "density": 4.2,
+    "instability": 40.0,
+    "resistance": 0.3,
+    "optimal": 0.3,
+    "optimal_thinness": 0.5,
+    "explosion": 120.0
+  },
+  "Copper": {
+    "density": 9.03,
+    "instability": 50.0,
+    "resistance": -0.7,
+    "optimal": 0.6,
+    "optimal_thinness": -0.9,
+    "explosion": -20.0
+  },
+  "Corundum": {
+    "density": 4.03,
+    "instability": 50.0,
+    "resistance": 0.1,
+    "optimal": 0.5,
+    "optimal_thinness": 0.5,
+    "explosion": -36.0
+  },
+  "Gold": {
+    "density": 21.07,
+    "instability": 550.0,
+    "resistance": 0.5,
+    "optimal": 0.5,
+    "optimal_thinness": 2.1,
+    "explosion": 100.0
+  },
+  "Hephaestanite": {
+    "density": 3.2,
+    "instability": 400.0,
+    "resistance": -0.3,
+    "optimal": 0.7,
+    "optimal_thinness": 0.5,
+    "explosion": 120.0
+  },
+  "Ice": {
+    "density": 1.0,
+    "instability": 0.0,
+    "resistance": -0.5,
+    "optimal": 0.6,
+    "optimal_thinness": 0.5,
+    "explosion": -20.0
+  },
+  "Iron": {
+    "density": 7.87,
+    "instability": 50.0,
+    "resistance": -0.4,
+    "optimal": 0.6,
+    "optimal_thinness": -0.9,
+    "explosion": 20.0
+  },
+  "Laranite": {
+    "density": 11.49,
+    "instability": 400.0,
+    "resistance": 0.5,
+    "optimal": 0.4,
+    "optimal_thinness": 0.5,
+    "explosion": 200.0
+  },
+  "Lindinium": {
+    "density": 10.69,
+    "instability": 1000.0,
+    "resistance": 0.95,
+    "optimal": 0.5,
+    "optimal_thinness": 0.23,
+    "explosion": 260.0
+  },
+  "Aphorite": {
+    "density": 0.0,
+    "instability": 0.0,
+    "resistance": 0.0,
+    "optimal": 0.7,
+    "optimal_thinness": 0.0,
+    "explosion": 0.0
+  },
+  "Carinite": {
+    "density": 0.0,
+    "instability": 300.0,
+    "resistance": 0.5,
+    "optimal": 0.4,
+    "optimal_thinness": 10.0,
+    "explosion": 0.5
+  },
+  "Carinitepure": {
+    "density": 0.0,
+    "instability": 300.0,
+    "resistance": 0.5,
+    "optimal": 0.4,
+    "optimal_thinness": 10.0,
+    "explosion": 0.5
+  },
+  "Dolivine": {
+    "density": 0.0,
+    "instability": 0.0,
+    "resistance": 0.1,
+    "optimal": 0.6,
+    "optimal_thinness": 0.0,
+    "explosion": 0.0
+  },
+  "Hadanite": {
+    "density": 0.0,
+    "instability": 200.0,
+    "resistance": 0.0,
+    "optimal": 0.6,
+    "optimal_thinness": 0.0,
+    "explosion": 1.0
+  },
+  "Jaclium": {
+    "density": 0.0,
+    "instability": 100.0,
+    "resistance": 0.5,
+    "optimal": 0.5,
+    "optimal_thinness": 3.0,
+    "explosion": 1.0
+  },
+  "Janalite": {
+    "density": 0.0,
+    "instability": 300.0,
+    "resistance": 0.3,
+    "optimal": 0.3,
+    "optimal_thinness": 10.0,
+    "explosion": 1.0
+  },
+  "Sadaryx": {
+    "density": 0.0,
+    "instability": 200.0,
+    "resistance": 0.0,
+    "optimal": 0.6,
+    "optimal_thinness": 0.0,
+    "explosion": 1.0
+  },
+  "Saldynium": {
+    "density": 0.0,
+    "instability": 100.0,
+    "resistance": 0.0,
+    "optimal": 0.5,
+    "optimal_thinness": 5.0,
+    "explosion": 1.0
+  },
+  "Beradom": {
+    "density": 0.0,
+    "instability": 0.0,
+    "resistance": 0.0,
+    "optimal": 0.7,
+    "optimal_thinness": 0.0,
+    "explosion": 0.0
+  },
+  "Feynmaline": {
+    "density": 0.0,
+    "instability": 200.0,
+    "resistance": 0.0,
+    "optimal": 0.6,
+    "optimal_thinness": 0.0,
+    "explosion": 1.0
+  },
+  "Glacosite": {
+    "density": 0.0,
+    "instability": 0.0,
+    "resistance": 0.1,
+    "optimal": 0.6,
+    "optimal_thinness": 0.0,
+    "explosion": 0.0
+  },
+  "Ouratite": {
+    "density": 1.12,
+    "instability": 600.0,
+    "resistance": 0.6,
+    "optimal": 0.4,
+    "optimal_thinness": 0.6,
+    "explosion": 240.0
+  },
+  "Quantainium": {
+    "density": 20.46,
+    "instability": 1000.0,
+    "resistance": 0.95,
+    "optimal": 0.5,
+    "optimal_thinness": 2.3,
+    "explosion": 260.0
+  },
+  "Quartz": {
+    "density": 2.53,
+    "instability": 50.0,
+    "resistance": -0.7,
+    "optimal": 0.6,
+    "optimal_thinness": 0.5,
+    "explosion": -20.0
+  },
+  "Riccite": {
+    "density": 1.61,
+    "instability": 850.0,
+    "resistance": 0.95,
+    "optimal": 0.7,
+    "optimal_thinness": 2.3,
+    "explosion": 260.0
+  },
+  "Savrilium": {
+    "density": 17.59,
+    "instability": 1000.0,
+    "resistance": 0.95,
+    "optimal": 0.5,
+    "optimal_thinness": 2.3,
+    "explosion": 260.0
+  },
+  "Stileron": {
+    "density": 4.75,
+    "instability": 870.0,
+    "resistance": 0.6,
+    "optimal": 0.7,
+    "optimal_thinness": 0.6,
+    "explosion": 260.0
+  },
+  "Silicon": {
+    "density": 2.49,
+    "instability": 50.0,
+    "resistance": -0.2,
+    "optimal": 0.3,
+    "optimal_thinness": 0.5,
+    "explosion": 80.0
+  },
+  "Taranite": {
+    "density": 10.2,
+    "instability": 700.0,
+    "resistance": 0.5,
+    "optimal": 0.4,
+    "optimal_thinness": 0.6,
+    "explosion": 240.0
+  },
+  "Tin": {
+    "density": 5.54,
+    "instability": 0.0,
+    "resistance": -0.2,
+    "optimal": 0.4,
+    "optimal_thinness": 0.5,
+    "explosion": -36.0
+  },
+  "Titanium": {
+    "density": 4.48,
+    "instability": 0.0,
+    "resistance": 0.1,
+    "optimal": 0.6,
+    "optimal_thinness": -0.7,
+    "explosion": 20.0
+  },
+  "Torite": {
+    "density": 2.8,
+    "instability": 550.0,
+    "resistance": 0.25,
+    "optimal": 0.5,
+    "optimal_thinness": 2.1,
+    "explosion": 100.0
+  },
+  "Tungsten": {
+    "density": 19.35,
+    "instability": 0.0,
+    "resistance": -0.4,
+    "optimal": 0.3,
+    "optimal_thinness": -0.7,
+    "explosion": 80.0
+  }
+};
+const locations = {
+  "Breaker Stations Interior": {
+    "system": "Nyx",
+    "type": "event",
+    "minerals": [
+      "Aphorite",
+      "Sadaryx"
+    ]
+  },
+  "Breaker Stations Large Geode": {
+    "system": "Nyx",
+    "type": "event",
+    "minerals": [
+      "Savrilium"
+    ]
+  },
+  "Glaciem Ring": {
+    "system": "Nyx",
+    "type": "belt",
+    "minerals": [
+      "Raw Ice",
+      "Iron",
+      "Lindinium",
+      "Bexalite",
+      "Savrilium",
+      "Torite"
+    ]
+  },
+  "Keeger Belt": {
+    "system": "Nyx",
+    "type": "belt",
+    "minerals": [
+      "Raw Ice",
+      "Aluminum",
+      "Lindinium",
+      "Bexalite",
+      "Savrilium",
+      "Torite"
+    ]
+  },
+  "Akiro Cluster": {
+    "system": "Pyro",
+    "type": "belt",
+    "minerals": [
+      "Raw Ice",
+      "Raw Silicon",
+      "Copper",
+      "Iron",
+      "Riccite",
+      "Stileron",
+      "Torite"
+    ]
+  },
+  "Pyro Belt (Cool 1)": {
+    "system": "Pyro",
+    "type": "belt",
+    "minerals": [
+      "Raw Ice",
+      "Raw Silicon",
+      "Titanium",
+      "Borase"
+    ]
+  },
+  "Pyro Belt (Cool 2)": {
+    "system": "Pyro",
+    "type": "belt",
+    "minerals": [
+      "Raw Ice",
+      "Raw Silicon",
+      "Aslarite",
+      "Taranite"
+    ]
+  },
+  "Pyro Belt (Warm 1)": {
+    "system": "Pyro",
+    "type": "belt",
+    "minerals": [
+      "Iron",
+      "Copper",
+      "Agricium",
+      "Bexalite"
+    ]
+  },
+  "Pyro Belt (Warm 2)": {
+    "system": "Pyro",
+    "type": "belt",
+    "minerals": [
+      "Iron",
+      "Copper",
+      "Tungsten",
+      "Gold"
+    ]
+  },
+  "Pyro Deep Space Asteroids": {
+    "system": "Pyro",
+    "type": "belt",
+    "minerals": [
+      "Aluminum",
+      "Corundum",
+      "Quartz",
+      "Tin",
+      "Riccite",
+      "Stileron",
+      "Torite"
+    ]
+  },
+  "Pyro I": {
+    "system": "Pyro",
+    "type": "planet",
+    "minerals": [
+      "Aphorite",
+      "Dolivine",
+      "Hadanite",
+      "Beradom",
+      "Iron",
+      "Copper",
+      "Tin",
+      "Stileron"
+    ]
+  },
+  "Pyro II (Monox)": {
+    "system": "Pyro",
+    "type": "planet",
+    "minerals": [
+      "Aphorite",
+      "Dolivine",
+      "Hadanite",
+      "Glacosite",
+      "Hephaestanite (R)",
+      "Iron",
+      "Tin",
+      "Stileron"
+    ]
+  },
+  "Pyro III (Bloom)": {
+    "system": "Pyro",
+    "type": "planet",
+    "minerals": [
+      "Aphorite",
+      "Dolivine",
+      "Janalite",
+      "Beradom",
+      "Riccite",
+      "Borase",
+      "Quartz",
+      "Stileron",
+      "Iron"
+    ]
+  },
+  "Pyro IV": {
+    "system": "Pyro",
+    "type": "planet",
+    "minerals": [
+      "Aphorite",
+      "Dolivine",
+      "Hadanite",
+      "Feynmaline",
+      "Laranite",
+      "Borase",
+      "Copper",
+      "Stileron",
+      "Iron"
+    ]
+  },
+  "Pyro V-a (Ignis)": {
+    "system": "Pyro",
+    "type": "moon",
+    "minerals": [
+      "Aphorite",
+      "Dolivine",
+      "Hadanite",
+      "Feynmaline",
+      "Tin",
+      "Raw Silicon",
+      "Riccite",
+      "Gold"
+    ]
+  },
+  "Pyro V-b (Vatra)": {
+    "system": "Pyro",
+    "type": "moon",
+    "minerals": [
+      "Aphorite",
+      "Dolivine",
+      "Hadanite",
+      "Beradom",
+      "Glacosite",
+      "Iron",
+      "Raw Silicon",
+      "Riccite",
+      "Gold"
+    ]
+  },
+  "Pyro V-c (Adir)": {
+    "system": "Pyro",
+    "type": "moon",
+    "minerals": [
+      "Aphorite",
+      "Dolivine",
+      "Hadanite",
+      "Glacosite",
+      "Iron",
+      "Tungsten",
+      "Riccite",
+      "Borase"
+    ]
+  },
+  "Pyro V-d (Fairo)": {
+    "system": "Pyro",
+    "type": "moon",
+    "minerals": [
+      "Aphorite",
+      "Dolivine",
+      "Hadanite",
+      "Beradom",
+      "Bexalite",
+      "Tungsten",
+      "Raw Silicon",
+      "Gold",
+      "Iron"
+    ]
+  },
+  "Pyro V-e (Fuego)": {
+    "system": "Pyro",
+    "type": "moon",
+    "minerals": [
+      "Aphorite",
+      "Dolivine",
+      "Janalite",
+      "Feynmaline",
+      "Borase",
+      "Bexalite",
+      "Aslarite",
+      "Hephaestanite (R)",
+      "Iron"
+    ]
+  },
+  "Pyro V-f (Vuur)": {
+    "system": "Pyro",
+    "type": "moon",
+    "minerals": [
+      "Aphorite",
+      "Dolivine",
+      "Hadanite",
+      "Glacosite",
+      "Agricium",
+      "Bexalite",
+      "Aslarite",
+      "Hephaestanite (R)",
+      "Iron"
+    ]
+  },
+  "Pyro VI (Terminus)": {
+    "system": "Pyro",
+    "type": "planet",
+    "minerals": [
+      "Aphorite",
+      "Dolivine",
+      "Janalite",
+      "Feynmaline",
+      "Raw Ice",
+      "Agricium",
+      "Copper",
+      "Titanium",
+      "Riccite",
+      "Stileron",
+      "Gold"
+    ]
+  },
+  "Aaron Halo": {
+    "system": "Stanton",
+    "type": "belt",
+    "minerals": [
+      "Raw Ice",
+      "Raw Silicon",
+      "Aluminum",
+      "Quantainium",
+      "Iron",
+      "Copper",
+      "Aslarite",
+      "Titanium",
+      "Beryl"
+    ]
+  },
+  "Aberdeen": {
+    "system": "Stanton",
+    "type": "moon",
+    "minerals": [
+      "Aluminum",
+      "Titanium",
+      "Ouratite",
+      "Quantainium",
+      "Corundum",
+      "Beradom",
+      "Glacosite",
+      "Feynmaline",
+      "Aphorite",
+      "Dolivine",
+      "Hadanite"
+    ]
+  },
+  "Arial": {
+    "system": "Stanton",
+    "type": "moon",
+    "minerals": [
+      "Aluminum",
+      "Tin",
+      "Hephaestanite (R)",
+      "Corundum",
+      "Ouratite",
+      "Quantainium",
+      "Beradom",
+      "Glacosite",
+      "Feynmaline",
+      "Aphorite",
+      "Dolivine",
+      "Hadanite"
+    ]
+  },
+  "Asteroid Cluster (Low Yield)": {
+    "system": "Stanton",
+    "type": "cluster",
+    "minerals": [
+      "Raw Ice",
+      "Raw Silicon",
+      "Aluminum",
+      "Iron",
+      "Copper",
+      "Quantainium"
+    ]
+  },
+  "Asteroid Cluster (Medium Yield)": {
+    "system": "Stanton",
+    "type": "cluster",
+    "minerals": [
+      "Raw Ice",
+      "Raw Silicon",
+      "Aluminum",
+      "Iron",
+      "Copper",
+      "Quantainium"
+    ]
+  },
+  "Calliope": {
+    "system": "Stanton",
+    "type": "moon",
+    "minerals": [
+      "Iron",
+      "Raw Ice",
+      "Hephaestanite (R)",
+      "Quantainium",
+      "Beradom",
+      "Glacosite",
+      "Feynmaline",
+      "Aphorite",
+      "Dolivine",
+      "Janalite"
+    ]
+  },
+  "Cellin": {
+    "system": "Stanton",
+    "type": "moon",
+    "minerals": [
+      "Quartz",
+      "Agricium",
+      "Taranite",
+      "Quantainium",
+      "Raw Silicon",
+      "Beradom",
+      "Glacosite",
+      "Feynmaline",
+      "Aphorite",
+      "Dolivine",
+      "Hadanite"
+    ]
+  },
+  "Clio": {
+    "system": "Stanton",
+    "type": "moon",
+    "minerals": [
+      "Raw Ice",
+      "Copper",
+      "Taranite",
+      "Quantainium",
+      "Beradom",
+      "Glacosite",
+      "Feynmaline",
+      "Aphorite",
+      "Dolivine",
+      "Janalite"
+    ]
+  },
+  "Daymar": {
+    "system": "Stanton",
+    "type": "moon",
+    "minerals": [
+      "Quartz",
+      "Agricium",
+      "Raw Silicon",
+      "Quantainium",
+      "Beradom",
+      "Glacosite",
+      "Feynmaline",
+      "Aphorite",
+      "Dolivine",
+      "Hadanite"
+    ]
+  },
+  "Euterpe": {
+    "system": "Stanton",
+    "type": "moon",
+    "minerals": [
+      "Raw Ice",
+      "Copper",
+      "Taranite",
+      "Quantainium",
+      "Beradom",
+      "Glacosite",
+      "Feynmaline",
+      "Aphorite",
+      "Dolivine",
+      "Janalite"
+    ]
+  },
+  "Hathor Caves": {
+    "system": "Stanton",
+    "type": "cave",
+    "minerals": [
+      "Aphorite",
+      "Dolivine",
+      "Hadanite",
+      "Janalite",
+      "Jaclium",
+      "Saldynium",
+      "Carinite",
+      "Carinite (Pure)"
+    ]
+  },
+  "Hurston": {
+    "system": "Stanton",
+    "type": "planet",
+    "minerals": [
+      "Beradom",
+      "Glacosite",
+      "Feynmaline",
+      "Aphorite",
+      "Dolivine",
+      "Hadanite",
+      "Aluminum",
+      "Tin",
+      "Ouratite",
+      "Quantainium"
+    ]
+  },
+  "Ita": {
+    "system": "Stanton",
+    "type": "moon",
+    "minerals": [
+      "Aluminum",
+      "Tin",
+      "Aslarite",
+      "Quantainium",
+      "Beradom",
+      "Glacosite",
+      "Feynmaline",
+      "Aphorite",
+      "Dolivine",
+      "Hadanite"
+    ]
+  },
+  "Lagrange (Occupied)": {
+    "system": "Stanton",
+    "type": "lagrange",
+    "minerals": [
+      "Iron",
+      "Raw Ice",
+      "Copper",
+      "Agricium",
+      "Beryl"
+    ]
+  },
+  "Lagrange A": {
+    "system": "Stanton",
+    "type": "lagrange",
+    "minerals": [
+      "Aluminum",
+      "Corundum",
+      "Hephaestanite (R)",
+      "Laranite",
+      "Borase"
+    ]
+  },
+  "Lagrange B": {
+    "system": "Stanton",
+    "type": "lagrange",
+    "minerals": [
+      "Iron",
+      "Raw Ice",
+      "Copper",
+      "Aslarite",
+      "Gold"
+    ]
+  },
+  "Lagrange C": {
+    "system": "Stanton",
+    "type": "lagrange",
+    "minerals": [
+      "Aluminum",
+      "Corundum",
+      "Hephaestanite (R)",
+      "Torite"
+    ]
+  },
+  "Lagrange D": {
+    "system": "Stanton",
+    "type": "lagrange",
+    "minerals": [
+      "Iron",
+      "Raw Ice",
+      "Copper",
+      "Agricium",
+      "Beryl"
+    ]
+  },
+  "Lagrange E": {
+    "system": "Stanton",
+    "type": "lagrange",
+    "minerals": [
+      "Iron",
+      "Raw Ice",
+      "Copper",
+      "Titanium",
+      "Bexalite"
+    ]
+  },
+  "Lagrange F": {
+    "system": "Stanton",
+    "type": "lagrange",
+    "minerals": [
+      "Corundum",
+      "Aluminum",
+      "Hephaestanite (R)",
+      "Tungsten",
+      "Taranite"
+    ]
+  },
+  "Lagrange G": {
+    "system": "Stanton",
+    "type": "lagrange",
+    "minerals": [
+      "Iron",
+      "Raw Ice",
+      "Copper",
+      "Agricium",
+      "Beryl"
+    ]
+  },
+  "Lyria": {
+    "system": "Stanton",
+    "type": "moon",
+    "minerals": [
+      "Iron",
+      "Copper",
+      "Laranite",
+      "Quantainium",
+      "Beradom",
+      "Glacosite",
+      "Feynmaline",
+      "Aphorite",
+      "Dolivine",
+      "Janalite"
+    ]
+  },
+  "Magda": {
+    "system": "Stanton",
+    "type": "moon",
+    "minerals": [
+      "Aluminum",
+      "Titanium",
+      "Aslarite",
+      "Quantainium",
+      "Iron",
+      "Beradom",
+      "Glacosite",
+      "Feynmaline",
+      "Aphorite",
+      "Dolivine",
+      "Hadanite"
+    ]
+  },
+  "Wala": {
+    "system": "Stanton",
+    "type": "moon",
+    "minerals": [
+      "Iron",
+      "Beryl",
+      "Laranite",
+      "Quantainium",
+      "Copper",
+      "Beradom",
+      "Glacosite",
+      "Feynmaline",
+      "Aphorite",
+      "Dolivine",
+      "Janalite"
+    ]
+  },
+  "Yela": {
+    "system": "Stanton",
+    "type": "moon",
+    "minerals": [
+      "Quartz",
+      "Agricium",
+      "Taranite",
+      "Raw Silicon",
+      "Quantainium",
+      "Beradom",
+      "Glacosite",
+      "Feynmaline",
+      "Aphorite",
+      "Dolivine",
+      "Hadanite"
+    ]
+  },
+  "Yela Asteroid Belt": {
+    "system": "Stanton",
+    "type": "belt",
+    "minerals": [
+      "Iron",
+      "Raw Ice",
+      "Copper",
+      "Titanium",
+      "Ouratite"
+    ]
+  },
+  "microTech": {
+    "system": "Stanton",
+    "type": "planet",
+    "minerals": [
+      "Iron",
+      "Raw Ice",
+      "Hephaestanite (R)",
+      "Quantainium",
+      "Beradom",
+      "Glacosite",
+      "Feynmaline",
+      "Aphorite",
+      "Dolivine",
+      "Janalite"
+    ]
+  }
+};
+const refineries = [
+  {
+    "name": "ARC-L1 Wide Forest Station",
+    "system": "Stanton",
+    "bonuses": {
+      "Iron (Ore)": 1,
+      "Corundum (Raw)": -4,
+      "Quantainium (Raw)": 3,
+      "Titanium (Ore)": 5,
+      "Laranite (Raw)": -2,
+      "Quartz (Raw)": 11,
+      "Taranite (Raw)": -6,
+      "Hephaestanite": -4,
+      "Aluminum (Ore)": -5,
+      "Beryl (Raw)": 7
+    }
+  },
+  {
+    "name": "ARC-L2 Lively Pathway Station",
+    "system": "Stanton",
+    "bonuses": {
+      "Bexalite (Raw)": 2,
+      "Corundum (Raw)": -3,
+      "Quantainium (Raw)": 3,
+      "Gold (Ore)": 7,
+      "Titanium (Ore)": 3,
+      "Borase (Ore)": 2,
+      "Tungsten (Ore)": -6,
+      "Hephaestanite": -8,
+      "Copper (Ore)": 6
+    }
+  },
+  {
+    "name": "ARC-L4 Faint Glen Station",
+    "system": "Stanton",
+    "bonuses": {
+      "Corundum (Raw)": -9,
+      "Gold (Ore)": -4,
+      "Titanium (Ore)": -2,
+      "Quartz (Raw)": -2,
+      "Tungsten (Ore)": -5,
+      "Taranite (Raw)": 5,
+      "Hephaestanite": -5,
+      "Copper (Ore)": -4,
+      "Aluminum (Ore)": -3,
+      "Beryl (Raw)": -4,
+      "Agricium (Ore)": -4
+    }
+  },
+  {
+    "name": "CRU-L1 Ambitious Dream Station",
+    "system": "Stanton",
+    "bonuses": {
+      "Iron (Ore)": 2,
+      "Bexalite (Raw)": -6,
+      "Corundum (Raw)": 7,
+      "Gold (Ore)": -6,
+      "Titanium (Ore)": -1,
+      "Laranite (Raw)": -8,
+      "Tungsten (Ore)": 2,
+      "Hephaestanite": -2,
+      "Beryl (Raw)": 7
+    }
+  },
+  {
+    "name": "HUR-L1 Green Glade Station",
+    "system": "Stanton",
+    "bonuses": {
+      "Iron (Ore)": -5,
+      "Bexalite (Raw)": -2,
+      "Corundum (Raw)": -5,
+      "Quantainium (Raw)": 2,
+      "Gold (Ore)": -3,
+      "Borase (Ore)": 1,
+      "Laranite (Raw)": 2,
+      "Tungsten (Ore)": 4,
+      "Copper (Ore)": -5,
+      "Aluminum (Ore)": -4,
+      "Agricium (Ore)": -8
+    }
+  },
+  {
+    "name": "HUR-L2 Faithful Dream Station",
+    "system": "Stanton",
+    "bonuses": {
+      "Corundum (Raw)": 1,
+      "Quantainium (Raw)": 2,
+      "Gold (Ore)": 1,
+      "Laranite (Raw)": -1,
+      "Taranite (Raw)": -3,
+      "Copper (Ore)": -3,
+      "Beryl (Raw)": 1,
+      "Agricium (Ore)": -2
+    }
+  },
+  {
+    "name": "MIC-L1 Shallow Frontier Station",
+    "system": "Stanton",
+    "bonuses": {
+      "Corundum (Raw)": 2,
+      "Gold (Ore)": 1,
+      "Laranite (Raw)": 2,
+      "Quartz (Raw)": -3,
+      "Copper (Ore)": 4,
+      "Aluminum (Ore)": 7,
+      "Beryl (Raw)": -6,
+      "Agricium (Ore)": 8
+    }
+  },
+  {
+    "name": "MIC-L2 Long Forest Station",
+    "system": "Stanton",
+    "bonuses": {
+      "Bexalite (Raw)": 9,
+      "Corundum (Raw)": 6,
+      "Quantainium (Raw)": 1,
+      "Gold (Ore)": 9,
+      "Titanium (Ore)": 6,
+      "Borase (Ore)": -3,
+      "Laranite (Raw)": -1,
+      "Quartz (Raw)": -5,
+      "Tungsten (Ore)": 9,
+      "Copper (Ore)": 2,
+      "Beryl (Raw)": -8
+    }
+  },
+  {
+    "name": "MIC-L5 Modern Icarus Station",
+    "system": "Stanton",
+    "bonuses": {
+      "Iron (Ore)": 8,
+      "Bexalite (Raw)": 12,
+      "Titanium (Ore)": 13,
+      "Borase (Ore)": 9,
+      "Hephaestanite": 8,
+      "Copper (Ore)": 9,
+      "Beryl (Raw)": 7
+    }
+  },
+  {
+    "name": "Stanton Gateway (Nyx)",
+    "system": "Nyx",
+    "bonuses": {
+      "Iron (Ore)": -5,
+      "Bexalite (Raw)": -2,
+      "Corundum (Raw)": -5,
+      "Quantainium (Raw)": 2,
+      "Gold (Ore)": -3,
+      "Borase (Ore)": 1,
+      "Laranite (Raw)": 2,
+      "Tungsten (Ore)": 4,
+      "Copper (Ore)": -5,
+      "Aluminum (Ore)": -4,
+      "Agricium (Ore)": -8
+    }
+  },
+  {
+    "name": "Stanton Gateway (Pyro)",
+    "system": "Pyro",
+    "bonuses": {
+      "Iron (Ore)": -5,
+      "Bexalite (Raw)": -2,
+      "Corundum (Raw)": -5,
+      "Quantainium (Raw)": 2,
+      "Gold (Ore)": -3,
+      "Borase (Ore)": 1,
+      "Laranite (Raw)": 2,
+      "Tungsten (Ore)": 4,
+      "Copper (Ore)": -5,
+      "Aluminum (Ore)": -4,
+      "Agricium (Ore)": -8
+    }
+  },
+  {
+    "name": "Levski",
+    "system": "Nyx",
+    "bonuses": {
+      "Iron (Ore)": 8,
+      "Construction Rubble": 9,
+      "Bexalite (Raw)": 8,
+      "Torite (Ore)": 1,
+      "Corundum (Raw)": 8,
+      "Quantainium (Raw)": 5,
+      "Tin (Ore)": 9,
+      "Gold (Ore)": 5,
+      "Titanium (Ore)": 8,
+      "Borase (Ore)": 8,
+      "Laranite (Raw)": 7,
+      "Quartz (Raw)": 8,
+      "Lindinium (Ore)": 4,
+      "Tungsten (Ore)": 8,
+      "Taranite (Raw)": 8,
+      "Hephaestanite": 8,
+      "Raw Silicon": 8,
+      "Copper (Ore)": 8,
+      "Savrilium (Ore)": 1,
+      "Raw Ice": 10,
+      "Aluminum (Ore)": 8,
+      "Beryl (Raw)": 8,
+      "Construction Salvage": 8,
+      "Agricium (Ore)": 8
+    }
+  },
+  {
+    "name": "Nyx Gateway (Stanton)",
+    "system": "Stanton",
+    "bonuses": {
+      "Iron (Ore)": 1,
+      "Corundum (Raw)": -4,
+      "Quantainium (Raw)": 3,
+      "Titanium (Ore)": 5,
+      "Laranite (Raw)": -2,
+      "Quartz (Raw)": 11,
+      "Taranite (Raw)": -6,
+      "Hephaestanite": -4,
+      "Aluminum (Ore)": -5,
+      "Beryl (Raw)": 7
+    }
+  },
+  {
+    "name": "Nyx Gateway (Pyro)",
+    "system": "Pyro",
+    "bonuses": {
+      "Iron (Ore)": -5,
+      "Bexalite (Raw)": -2,
+      "Corundum (Raw)": -5,
+      "Quantainium (Raw)": 2,
+      "Gold (Ore)": -3,
+      "Borase (Ore)": 1,
+      "Laranite (Raw)": 2,
+      "Tungsten (Ore)": 4,
+      "Copper (Ore)": -5,
+      "Aluminum (Ore)": -4,
+      "Agricium (Ore)": -8
+    }
+  },
+  {
+    "name": "Ruin Station",
+    "system": "Pyro",
+    "bonuses": {
+      "Iron (Ore)": -5,
+      "Bexalite (Raw)": -2,
+      "Corundum (Raw)": -5,
+      "Quantainium (Raw)": 2,
+      "Gold (Ore)": -3,
+      "Borase (Ore)": 1,
+      "Laranite (Raw)": 2,
+      "Tungsten (Ore)": 4,
+      "Copper (Ore)": -5,
+      "Aluminum (Ore)": -4,
+      "Agricium (Ore)": -8
+    }
+  },
+  {
+    "name": "Orbituary",
+    "system": "Pyro",
+    "bonuses": {
+      "Iron (Ore)": -5,
+      "Bexalite (Raw)": -2,
+      "Corundum (Raw)": -5,
+      "Quantainium (Raw)": 2,
+      "Gold (Ore)": -3,
+      "Borase (Ore)": 1,
+      "Laranite (Raw)": 2,
+      "Tungsten (Ore)": 4,
+      "Copper (Ore)": -5,
+      "Aluminum (Ore)": -4,
+      "Agricium (Ore)": -8
+    }
+  },
+  {
+    "name": "Checkmate",
+    "system": "Pyro",
+    "bonuses": {
+      "Iron (Ore)": -5,
+      "Bexalite (Raw)": -2,
+      "Corundum (Raw)": -5,
+      "Quantainium (Raw)": 2,
+      "Gold (Ore)": -3,
+      "Borase (Ore)": 1,
+      "Laranite (Raw)": 2,
+      "Tungsten (Ore)": 4,
+      "Copper (Ore)": -5,
+      "Aluminum (Ore)": -4,
+      "Agricium (Ore)": -8
+    }
+  },
+  {
+    "name": "Pyro Gateway (Nyx)",
+    "system": "Nyx",
+    "bonuses": {
+      "Iron (Ore)": -5,
+      "Bexalite (Raw)": -2,
+      "Corundum (Raw)": -5,
+      "Quantainium (Raw)": 2,
+      "Gold (Ore)": -3,
+      "Borase (Ore)": 1,
+      "Laranite (Raw)": 2,
+      "Tungsten (Ore)": 4,
+      "Copper (Ore)": -5,
+      "Aluminum (Ore)": -4,
+      "Agricium (Ore)": -8
+    }
+  },
+  {
+    "name": "Pyro Gateway (Stanton)",
+    "system": "Stanton",
+    "bonuses": {
+      "Iron (Ore)": 2,
+      "Bexalite (Raw)": -6,
+      "Corundum (Raw)": 7,
+      "Gold (Ore)": -6,
+      "Titanium (Ore)": -1,
+      "Laranite (Raw)": -8,
+      "Tungsten (Ore)": 2,
+      "Hephaestanite": -2,
+      "Beryl (Raw)": 7
+    }
+  },
+  {
+    "name": "Terra Gateway (Stanton)",
+    "system": "Stanton",
+    "bonuses": {
+      "Corundum (Raw)": 2,
+      "Gold (Ore)": 1,
+      "Laranite (Raw)": 2,
+      "Quartz (Raw)": -3,
+      "Copper (Ore)": 4,
+      "Aluminum (Ore)": 7,
+      "Beryl (Raw)": -6,
+      "Agricium (Ore)": 8
+    }
+  }
+];
+
+function fmt(n){if(!n&&n!==0)return'—';if(n>=1000000)return(n/1000000).toFixed(1)+'M';if(n>=1000)return(n/1000).toFixed(1)+'K';return n.toString()}
+function cls(v){if(!v&&v!==0)return'';if(v>500)return'high';if(v>100)return'ok';return'low'}
+
+// Method detection
+function getMethod(name){
+  const fps = ['Hadanite','Dolivine','Aphorite','Janalite','Caranite','Jaclium','Saldynium','Carinite','Carinitepure'];
+  const roc = ['Glacosite','Beradom','Feynmaline'];
+  const harvest = ['Golden Medmon','Heart of the Woods','Pitambu','Prota','Revenant Pod','Flareweed Stalk','Amiant Pod'];
+  if(fps.includes(name))return'FPS';
+  if(roc.includes(name))return'ROC';
+  if(harvest.includes(name))return'Cosecha';
+  return'Nave';
+}
+
+function getMethodClass(m){return m==='FPS'?'hand':m==='ROC'?'roc':m==='Cosecha'?'harvest':''}
+
+// Render minerales
+function renderMinerales(list){
+  const g=document.getElementById('mineralGrid');
+  g.innerHTML='';
+  list.forEach(e=>{
+    const m=getMethod(e.name);
+    const card=document.createElement('div');
+    card.className='mc';
+    card.innerHTML=\`
+      <div class="top"><h3>\${e.name}</h3><span class="tag \${getMethodClass(m)}">\${m}</span></div>
+      <div class="stats">
+        <div class="s"><div class="v \${cls(e.instability)}">\${fmt(e.instability)}</div><div class="l">Inestabilidad</div></div>
+        <div class="s"><div class="v">\${e.density||'—'}</div><div class="l">Densidad</div></div>
+        <div class="s"><div class="v">\${e.resistance||'—'}</div><div class="l">Resistencia</div></div>
+      </div>
+      <div class="stats">
+        <div class="s"><div class="v">\${e.optimal||'—'}</div><div class="l">Ventana óptima</div></div>
+        <div class="s"><div class="v \${cls(e.explosion)}">\${fmt(e.explosion)}</div><div class="l">Explosión</div></div>
+        <div class="s"><div class="v">\${e.optimal_thinness||'—'}</div><div class="l">Estrechez</div></div>
+      </div>
+      <div class="loc">\${getLocations(e.name)}</div>
+    \`;
+    g.appendChild(card);
+  });
+}
+
+function getLocations(name){
+  const locs=[];
+  for(const[lid,ld]of Object.entries(locations)){
+    if(ld.minerals.some(m=>m.toLowerCase().includes(name.toLowerCase()))){
+      locs.push('<span class="sys">'+ld.system+'</span> '+lid);
+    }
+  }
+  return locs.length?'📍 '+locs.slice(0,3).join(', ')+(locs.length>3?', +'+(locs.length-3)+' más':''):'📍 Sin ubicación fija';
+}
+
+function filterMinerales(){
+  const q=document.getElementById('sMineral').value.toLowerCase();
+  renderMinerales(Object.entries(elements).filter(([k,v])=>k.toLowerCase().includes(q)).map(([k,v])=>({name:k,...v})));
+}
+
+// Render locations
+function renderUbicaciones(list){
+  const g=document.getElementById('locGrid');
+  g.innerHTML='';
+  Object.entries(list).forEach(([name,ld])=>{
+    const div=document.createElement('div');
+    div.className='lc';
+    const rare=['Riccite','Stileron','Quantainium','Saldynium','Savrilium','Sadaryx','Lindinium','Bexalite','Taranite','Gold'];
+    const common=['Agricium','Laranite','Hephaestanite','Borase','Beryl','Copper','Corundum','Titanium','Tungsten','Iron','Quartz','Aluminium','Ice','Silicon','Tin','Aslarite','Ouratite'];
+    div.innerHTML=\`
+      <h4>\${name}</h4>
+      <div class="meta">\${ld.system} · \${ld.type}</div>
+      <div class="mins">\${ld.minerals.map(m=>{
+        let extra='';
+        if(rare.includes(m))extra=' r';
+        else if(common.includes(m))extra=' c';
+        else extra=' p';
+        return '<span class="'+extra+'">'+m+'</span>';
+      }).join('')}</div>
+    \`;
+    g.appendChild(div);
+  });
+}
+
+function filterUbicaciones(){
+  const q=document.getElementById('sUbicacion').value.toLowerCase();
+  const filtered={};
+  Object.entries(locations).forEach(([name,ld])=>{
+    if(name.toLowerCase().includes(q)||ld.minerals.some(m=>m.toLowerCase().includes(q))){
+      filtered[name]=ld;
+    }
+  });
+  renderUbicaciones(filtered);
+}
+
+// Render refineries
+function renderRefinerias(){
+  const g=document.getElementById('refGrid');
+  g.innerHTML='';
+  refineries.forEach(r=>{
+    const div=document.createElement('div');
+    div.className='rc';
+    div.innerHTML=\`
+      <h4>\${r.name}</h4>
+      <div class="sys">\${r.system}</div>
+      <div class="bonus">\${Object.entries(r.bonuses).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([k,v])=>'<strong>'+(v>0?'+':'')+v+'%</strong> '+k.replace(' (Ore)','').replace(' (Raw)','')).join(' · ')}</div>
+    \`;
+    g.appendChild(div);
+  });
+}
+
+// Render full table
+function renderTable(){
+  const tb=document.getElementById('tableBody');
+  tb.innerHTML=Object.entries(elements).sort((a,b)=>b[1].instability-a[1].instability).map(([k,v])=>{
+    const m=getMethod(k);
+    return '<tr><td class="n">'+k+'</td><td class="d">'+fmt(v.density)+'</td><td>'+fmt(v.instability)+'</td><td>'+fmt(v.resistance)+'</td><td>'+fmt(v.optimal)+'</td><td>'+fmt(v.explosion)+'</td><td>'+m+'</td></tr>';
+  }).join('');
+}
+
+// Tabs
+document.querySelectorAll('#tabs button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('#tabs button').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.getElementById('tab-'+b.dataset.t).classList.add('on');
+  };
+});
+
+// Init
+renderMinerales(Object.entries(elements).map(([k,v])=>({name:k,...v})));
+renderUbicaciones(locations);
+renderRefinerias();
+renderTable();
+</script>
+
+</body>
+</html>
