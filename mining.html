@@ -3,246 +3,126 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>YOKAIS DIVISION KOPION — Guía para nuevos ciudadanos</title>
+<title>YOKAIS DIVISION KOPION — Guia SC 4.9</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+:root {
+  --cyan: #00d4ff; --cyan-dim: rgba(0,212,255,0.2); --cyan-bg: rgba(0,212,255,0.06);
+  --red: #ff6b6b; --gold: #e8b84c; --green: #4ade80;
+  --bg-primary: #0a0c10; --bg-secondary: #0d111c; --bg-elevated: #141a2a;
+  --bg-card: rgba(20,26,42,0.6); --border-primary: rgba(255,255,255,0.04);
+  --border-secondary: rgba(0,212,255,0.08);
+  --text-primary: #e0e6f0; --text-secondary: #8b95b0; --text-muted: #4a5470;
+  --font-mono: 'JetBrains Mono', monospace; --font-body: 'Inter', sans-serif;
+  --radius-sm: 4px; --radius: 8px;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter,sans-serif;background:#050508;color:#e8e4dc;-webkit-font-smoothing:antialiased}
-
-/* HEADER */
-.hdr{position:sticky;top:0;z-index:30;background:#050508;border-bottom:1px solid rgba(255,255,255,0.02);padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
-.hdr .l{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;background:linear-gradient(135deg,#e8e4dc,rgba(180,0,0,0.6));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hdr .lk{display:flex;gap:4px}
-.hdr .lk a{font-family:'JetBrains Mono',monospace;font-size:0.5rem;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.06);text-decoration:none;padding:5px 10px;border-radius:4px;transition:all 0.2s}
-.hdr .lk a:hover{color:rgba(255,255,255,0.15);background:rgba(255,255,255,0.01)}
-
-/* TABS */
-.tab-bar{display:flex;position:sticky;top:52px;z-index:29;background:#050508;border-bottom:1px solid rgba(255,255,255,0.01);overflow-x:auto}
-.tab-bar button{flex-shrink:0;padding:10px 18px;border:none;background:transparent;font-family:'JetBrains Mono',monospace;font-size:0.55rem;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;color:rgba(255,255,255,0.06);border-bottom:2px solid transparent}
-.tab-bar button:hover{color:rgba(255,255,255,0.12)}
-.tab-bar button.on{color:rgba(180,0,0,0.4);border-bottom-color:rgba(180,0,0,0.2)}
-
+body{font-family:var(--font-body);background:var(--bg-primary);color:var(--text-primary);-webkit-font-smoothing:antialiased;background-image:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,212,255,0.008) 2px,rgba(0,212,255,0.008) 3px);background-size:100% 4px}
+.hdr{position:sticky;top:0;z-index:30;background:rgba(10,12,16,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-primary);padding:0 20px;display:flex;align-items:center;height:52px}
+.hdr .l{font-family:var(--font-mono);font-size:0.6rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--cyan)}
+.tab-bar{display:flex;position:sticky;top:52px;z-index:29;background:var(--bg-primary);border-bottom:1px solid var(--border-primary);overflow-x:auto}
+.tab-bar button{flex-shrink:0;padding:10px 16px;border:none;background:transparent;font-family:var(--font-mono);font-size:0.6rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all 0.15s;color:var(--text-muted);border-bottom:2px solid transparent}
+.tab-bar button:hover{color:var(--text-secondary)}
+.tab-bar button.on{color:var(--cyan);border-bottom-color:var(--cyan)}
 .wrap{max-width:1100px;margin:0 auto;padding:16px 20px}
 .tab{display:none}.tab.on{display:block}
-
-/* SEARCH */
-.srch{position:relative;margin-bottom:14px}
-.srch input{width:100%;padding:9px 12px 9px 32px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02);border-radius:6px;color:#e8e4dc;font-family:Inter,sans-serif;font-size:0.72rem;outline:none}
-.srch input:focus{border-color:rgba(180,0,0,0.06)}
-.srch::before{content:'🔍';position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:0.65rem;opacity:0.06}
-
-/* FILTER CHIPS */
-.chips{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:12px}
-.chips button{font-size:0.48rem;padding:3px 9px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02);border-radius:3px;color:rgba(255,255,255,0.04);cursor:pointer;font-family:Inter,sans-serif;letter-spacing:0.5px;transition:all 0.2s}
-.chips button:hover{color:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.03)}
-.chips button.on{color:rgba(180,0,0,0.15);border-color:rgba(180,0,0,0.06)}
-
-/* GRID */
-.gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:6px;margin-bottom:20px}
-
-/* CARD BASE */
-.c{background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02);border-radius:8px;padding:14px 16px;transition:all 0.25s;cursor:pointer}
-.c:hover{transform:translateY(-2px);background:rgba(255,255,255,0.015);border-color:rgba(255,255,255,0.03)}
-.c .tg{font-size:0.45rem;color:rgba(255,255,255,0.03);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;font-family:'JetBrains Mono',monospace}
-.c h4{font-size:0.75rem;font-weight:600;margin-bottom:4px}
-.c .st{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:6px}
-.c .st div{text-align:center;padding:3px 2px;background:rgba(0,0,0,0.15);border-radius:3px}
-.c .st .v{font-size:0.55rem;font-weight:600;color:rgba(255,255,255,0.3);font-family:'JetBrains Mono',monospace}
-.c .st .l{font-size:0.38rem;color:rgba(255,255,255,0.03);text-transform:uppercase;letter-spacing:0.5px;margin-top:1px}
-.c .loc{font-size:0.52rem;color:rgba(255,255,255,0.04);line-height:1.3;margin-top:5px;font-family:'JetBrains Mono',monospace}
-
-/* MISSION CARD */
-.c.m{}.c.m .tg{color:rgba(212,168,76,0.04)}
-.c.m h4{color:#d4a84c}
-.c.m .st .v{color:rgba(212,168,76,0.2)}
-.c.m .st .l{color:rgba(212,168,76,0.03)}
-.c.m .badge{display:inline-block;font-size:0.4rem;padding:2px 6px;border-radius:2px;margin-left:4px;vertical-align:middle}
-.c.m .badge.il{background:rgba(180,0,0,0.04);color:rgba(180,0,0,0.15)}
-
-/* BP CARD */
-.c.bp{}.c.bp .tg{color:rgba(232,228,220,0.04)}
-.c.bp h4{color:#e8e4dc}
-.c.bp .st .v{color:rgba(232,228,220,0.1)}
-
-/* HELPER TEXT */
-.info{font-size:0.5rem;color:rgba(255,255,255,0.02);line-height:1.5;margin-bottom:12px;letter-spacing:0.3px}
-
-/* FOOTER */
-footer{padding:24px 20px;text-align:center;border-top:1px solid rgba(255,255,255,0.01);margin-top:20px}
-footer p{font-size:0.45rem;color:rgba(255,255,255,0.02);font-family:'JetBrains Mono',monospace}
-
-::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.02);border-radius:2px}
-@media(max-width:600px){
-  .hdr .lk{display:none}
-  .gr{grid-template-columns:1fr}
-  .tab-bar button{font-size:0.48rem;padding:8px 12px}
-}
+.gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:6px;margin-bottom:20px}
+.c{background:var(--bg-card);border:1px solid var(--border-primary);border-radius:var(--radius);padding:12px 14px;transition:all 0.2s;cursor:pointer}
+.c:hover{border-color:var(--cyan-dim);background:var(--bg-elevated);transform:translateY(-1px)}
+.c .tg{font-family:var(--font-mono);font-size:0.5rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:3px}
+.c h4{font-size:0.75rem;font-weight:600;margin-bottom:2px}
+.c .st{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:5px}
+.c .st div{text-align:center;padding:3px 2px;background:rgba(0,0,0,0.1);border-radius:3px}
+.c .st .v{font-family:var(--font-mono);font-size:0.52rem;font-weight:600;color:var(--cyan)}
+.c .st .l{font-size:0.38rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-muted);margin-top:1px}
+.c .loc{font-family:var(--font-mono);font-size:0.48rem;color:var(--text-muted);line-height:1.3;margin-top:4px}
+.c.m{border-color:rgba(232,184,76,0.04)}.c.m:hover{border-color:rgba(232,184,76,0.1)}
+.c.m h4{color:var(--gold)}.c.m .st .v{color:var(--gold)}
+.info-box{background:var(--cyan-bg);border:1px solid var(--cyan-dim);border-radius:var(--radius);padding:10px 14px;margin-bottom:12px}
+.info-box p{font-family:var(--font-mono);font-size:0.5rem;color:var(--text-muted);line-height:1.5}
+.chips{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:10px}
+.chips button{font-size:0.5rem;padding:3px 9px;background:var(--bg-secondary);border:1px solid var(--border-primary);border-radius:3px;color:var(--text-muted);cursor:pointer;font-family:var(--font-mono);transition:all 0.15s}
+.chips button:hover{border-color:var(--cyan-dim);color:var(--text-secondary)}
+.chips button.on{color:var(--cyan);border-color:var(--cyan-dim);background:var(--cyan-bg)}
+footer{padding:24px 20px;text-align:center;border-top:1px solid var(--border-primary)}
+footer p{font-family:var(--font-mono);font-size:0.45rem;color:var(--text-muted)}
+@media(max-width:600px){.gr{grid-template-columns:1fr}.tab-bar button{font-size:0.5rem;padding:8px 12px}}
 </style>
 </head>
 <body>
-
-<div class="hdr">
-  <div class="l">YOKAIS DIVISION KOPION</div>
-  <div class="lk">
-    <a href="#recursos">Recursos</a>
-    <a href="#misiones">Misiones</a>
-    <a href="#blueprints">Blueprints</a>
-  </div>
-</div>
-
-<div class="tab-bar">
-  <button class="on" data-t="recursos">⛏ Recursos</button>
-  <button data-t="misiones">📋 Misiones</button>
-  <button data-t="blueprints">⚒ Blueprints</button>
-  <button data-t="facciones">🏛 Facciones</button>
-</div>
-
+<div class="hdr"><div class="l">YOKAIS DIVISION KOPION</div></div>
+<div class="tab-bar"><button class="on" data-t="recursos">RECURSOS</button><button data-t="misiones">MISIONES</button><button data-t="blueprints">BLUEPRINTS</button><button data-t="facciones">FACCIONES</button></div>
 <div class="wrap">
-
-<!-- TAB: RECURSOS -->
-<div class="tab on" id="tab-recursos">
-  <div class="info">Guia de recursos minables en Star Citizen 4.9. Clickea cualquier mineral para ver donde aparece.</div>
-  <div class="chips" id="oreChips"></div>
-  <div class="srch"><input type="text" id="oreSearch" placeholder="Buscar mineral..." oninput="filterOres()"></div>
-  <div class="gr" id="oreGrid"></div>
+<div class="tab on" id="tab-recursos"><div class="info-box"><p>Guia de recursos minables en SC 4.9. Haz clic para ver ubicaciones.</p></div><div class="chips" id="oreChips"></div><div class="gr" id="oreGrid"></div></div>
+<div class="tab" id="tab-misiones"><div class="info-box"><p>Misiones en 4.9 LIVE. Datos de SCMDB.</p></div><div class="chips" id="missionChips"></div><div class="gr" id="missionGrid"></div></div>
+<div class="tab" id="tab-blueprints"><div class="info-box"><p>1,597 blueprints en 4.9. Categorias principales.</p></div><div class="gr" id="bpGrid"></div></div>
+<div class="tab" id="tab-facciones"><div class="info-box"><p>Facciones en 4.9. Misiones, reputacion y recompensas.</p></div><div class="gr" id="facGrid"></div></div>
 </div>
-
-<!-- TAB: MISIONES -->
-<div class="tab" id="tab-misiones">
-  <div class="info">Misiones disponibles en 4.9 LIVE. Datos extraidos de SCMDB.</div>
-  <div class="chips" id="missionChips"></div>
-  <div class="gr" id="missionGrid"></div>
-</div>
-
-<!-- TAB: BLUEPRINTS -->
-<div class="tab" id="tab-blueprints">
-  <div class="info">1,597 blueprints de fabricacion en 4.9. Categorias principales listadas.</div>
-  <div class="gr" id="bpGrid"></div>
-</div>
-
-<!-- TAB: FACCIONES -->
-<div class="tab" id="tab-facciones">
-  <div class="info">Facciones en Star Citizen 4.9. Cada faccion ofrece misiones, reputacion y recompensas.</div>
-  <div class="gr" id="facGrid"></div>
-</div>
-
-</div>
-
-<footer><p>YOKAIS DIVISION KOPION — Datos de SCMDB — Star Citizen Alpha 4.9.0 LIVE</p></footer>
-
+<footer><p>YOKAIS DIVISION KOPION — Datos de SCMDB — Star Citizen 4.9.0 LIVE</p></footer>
 <script>
 var D = {"ores": {"Agricium": {"d": 7.14, "i": 350.0, "r": 0.5, "o": 0.5, "e": 4.0}, "Aluminium": {"d": 2.7, "i": 0.0, "r": -0.4, "o": 0.6, "e": -36.0}, "Aslarite": {"d": 2.47, "i": 700.0, "r": 0.5, "o": 0.4, "e": 240.0}, "Beryl": {"d": 2.74, "i": 350.0, "r": 0.65, "o": 0.3, "e": 20.0}, "Bexalite": {"d": 6.97, "i": 600.0, "r": 0.6, "o": 0.4, "e": 100.0}, "Borase": {"d": 4.2, "i": 40.0, "r": 0.3, "o": 0.3, "e": 120.0}, "Copper": {"d": 9.03, "i": 50.0, "r": -0.7, "o": 0.6, "e": -20.0}, "Corundum": {"d": 4.03, "i": 50.0, "r": 0.1, "o": 0.5, "e": -36.0}, "Gold": {"d": 21.07, "i": 550.0, "r": 0.5, "o": 0.5, "e": 100.0}, "Hephaestanite": {"d": 3.2, "i": 400.0, "r": -0.3, "o": 0.7, "e": 120.0}, "Ice": {"d": 1.0, "i": 0.0, "r": -0.5, "o": 0.6, "e": -20.0}, "Iron": {"d": 7.87, "i": 50.0, "r": -0.4, "o": 0.6, "e": 20.0}, "Laranite": {"d": 11.49, "i": 400.0, "r": 0.5, "o": 0.4, "e": 200.0}, "Lindinium": {"d": 10.69, "i": 1000.0, "r": 0.95, "o": 0.5, "e": 260.0}, "Aphorite": {"d": 0.0, "i": 0.0, "r": 0.0, "o": 0.7, "e": 0.0}, "Carinite": {"d": 0.0, "i": 300.0, "r": 0.5, "o": 0.4, "e": 0.5}, "Carinitepure": {"d": 0.0, "i": 300.0, "r": 0.5, "o": 0.4, "e": 0.5}, "Dolivine": {"d": 0.0, "i": 0.0, "r": 0.1, "o": 0.6, "e": 0.0}, "Hadanite": {"d": 0.0, "i": 200.0, "r": 0.0, "o": 0.6, "e": 1.0}, "Jaclium": {"d": 0.0, "i": 100.0, "r": 0.5, "o": 0.5, "e": 1.0}, "Janalite": {"d": 0.0, "i": 300.0, "r": 0.3, "o": 0.3, "e": 1.0}, "Sadaryx": {"d": 0.0, "i": 200.0, "r": 0.0, "o": 0.6, "e": 1.0}, "Saldynium": {"d": 0.0, "i": 100.0, "r": 0.0, "o": 0.5, "e": 1.0}, "Beradom": {"d": 0.0, "i": 0.0, "r": 0.0, "o": 0.7, "e": 0.0}, "Feynmaline": {"d": 0.0, "i": 200.0, "r": 0.0, "o": 0.6, "e": 1.0}, "Glacosite": {"d": 0.0, "i": 0.0, "r": 0.1, "o": 0.6, "e": 0.0}, "Ouratite": {"d": 1.12, "i": 600.0, "r": 0.6, "o": 0.4, "e": 240.0}, "Quantainium": {"d": 20.46, "i": 1000.0, "r": 0.95, "o": 0.5, "e": 260.0}, "Quartz": {"d": 2.53, "i": 50.0, "r": -0.7, "o": 0.6, "e": -20.0}, "Riccite": {"d": 1.61, "i": 850.0, "r": 0.95, "o": 0.7, "e": 260.0}, "Savrilium": {"d": 17.59, "i": 1000.0, "r": 0.95, "o": 0.5, "e": 260.0}, "Stileron": {"d": 4.75, "i": 870.0, "r": 0.6, "o": 0.7, "e": 260.0}, "Silicon": {"d": 2.49, "i": 50.0, "r": -0.2, "o": 0.3, "e": 80.0}, "Taranite": {"d": 10.2, "i": 700.0, "r": 0.5, "o": 0.4, "e": 240.0}, "Tin": {"d": 5.54, "i": 0.0, "r": -0.2, "o": 0.4, "e": -36.0}, "Titanium": {"d": 4.48, "i": 0.0, "r": 0.1, "o": 0.6, "e": 20.0}, "Torite": {"d": 2.8, "i": 550.0, "r": 0.25, "o": 0.5, "e": 100.0}, "Tungsten": {"d": 19.35, "i": 0.0, "r": -0.4, "o": 0.3, "e": 80.0}}, "oreCats": {"ship": ["Agricium", "Aluminium", "Aslarite", "Beryl", "Bexalite", "Borase", "Copper", "Corundum", "Gold", "Hephaestanite", "Ice", "Iron", "Laranite", "Lindinium", "Ouratite", "Quantainium", "Quartz", "Riccite", "Savrilium", "Silicon", "Stileron", "Taranite", "Tin", "Titanium", "Torite", "Tungsten"], "roc": ["Beradom", "Carinite", "Feynmaline", "Glacosite"], "fps": ["Aphorite", "Dolivine", "Hadanite", "Janalite", "Jaclium", "Saldynium"]}, "locations": {"Breaker Stations Interior": {"s": "Nyx", "t": "event", "m": ["Aphorite", "Sadaryx"]}, "Breaker Stations Large Geode": {"s": "Nyx", "t": "event", "m": ["Savrilium"]}, "Glaciem Ring": {"s": "Nyx", "t": "belt", "m": ["Raw Ice", "Iron", "Lindinium", "Bexalite", "Savrilium", "Torite"]}, "Keeger Belt": {"s": "Nyx", "t": "belt", "m": ["Raw Ice", "Aluminum", "Lindinium", "Bexalite", "Savrilium", "Torite"]}, "Akiro Cluster": {"s": "Pyro", "t": "belt", "m": ["Raw Ice", "Raw Silicon", "Copper", "Iron", "Riccite", "Stileron", "Torite"]}, "Pyro Belt (Cool 1)": {"s": "Pyro", "t": "belt", "m": ["Raw Ice", "Raw Silicon", "Titanium", "Borase"]}, "Pyro Belt (Cool 2)": {"s": "Pyro", "t": "belt", "m": ["Raw Ice", "Raw Silicon", "Aslarite", "Taranite"]}, "Pyro Belt (Warm 1)": {"s": "Pyro", "t": "belt", "m": ["Iron", "Copper", "Agricium", "Bexalite"]}, "Pyro Belt (Warm 2)": {"s": "Pyro", "t": "belt", "m": ["Iron", "Copper", "Tungsten", "Gold"]}, "Pyro Deep Space Asteroids": {"s": "Pyro", "t": "belt", "m": ["Aluminum", "Corundum", "Quartz", "Tin", "Riccite", "Stileron", "Torite"]}, "Pyro I": {"s": "Pyro", "t": "planet", "m": ["Aphorite", "Dolivine", "Hadanite", "Beradom", "Iron", "Copper", "Tin", "Stileron"]}, "Pyro II (Monox)": {"s": "Pyro", "t": "planet", "m": ["Aphorite", "Dolivine", "Hadanite", "Glacosite", "Hephaestanite (R)", "Iron", "Tin", "Stileron"]}, "Pyro III (Bloom)": {"s": "Pyro", "t": "planet", "m": ["Aphorite", "Dolivine", "Janalite", "Beradom", "Riccite", "Borase", "Quartz", "Stileron", "Iron"]}, "Pyro IV": {"s": "Pyro", "t": "planet", "m": ["Aphorite", "Dolivine", "Hadanite", "Feynmaline", "Laranite", "Borase", "Copper", "Stileron", "Iron"]}, "Pyro V-a (Ignis)": {"s": "Pyro", "t": "moon", "m": ["Aphorite", "Dolivine", "Hadanite", "Feynmaline", "Tin", "Raw Silicon", "Riccite", "Gold"]}, "Pyro V-b (Vatra)": {"s": "Pyro", "t": "moon", "m": ["Aphorite", "Dolivine", "Hadanite", "Beradom", "Glacosite", "Iron", "Raw Silicon", "Riccite", "Gold"]}, "Pyro V-c (Adir)": {"s": "Pyro", "t": "moon", "m": ["Aphorite", "Dolivine", "Hadanite", "Glacosite", "Iron", "Tungsten", "Riccite", "Borase"]}, "Pyro V-d (Fairo)": {"s": "Pyro", "t": "moon", "m": ["Aphorite", "Dolivine", "Hadanite", "Beradom", "Bexalite", "Tungsten", "Raw Silicon", "Gold", "Iron"]}, "Pyro V-e (Fuego)": {"s": "Pyro", "t": "moon", "m": ["Aphorite", "Dolivine", "Janalite", "Feynmaline", "Borase", "Bexalite", "Aslarite", "Hephaestanite (R)", "Iron"]}, "Pyro V-f (Vuur)": {"s": "Pyro", "t": "moon", "m": ["Aphorite", "Dolivine", "Hadanite", "Glacosite", "Agricium", "Bexalite", "Aslarite", "Hephaestanite (R)", "Iron"]}, "Pyro VI (Terminus)": {"s": "Pyro", "t": "planet", "m": ["Aphorite", "Dolivine", "Janalite", "Feynmaline", "Raw Ice", "Agricium", "Copper", "Titanium", "Riccite", "Stileron", "Gold"]}, "Aaron Halo": {"s": "Stanton", "t": "belt", "m": ["Raw Ice", "Raw Silicon", "Aluminum", "Quantainium", "Iron", "Copper", "Aslarite", "Titanium", "Beryl"]}, "Aberdeen": {"s": "Stanton", "t": "moon", "m": ["Aluminum", "Titanium", "Ouratite", "Quantainium", "Corundum", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Hadanite"]}, "Arial": {"s": "Stanton", "t": "moon", "m": ["Aluminum", "Tin", "Hephaestanite (R)", "Corundum", "Ouratite", "Quantainium", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Hadanite"]}, "Asteroid Cluster (Low Yield)": {"s": "Stanton", "t": "cluster", "m": ["Raw Ice", "Raw Silicon", "Aluminum", "Iron", "Copper", "Quantainium"]}, "Asteroid Cluster (Medium Yield)": {"s": "Stanton", "t": "cluster", "m": ["Raw Ice", "Raw Silicon", "Aluminum", "Iron", "Copper", "Quantainium"]}, "Calliope": {"s": "Stanton", "t": "moon", "m": ["Iron", "Raw Ice", "Hephaestanite (R)", "Quantainium", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Janalite"]}, "Cellin": {"s": "Stanton", "t": "moon", "m": ["Quartz", "Agricium", "Taranite", "Quantainium", "Raw Silicon", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Hadanite"]}, "Clio": {"s": "Stanton", "t": "moon", "m": ["Raw Ice", "Copper", "Taranite", "Quantainium", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Janalite"]}, "Daymar": {"s": "Stanton", "t": "moon", "m": ["Quartz", "Agricium", "Raw Silicon", "Quantainium", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Hadanite"]}, "Euterpe": {"s": "Stanton", "t": "moon", "m": ["Raw Ice", "Copper", "Taranite", "Quantainium", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Janalite"]}, "Hathor Caves": {"s": "Stanton", "t": "cave", "m": ["Aphorite", "Dolivine", "Hadanite", "Janalite", "Jaclium", "Saldynium", "Carinite", "Carinite (Pure)"]}, "Hurston": {"s": "Stanton", "t": "planet", "m": ["Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Hadanite", "Aluminum", "Tin", "Ouratite", "Quantainium"]}, "Ita": {"s": "Stanton", "t": "moon", "m": ["Aluminum", "Tin", "Aslarite", "Quantainium", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Hadanite"]}, "Lagrange (Occupied)": {"s": "Stanton", "t": "lagrange", "m": ["Iron", "Raw Ice", "Copper", "Agricium", "Beryl"]}, "Lagrange A": {"s": "Stanton", "t": "lagrange", "m": ["Aluminum", "Corundum", "Hephaestanite (R)", "Laranite", "Borase"]}, "Lagrange B": {"s": "Stanton", "t": "lagrange", "m": ["Iron", "Raw Ice", "Copper", "Aslarite", "Gold"]}, "Lagrange C": {"s": "Stanton", "t": "lagrange", "m": ["Aluminum", "Corundum", "Hephaestanite (R)", "Torite"]}, "Lagrange D": {"s": "Stanton", "t": "lagrange", "m": ["Iron", "Raw Ice", "Copper", "Agricium", "Beryl"]}, "Lagrange E": {"s": "Stanton", "t": "lagrange", "m": ["Iron", "Raw Ice", "Copper", "Titanium", "Bexalite"]}, "Lagrange F": {"s": "Stanton", "t": "lagrange", "m": ["Corundum", "Aluminum", "Hephaestanite (R)", "Tungsten", "Taranite"]}, "Lagrange G": {"s": "Stanton", "t": "lagrange", "m": ["Iron", "Raw Ice", "Copper", "Agricium", "Beryl"]}, "Lyria": {"s": "Stanton", "t": "moon", "m": ["Iron", "Copper", "Laranite", "Quantainium", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Janalite"]}, "Magda": {"s": "Stanton", "t": "moon", "m": ["Aluminum", "Titanium", "Aslarite", "Quantainium", "Iron", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Hadanite"]}, "Wala": {"s": "Stanton", "t": "moon", "m": ["Iron", "Beryl", "Laranite", "Quantainium", "Copper", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Janalite"]}, "Yela": {"s": "Stanton", "t": "moon", "m": ["Quartz", "Agricium", "Taranite", "Raw Silicon", "Quantainium", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Hadanite"]}, "Yela Asteroid Belt": {"s": "Stanton", "t": "belt", "m": ["Iron", "Raw Ice", "Copper", "Titanium", "Ouratite"]}, "microTech": {"s": "Stanton", "t": "planet", "m": ["Iron", "Raw Ice", "Hephaestanite (R)", "Quantainium", "Beradom", "Glacosite", "Feynmaline", "Aphorite", "Dolivine", "Janalite"]}}, "missions": [{"n": "[DESTINATION] Errand", "f": "Headhunters", "s": "Pyro", "t": "Delivery", "r": 48250, "xp": 50, "il": true, "d": 2, "st": 3}, {"n": "[DESTINATION] Stroll", "f": "Unknown", "s": "Pyro", "t": "Delivery", "r": 8000, "xp": 0, "il": false, "d": 1, "st": 1, "eh": 9796}, {"n": "[LOCATION] greenlit", "f": "Headhunters", "s": "Pyro", "t": "Reparacion", "r": 40000, "xp": 50, "il": false, "d": 2, "st": 4}, {"n": "[LOCATION] needs repairs", "f": "Headhunters", "s": "Pyro", "t": "Reparacion", "r": 35000, "xp": 50, "il": false, "d": 1, "st": 3}, {"n": "[LOCATION] massive repairs", "f": "Headhunters", "s": "Pyro", "t": "Reparacion", "r": 55000, "xp": 60, "il": false, "d": 3, "st": 4}, {"n": "[TARGET] needs stomping", "f": "Headhunters", "s": "Pyro", "t": "Combate", "r": 60000, "xp": 70, "il": true, "d": 3, "st": 5}, {"n": "Bounty Hunt", "f": "Bounty Hunters Guild", "s": "Multi", "t": "Combate", "r": 75000, "xp": 80, "il": false, "d": 4, "st": 4}, {"n": "Data Transport", "f": "Aciedo Comms", "s": "Stanton", "t": "Transporte", "r": 22000, "xp": 30, "il": false, "d": 1, "st": 2}], "bpCats": [{"n": "Cooler", "i": "\u2744\ufe0f", "c": "Ship Component", "cl": "Mil/Ind/Stealth/Civ/Comp", "g": "A-D", "s": "0-6"}, {"n": "Power Plant", "i": "\u26a1", "c": "Ship Component", "cl": "Mil/Ind/Stealth/Civ/Comp", "g": "A-D", "s": "0-6"}, {"n": "Quantum Drive", "i": "\ud83d\ude80", "c": "Ship Component", "cl": "Mil/Ind/Stealth/Civ/Comp", "g": "A-D", "s": "0-6"}, {"n": "Shield Generator", "i": "\ud83d\udd30", "c": "Ship Component", "cl": "Mil/Ind/Stealth/Civ/Comp", "g": "A-D", "s": "0-6"}, {"n": "Radar", "i": "\ud83d\udce1", "c": "Ship Component", "cl": "Mil/Ind/Stealth/Civ/Comp", "g": "A-D", "s": "0-6"}, {"n": "Ship Weapon", "i": "\u2694\ufe0f", "c": "Ship Component", "cl": "Ballistic/Energy/Laser", "g": "A-D", "s": "1-6"}, {"n": "Mining Laser", "i": "\u26cf\ufe0f", "c": "Ship Component", "cl": "Mil/Ind/Stealth/Civ", "g": "A-D", "s": "0-6"}, {"n": "Salvage Head", "i": "\u267b\ufe0f", "c": "Ship Component", "cl": "Mil/Ind/Stealth/Civ", "g": "A-D", "s": "0-6"}, {"n": "Tractor Beam", "i": "\ud83e\uddf2", "c": "Ship Component", "cl": "Mil/Ind/Stealth/Civ", "g": "A-D", "s": "0-6"}, {"n": "Refueling", "i": "\u26fd", "c": "Ship Component", "cl": "Mil/Ind/Stealth/Civ", "g": "A-D", "s": "0-6"}, {"n": "Armor Light", "i": "\ud83d\udee1\ufe0f", "c": "FPS Gear", "cl": "Helmet/Torso/Arms/Legs", "g": "A-D", "s": "-"}, {"n": "Armor Medium", "i": "\ud83d\udee1\ufe0f", "c": "FPS Gear", "cl": "Helmet/Torso/Arms/Legs", "g": "A-D", "s": "-"}, {"n": "Armor Heavy", "i": "\ud83d\udee1\ufe0f", "c": "FPS Gear", "cl": "Helmet/Torso/Arms/Legs", "g": "A-D", "s": "-"}, {"n": "Undersuit", "i": "\ud83d\udc64", "c": "FPS Gear", "cl": "Flightsuit/Hunter/Engineer", "g": "A-D", "s": "-"}, {"n": "Weapons Ballistic", "i": "\ud83d\udd2b", "c": "FPS Gear", "cl": "Pistol/LMG/Nozzle", "g": "A-D", "s": "-"}, {"n": "Weapons Energy", "i": "\ud83d\udd2b", "c": "FPS Gear", "cl": "Pistol/Distortion/Plasma", "g": "A-D", "s": "-"}], "factions": ["Headhunters", "CDF", "Bounty Hunters Guild", "ArcCorp", "Hurston Dynamics", "microTech", "Nine Tails", "Advocacy", "Clovus Darneely", "Recco Battaglia", "Citizens For Prosperity", "Aciedo Communications", "Crusader Industries", "Covalex", "Benson Mining", "Bountiful Harvest"]};
-var oreFilter = '';
-var missionFilter = '';
 
-// ===== ORES =====
-function buildOres(list){
-  var g=document.getElementById('oreGrid');
-  g.innerHTML='';
-  list.forEach(function(k){
+function fmt(n){if(!n&&n!==0)return'-';if(n>=1000000)return(n/1000000).toFixed(1)+'M';if(n>=1000)return(n/1000).toFixed(1)+'K';return n.toString()}
+
+// ORES
+var oF='';
+function bO(l){
+  var g=document.getElementById('oreGrid');g.innerHTML='';
+  l.forEach(function(k){
     var o=D.ores[k];if(!o)return;
-    var cat='NAVE';
-    if(D.oreCats.roc.indexOf(k)!==-1)cat='ROC';
-    else if(D.oreCats.fps.indexOf(k)!==-1)cat='FPS';
-    var c=document.createElement('div');c.className='c';
-    c.innerHTML='<div class="tg">'+cat+'</div><h4>'+k+'</h4><div class="st"><div><div class="v">'+(o.i||0)+'</div><div class="l">Inest</div></div><div><div class="v">'+(o.d||0)+'</div><div class="l">Dens</div></div><div><div class="v">'+(o.r||0)+'</div><div class="l">Resist</div></div></div><div class="loc">'+getLocations(k)+'</div>';
-    c.onclick=(function(n){return function(){showOreDetail(n)}})(k);
-    g.appendChild(c);
+    var c='SHIP';if(D.oreCats.roc.indexOf(k)!==-1)c='ROC';else if(D.oreCats.fps.indexOf(k)!==-1)c='FPS';
+    var e=document.createElement('div');e.className='c';
+    e.innerHTML='<div class="tg">'+c+'</div><h4>'+k+'</h4><div class="st"><div><div class="v">'+(o.i||0)+'</div><div class="l">Inest</div></div><div><div class="v">'+o.d+'</div><div class="l">Dens</div></div><div><div class="v">'+(o.r||0)+'</div><div class="l">Resist</div></div></div><div class="loc">'+gL(k)+'</div>';
+    e.onclick=(function(n){return function(){alert('MINERAL: '+n+'\nStats del juego desde SCMDB.');}})(k);
+    g.appendChild(e);
   });
 }
-
-function getLocations(name){
-  var r=[];
-  for(var k in D.locations){
-    var loc=D.locations[k];
-    for(var i=0;i<loc.m.length;i++){
-      if(loc.m[i].toLowerCase().indexOf(name.toLowerCase())!==-1){r.push(k);break}
-    }
-  }
-  return r.length?r.slice(0,3).join(', ')+(r.length>3?', +'+(r.length-3):''):'Sin ubicacion fija';
-}
-
-function showOreDetail(name){
-  var o=D.ores[name];if(!o)return;
-  var msg='🪨 MINERAL: '+name+'\n━━━━━━━━━━━━━━━\n📊 Stats:\n  Densidad: '+o.d+'\n  Inestabilidad: '+o.i+'\n  Resistencia: '+o.r+'\n  Ventana: '+o.o+'\n  Explosion: '+o.e+'\n\n📍 UBICACIONES:\n';
-  for(var k in D.locations){
-    var loc=D.locations[k];
-    for(var i=0;i<loc.m.length;i++){
-      if(loc.m[i].toLowerCase().indexOf(name.toLowerCase())!==-1){
-        msg+='  - '+k+' ('+loc.s+', '+loc.t+')\n';break;
-      }
-    }
-  }
-  alert(msg);
-}
-
-function filterOres(){
-  var q=document.getElementById('oreSearch').value.toLowerCase();
-  var list=Object.keys(D.ores).filter(function(k){return oreFilter?D.oreCats[oreFilter]&&D.oreCats[oreFilter].indexOf(k)!==-1:true}).filter(function(k){return k.toLowerCase().indexOf(q)!==-1});
-  buildOres(list);
-}
-
-// Ore filter chips
-var oreCatsDiv=document.getElementById('oreChips');
-var oreBtns=[{n:'Todos',v:''},{n:'Nave 🚀',v:'ship'},{n:'ROC 🚜',v:'roc'},{n:'FPS ⛏',v:'fps'}];
-oreBtns.forEach(function(b){
-  var btn=document.createElement('button');
-  btn.textContent=b.n;
-  if(!b.v)btn.classList.add('on');
-  btn.onclick=function(){oreFilter=b.v;document.querySelectorAll('#oreChips button').forEach(function(x){x.classList.remove('on')});btn.classList.add('on');filterOres();};
-  oreCatsDiv.appendChild(btn);
+function gL(n){var r=[];for(var k in D.locations){var l=D.locations[k];for(var i=0;i<l.m.length;i++){if(l.m[i].toLowerCase().indexOf(n.toLowerCase())!==-1){r.push(k);break}}}return r.length?r.slice(0,2).join(', ')+(r.length>2?', +'+(r.length-2):''):'Sin ubicacion';}
+['Todos','SHIP','ROC','FPS'].forEach(function(c,i){
+  var b=document.createElement('button');b.textContent=['Todos','Nave','ROC','FPS'][i];if(!i)b.classList.add('on');
+  b.onclick=function(){oF=i?c.toLowerCase():'';document.querySelectorAll('#oreChips button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');var l=Object.keys(D.ores).filter(function(k){return oF?D.oreCats[oF]&&D.oreCats[oF].indexOf(k)!==-1:true});bO(l);};
+  document.getElementById('oreChips').appendChild(b);
 });
 
-// ===== MISSIONS =====
-function buildMissions(){
-  var g=document.getElementById('missionGrid');
-  g.innerHTML='';
-  D.missions.forEach(function(m){
-    var c=document.createElement('div');c.className='c m';
-    c.innerHTML='<div class="tg">'+m.f+' · '+(m.il?'<span style="color:rgba(180,0,0,0.15)">ILEGAL</span>':'LEGAL')+'</div><h4>'+m.n+'</h4><div class="st"><div><div class="v">'+fmt(m.r)+'</div><div class="l">aUEC</div></div><div><div class="v">'+m.xp+'</div><div class="l">XP</div></div><div><div class="v">'+(m.eh?fmt(m.eh)+'/h':'—')+'</div><div class="l">Por hora</div></div></div>';
-    c.onclick=(function(mm){return function(){showMissionDetail(mm)}})(m);
-    g.appendChild(c);
-  });
-}
+// MISSIONS
+['Todos','Legal','Ilegal'].forEach(function(c,i){
+  var b=document.createElement('button');b.textContent=['Todas','Legales','Ilegales'][i];if(!i)b.classList.add('on');
+  b.onclick=function(){document.querySelectorAll('#missionChips button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');
+    var g=document.getElementById('missionGrid');g.innerHTML='';
+    D.missions.forEach(function(m){
+      if(i===1&&m.il)return;if(i===2&&!m.il)return;
+      var e=document.createElement('div');e.className='c m';
+      e.innerHTML='<div class="tg">'+m.f+'</div><h4>'+m.n+'</h4><div class="st"><div><div class="v">'+fmt(m.r)+'</div><div class="l">aUEC</div></div><div><div class="v">'+m.xp+'</div><div class="l">XP</div></div><div><div class="v">'+(m.il?'ILEGAL':'Legal')+'</div><div class="l">Tipo</div></div></div>';
+      e.onclick=(function(mm){return function(){alert('MISION: '+mm.n+'\nFaccion: '+mm.f+'\nSistema: '+mm.s+'\nRecompensa: '+fmt(mm.r)+' aUEC\nXP: '+mm.xp);}})(m);
+      g.appendChild(e);
+    });
+  };
+  document.getElementById('missionChips').appendChild(b);
+});
 
-function showMissionDetail(m){
-  alert('📋 MISION: '+m.n+'\n━━━━━━━━━━━━━━━\nFacción: '+m.f+'\nSistema: '+m.s+'\nTipo: '+m.t+'\nRecompensa: '+fmt(m.r)+' aUEC\nXP Base: '+m.xp+'\nEstado: '+(m.il?'ILEGAL':'Legal')+'\nDificultad: '+(m.d||'?')+'/7 ⭐\nSatisfaccion: '+(m.st||'?')+'/7');
-}
-
-// ===== BLUEPRINTS =====
-function buildBPs(){
+// BPs
+(function(){
   var g=document.getElementById('bpGrid');
-  g.innerHTML='';
   D.bpCats.forEach(function(b){
-    var c=document.createElement('div');c.className='c bp';
-    c.innerHTML='<div class="tg">'+b.i+' '+b.c+'</div><h4>'+b.n+'</h4><div class="st"><div><div class="v">'+b.cl.split('/').slice(0,2).join('/')+'</div><div class="l">Clase</div></div><div><div class="v">'+b.g+'</div><div class="l">Grado</div></div><div><div class="v">S'+b.s+'</div><div class="l">Tamaño</div></div></div>';
-    c.onclick=(function(bp){return function(){
-      alert('🔧 BLUEPRINT: '+bp.n+'\n━━━━━━━━━━━━━━━\nCategoria: '+bp.c+'\nClases: '+bp.cl+'\nGrados: '+bp.g+'\nTamaños: S'+bp.s+'\n\nDisponible en:\n- Fabricador de estación\n- Misiones de facción\n- Eventos');
-    }})(b);
-    g.appendChild(c);
+    var e=document.createElement('div');e.className='c';
+    e.innerHTML='<div class="tg">'+b.c+'</div><h4>'+b.n+'</h4><div class="st"><div><div class="v">'+b.cl.split('/')[0]+'</div><div class="l">Clase</div></div><div><div class="v">'+b.g+'</div><div class="l">Grado</div></div><div><div class="v">S'+b.s+'</div><div class="l">Tam</div></div></div>';
+    g.appendChild(e);
   });
-}
+})();
 
-// ===== FACTIONS =====
-function buildFactions(){
+// FAC
+(function(){
   var g=document.getElementById('facGrid');
-  g.innerHTML='';
-  var grades=['JR','SR','PR','MR','LR'];
+  var gs=['JR','SR','PR','MR','LR'];
   D.factions.forEach(function(f,i){
-    var gr=grades[i%5];var xp=500+Math.floor(i/5)*2000;
-    var c=document.createElement('div');c.className='c';
-    c.style.borderColor='rgba(212,168,76,0.03)';
-    c.innerHTML='<div class="tg" style="color:rgba(212,168,76,0.04)">Rango '+gr+'</div><h4 style="color:#d4a84c">'+f+'</h4><div class="st"><div><div class="v" style="color:rgba(74,222,128,0.2)">'+fmt(xp)+'</div><div class="l">XP</div></div><div><div class="v">'+gr+'</div><div class="l">Rango</div></div><div><div class="v">'+(5-Math.floor(i/4))+'★</div><div class="l">Estrellas</div></div></div>';
-    c.onclick=(function(fn,gr,x){return function(){alert('🏛 FACCION: '+fn+'\n━━━━━━━━━━━━━━━\nRango: '+gr+'\nXP Requerida: '+fmt(x)+'\nMisiones: 10+\nRecompensas: Blueprints, equipo, aUEC\nReputacion: +'+Math.floor(x/10)+' por mision');}})(f,gr,xp);
-    g.appendChild(c);
+    var gr=gs[i%5];var xp=500+Math.floor(i/5)*2000;
+    var e=document.createElement('div');e.className='c';e.style.borderColor='rgba(232,184,76,0.03)';
+    e.innerHTML='<div class="tg">Rango '+gr+'</div><h4 style="color:var(--gold)">'+f+'</h4><div class="st"><div><div class="v" style="color:var(--green)">'+fmt(xp)+'</div><div class="l">XP</div></div><div><div class="v">'+gr+'</div><div class="l">Rango</div></div><div><div class="v">'+(5-Math.floor(i/4))+'*</div><div class="l">Est</div></div></div>';
+    g.appendChild(e);
   });
-}
-
-function fmt(n){if(!n&&n!==0)return'—';if(n>=1000000)return(n/1000000).toFixed(1)+'M';if(n>=1000)return(n/1000).toFixed(1)+'K';return n.toString()}
+})();
 
 // TABS
 document.querySelector('.tab-bar').addEventListener('click',function(e){
@@ -253,11 +133,7 @@ document.querySelector('.tab-bar').addEventListener('click',function(e){
   document.getElementById('tab-'+b.getAttribute('data-t')).classList.add('on');
 });
 
-// INIT
-buildOres(Object.keys(D.ores));
-buildMissions();
-buildBPs();
-buildFactions();
+bO(Object.keys(D.ores));
 </script>
 </body>
 </html>
